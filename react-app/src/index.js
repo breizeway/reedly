@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { configureStore } from "./store"
+import configureStore from "./store"
 
 const store = configureStore()
 
