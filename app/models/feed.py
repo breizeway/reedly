@@ -1,4 +1,5 @@
 from .db import db
+from sqlalchemy.schema import ForeignKey
 
 class Feed(db.Model):
   __tablename__ = 'feeds'
