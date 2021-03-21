@@ -10,38 +10,49 @@ const setUser = user => {
     }
 }
 
-
 const removeUser = () => {
     return {
         type: REMOVE_USER,
     }
 }
 
-export const login = (email, password) => async dispatch => {
-    const data = auth.login(email, password)
-    dispatch(setUser(data.user))
-    console.log("data inside login", data)
-    return data
+export const login = (username, email, password) => async dispatch => {
+    const user = await auth.login(email, password)
+    if (user.id) dispatch(setUser(user)) // only set the user state if the route doesn't return errors
+    return user
+}
+
+export const signup = (email, password) => async dispatch => {
+    const user = await auth.login(email, password)
+    if (user.id) dispatch(setUser(user)) // only set the user state if the route doesn't return errors
+    return user
 }
 
 
-// const logout = () => async dispatch => {
-
-// }
-
+export const logout = () => async dispatch => {
+    const response = await auth.logout()
+    dispatch(removeUser())
+    return response
+}
 
 
 const initialState = {
     user: null
 }
 
-const sessionReducer = (state=initialState, action) => {
+const sessionReducer = (state = initialState, action) => {
     let newState
-    switch(action.type) {
+    switch (action.type) {
         case SET_USER:
-        newState = {...state}
-        newState.user = action.user
-        return newState
+            newState = {...state}
+            newState.user = action.user
+            return newState
+        case REMOVE_USER:
+            newState = {...state};
+            newState.user = null;
+            return newState;
+        default:
+            return state;
     }
 }
 
