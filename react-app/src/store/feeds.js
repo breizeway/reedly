@@ -26,8 +26,36 @@ export const getFeeds = () => async dispatch => {
     const response = await fetch('/api/feeds');
     if (response.ok) {
         const { data } = await response.json();
-        dispatch(addFeeds(data))
+        dispatch(load(data))
     }
+
+    return data
+}
+
+export const getOneFeed = (id) => async (dispatch) => {
+    const response = await fetch(`/api/feeds/${id}`)
+
+    if (response.ok) {
+        const { data } = await response.json();
+        dispatch(loadOneFeed(data))
+    }
+
+    return data
+}
+
+export const postFeed = (feedInfo) => {
+    const response = await fetch(`/api/feeds`, {
+        method: 'POST',
+        body: JSON.stringify(pokemonInfo),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+    
+    if (!response.ok) throw response;
+    const { data } = await response.json();
+    dispatch(addOneFeed(data));
+    return data;
 }
 
 const initialState = {};
