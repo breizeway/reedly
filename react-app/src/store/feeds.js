@@ -1,26 +1,35 @@
-const RECEIVE_CHARACTERS = "RECEIVE_CHARACTERS";
-const RECEIVE_CHARACTER = "RECEIVE_CHARACTER";
+const LOAD_FEEDS = "feeds/LOAD";
+const LOAD_FEED = "feed/LOAD"
+const ADD_ONE_FEED = "feed/ADD_ONE";
 
 // An action is an object with a key of type
-const addCharacters = (characters) => {
+const load = feeds => {
     return {
-        type: RECEIVE_CHARACTERS,
-        characters
-    };-
-};
-const addCharacter = (character) => {
-    return {
-        type: RECEIVE_CHARACTER,
-        character
+        type: LOAD_FEEDS,
+        feeds
     };
 };
-export const getCharacters = () => async dispatch => {
-    const response = await fetch('/api/characters');
+
+const loadOneFeed = (feed) => {
+    return {
+        type: LOAD_FEED,
+        feed
+    };
+};
+
+const addOneFeed = (feed) => ({
+    type: ADD_ONE_FEED,
+    feed,
+});
+
+export const getFeeds = () => async dispatch => {
+    const response = await fetch('/api/feeds');
     if (response.ok) {
         const { data } = await response.json();
-        dispatch(addCharacters(data))
+        dispatch(addFeeds(data))
     }
 }
+
 const initialState = {};
 const feedReducer = (state = initialState, action) => {
     switch (action.type) {
