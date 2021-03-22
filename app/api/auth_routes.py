@@ -71,21 +71,16 @@ def sign_up():
             password=form.data['password']
         )
         db.session.add(user)
-        print('BEFORE SESSION.COMMIT:::')
-        # commit = db.session.commit()
-        try:
-            commit = db.session.commit()
-        except psycopg2_errors.UniqueViolation as e:
-            print('::::::ERROR.TYPE::::::',
-                  e.__repr__())
-        except sqlalchemy_errors.IntegrityError as e:
-            print('   :::INTEGRITYERROR:::   ', e)
-            print('   :::INTEGRITYERROR is unique violation:::   ', isinstance(e, psycopg2_errors.UniqueViolation))
-            print('::::::ERROR.DIR::::::',
-                  list(filter(lambda prop: '_' not in prop, e.__dir__())))
-            print('::::::ERROR::::::', e.code)
-            print('::::::ERROR::::::', e.orig.pgerror)
-            return {'errors': e}
+        commit = db.session.commit()
+        # try:
+        #     commit = db.session.commit()
+        # except sqlalchemy_errors.IntegrityError as e:
+        #     print('   :::INTEGRITYERROR:::   ', e)
+        #     print('   :::INTEGRITYERROR is unique violation:::   ', isinstance(e, psycopg2_errors.UniqueViolation))
+        #     print('::::::ERROR.DIR::::::',
+        #           list(filter(lambda prop: '_' not in prop, e.__dir__())))
+        #     print('::::::ERROR::::::', e.orig)
+        #     return {'errors': e}
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
