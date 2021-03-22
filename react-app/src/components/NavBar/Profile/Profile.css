@@ -1,0 +1,29 @@
+.navbar__profile {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar__profile-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    color: var(--icon-color)
+}
+
+.navbar__profile-dropdown {
+    position: absolute;
+    bottom: 0;
+    left: 48px;
+}
+
+.navbar__profile-dropdown > a,
+.navbar__profile-dropdown > div {
+    display: block;
+}
