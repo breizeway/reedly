@@ -10,5 +10,7 @@ feed_routes = Blueprint('feeds', __name__)
 @login_required
 def feeds():
     if current_user.is_authenticated:
-        feeds = Feed.query.all()
+        dict_current_user = current_user.to_dict()
+        feeds = Feed.query.filter(Feed.user_id == dict_current_user["id"]).all()
+        print("feeds from within feed_routes blueprint", feeds)
     return {"feeds": [feed.to_dict() for feed in feeds]}
