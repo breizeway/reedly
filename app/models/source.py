@@ -16,6 +16,6 @@ class Source(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "user_id": self.user_id,
-            "feed_name": self.feed_name
+            "source_url": self.source_url,
+            "alt_name": self.alt_name
         }
