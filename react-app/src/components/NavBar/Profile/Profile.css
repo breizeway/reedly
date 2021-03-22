@@ -19,8 +19,12 @@
 
 .navbar__profile-dropdown {
     position: absolute;
-    bottom: 0;
-    left: 48px;
+    bottom: 32px;
+    left: 52px;
+    border: 1px solid var(--main-border);
+    border-radius: 4px;
+    background-color: var(--main-background);
+    box-shadow: 0px 0px 3px lightgray;
 }
 
 .navbar__profile-dropdown > a,
