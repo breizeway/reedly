@@ -16,25 +16,29 @@ const removeUser = () => {
     }
 }
 
-export const login = (username, email, password) => async dispatch => {
+export const restore = () => async dispatch => {
+    const user = await auth.authenticate()
+    if (user.id) dispatch(setUser(user)) // only set the user state if the route doesn't return errors
+    return user
+}
+
+export const login = (email, password) => async dispatch => {
     const user = await auth.login(email, password)
     if (user.id) dispatch(setUser(user)) // only set the user state if the route doesn't return errors
     return user
 }
 
-export const signup = (email, password) => async dispatch => {
-    const user = await auth.login(email, password)
+export const signup = (username, email, password) => async dispatch => {
+    const user = await auth.signup(username, email, password)
     if (user.id) dispatch(setUser(user)) // only set the user state if the route doesn't return errors
     return user
 }
-
 
 export const logout = () => async dispatch => {
     const response = await auth.logout()
     dispatch(removeUser())
     return response
 }
-
 
 const initialState = {
     user: null
