@@ -9,6 +9,7 @@ def seed_sources_w_feeds():
                     alt_name='Finance',
                     feeds=[feed4])
 
+    db.session.add(feed4)
     db.session.add(source1)
     db.session.add(source2)
     db.session.commit()
