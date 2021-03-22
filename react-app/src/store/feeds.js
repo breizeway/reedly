@@ -23,13 +23,12 @@ const addOneFeed = (feed) => ({
 });
 
 export const getFeeds = () => async dispatch => {
-    const response = await fetch('/api/feeds');
+    const response = await fetch('/api/feeds/');
     if (response.ok) {
-        const { data } = await response.json();
-        dispatch(load(data))
+        const data = await response.json();
+        dispatch(load(data.feeds))
+        return data
     }
-
-    return data
 }
 
 export const getOneFeed = (id) => async (dispatch) => {
@@ -38,20 +37,19 @@ export const getOneFeed = (id) => async (dispatch) => {
     if (response.ok) {
         const { data } = await response.json();
         dispatch(loadOneFeed(data))
+        return data
     }
-
-    return data
 }
 
-export const postFeed = (feedInfo) => {
+export const postFeed = (feedInfo) => async (dispatch) => {
     const response = await fetch(`/api/feeds`, {
         method: 'POST',
-        body: JSON.stringify(pokemonInfo),
+        body: JSON.stringify(feedInfo),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
         },
     })
-    
+
     if (!response.ok) throw response;
     const { data } = await response.json();
     dispatch(addOneFeed(data));
@@ -61,11 +59,11 @@ export const postFeed = (feedInfo) => {
 const initialState = {};
 const feedReducer = (state = initialState, action) => {
     switch (action.type) {
-        case RECEIVE_CHARACTERS:
-            const allCharacters = {};
-            const { characters } = action;
-            characters.forEach(char => allCharacters[char.id] = char );
-            return allCharacters;
+        case LOAD_FEEDS:
+            const allFeeds = {};
+            const { feeds } = action;
+            feeds.forEach(feed => allFeeds[feed.id] = feed );
+            return allFeeds;
         default:
             return state;
     }

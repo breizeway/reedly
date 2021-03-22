@@ -10,3 +10,10 @@ class Feed(db.Model):
   feed_name = db.Column(db.String(50), nullable = False)
 
   user = relationship("User", back_populates="feeds")
+
+  def to_dict(self):
+    return {
+        "id": self.id,
+        "user_id": self.user_id,
+        "feed_name": self.feed_name
+    }
