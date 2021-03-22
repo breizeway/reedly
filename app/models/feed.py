@@ -11,8 +11,8 @@ class Feed(db.Model):
     user_id = db.Column(db.Integer, ForeignKey("users.id"), nullable=False)
     feed_name = db.Column(db.String(50), nullable=False)
 
-    user = relationship("User", back_populates="feeds")
-    sources = relationship("Feed", secondary=feeds_sources,
+    user = db.relationship("User", back_populates="feeds")
+    sources = db.relationship("Feed", secondary=feeds_sources,
                            back_populates="feeds")
 
     def to_dict(self):

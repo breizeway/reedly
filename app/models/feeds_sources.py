@@ -6,6 +6,5 @@ Base = declarative_base()
 
 feeds_sources = db.Table(
     "feeds_sources",
-    db.Model.metadata,
-    db.Column("feed_id", ForeignKey("feeds.id"), primary_key=True),
-    db.Column("source_id", ForeignKey("sources.id"), primary_key=True))
+    db.Column("feed_id", db.Integer, ForeignKey("feeds.id"), primary_key=True),
+    db.Column("source_id", db.Integer, ForeignKey("sources.id"), primary_key=True))
