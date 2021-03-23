@@ -21,5 +21,4 @@ class Feed(db.Model):
             "user_id": self.user_id,
             "feed_name": self.feed_name,
             "sources": [source.to_dict() for source in self.sources]
-            }
-
+        }

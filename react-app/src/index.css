@@ -23,6 +23,11 @@ body {
 }
 
 #root {
+    width: 100%;
+    height: 100%;
+}
+
+.app-container {
     display: grid;
     grid-template: 100% / 48px 270px auto;
     grid-template-areas:
