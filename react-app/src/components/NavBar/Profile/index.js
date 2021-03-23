@@ -5,7 +5,7 @@ import LogoutButton from "../../auth/LogoutButton";
 import "./Profile.css";
 
 const Profile = () => {
-    const user = useSelector(state => state.session.user) 
+    const user = useSelector(state => state.session.user)
 
     const [showDropdown, setShowDropdown] = useState(false)
     const openDropdown = () => {
@@ -26,13 +26,13 @@ const Profile = () => {
 
     return (
         <>
-            <div 
+            <div
                 className="navbar__profile"
                 onClick={openDropdown}
             >
-                <div className="navbar__profile-button">
-                    <i className="far fa-user"></i>
-                </div>
+                    <div className="navbar__profile-button">
+                        <i className="far fa-user"></i>
+                    </div>
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
                 <div>

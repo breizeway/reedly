@@ -7,3 +7,22 @@
     padding: var(--main-padding) 0;
     border-right: 1px solid var(--main-border);
 }
+
+.navbar__button {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    display:flex;
+    margin: 2px;
+    justify-content: center;
+    align-items: center;
+
+    opacity:.6;
+    transition: .2s;
+    color: var(--icon-color)
+}
+
+.navbar__button:hover {
+    opacity: 1;
+    background-color: #f2f2f2;
+}
