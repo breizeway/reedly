@@ -9,19 +9,19 @@ import configureStore from "./store"
 const store = configureStore()
 
 function Root() {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  )
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Provider>
+    )
 }
 
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Root />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
