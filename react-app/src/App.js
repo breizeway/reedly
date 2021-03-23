@@ -8,6 +8,7 @@ import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
+import AddFeedForm from "./components/AddFeedForm"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -44,6 +45,9 @@ function App() {
               <HomePage />
             </Route>
           </MainContent>
+        </ProtectedRoute>
+        <ProtectedRoute path="/add-feed" exact={true}>
+            <AddFeedForm />
         </ProtectedRoute>
       </Switch>
     </>
