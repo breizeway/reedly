@@ -13,11 +13,12 @@ class Feed(db.Model):
 
     user = db.relationship("User", back_populates="feeds")
     sources = db.relationship("Source", secondary=feeds_sources,
-                           back_populates="feeds")
+                              back_populates="feeds")
 
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.user_id,
             "feed_name": self.feed_name,
-        }
+            "sources": [source.to_dict() for source in self.sources]
+            }
