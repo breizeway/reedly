@@ -1,0 +1,33 @@
+.navbar__profile {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar__profile-button {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    color: var(--icon-color)
+}
+
+.navbar__profile-dropdown {
+    position: absolute;
+    bottom: 32px;
+    left: 52px;
+    border: 1px solid var(--main-border);
+    border-radius: 4px;
+    background-color: var(--main-background);
+    box-shadow: 0px 0px 3px lightgray;
+}
+
+.navbar__profile-dropdown > a,
+.navbar__profile-dropdown > div {
+    display: block;
+}

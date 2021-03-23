@@ -8,7 +8,10 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import SideBar from "./components/SideBar";
 import * as sessionActions from "./store/session"
+import "./index.css"
+
 
 function App() {
   const dispatch = useDispatch()
@@ -28,6 +31,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <SideBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
