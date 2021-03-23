@@ -3,11 +3,11 @@ from app.models import db, Source, Feed
 def seed_sources_w_feeds():
     feed4 = Feed(user_id=2, feed_name='Business')
     source1 = Source(source_url='http://feeds.feedburner.com/Techcrunch',
-                    alt_name='TechCrunch',
-                    feeds=[feed4])
+                    alt_name='TechCrunch')
     source2 = Source(source_url='http://fortune.com/finance/feed/',
-                    alt_name='Finance',
-                    feeds=[feed4])
+                    alt_name='Finance')
+    feed4.sources.append(source1)
+    feed4.sources.append(source2)
 
     db.session.add(feed4)
     db.session.add(source1)
@@ -19,5 +19,5 @@ def seed_sources_w_feeds():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_sources():
-    db.session.execute('TRUNCATE seeds;')
+    db.session.execute('TRUNCATE sources CASCADE;')
     db.session.commit()

@@ -19,5 +19,5 @@ class Feed(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "feed_name": self.feed_name
+            "feed_name": self.feed_name,
         }

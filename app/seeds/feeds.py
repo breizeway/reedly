@@ -18,5 +18,5 @@ def seed_feeds():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_feeds():
-    db.session.execute('TRUNCATE feeds;')
+    db.session.execute('TRUNCATE feeds CASCADE')
     db.session.commit()
