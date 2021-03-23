@@ -21,7 +21,7 @@ body {
     display: grid;
     grid-template: 100% / 48px 270px auto;
     grid-template-areas:
-        "navbar sidebar content";
+        "navbar sidebar main-content";
     width: 100%;
     height: 100%;
 }
