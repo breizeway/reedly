@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getFeeds } from '../../store/feeds';
 import "./SideBar.css"
 
 const SideBar = () => {
     const dispatch = useDispatch();
+    const [showAddFeedForm, setShowAddFeedForm] = useState(false)
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
 
@@ -21,6 +22,7 @@ const SideBar = () => {
                     </div>
                 ))}
             </div>
+            <button className="spot__edit-spot" onClick={() => setShowAddFeedForm(true)}>Create New Feed</button>
         </div>
     )
 }
