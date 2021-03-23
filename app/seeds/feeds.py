@@ -1,5 +1,6 @@
 from app.models import db, Feed
 
+
 # Adds a demo user, you can add other users here if you want
 def seed_feeds():
 
@@ -12,6 +13,7 @@ def seed_feeds():
     db.session.add(feed3)
 
     db.session.commit()
+
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
