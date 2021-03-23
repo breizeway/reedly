@@ -3,6 +3,7 @@
     --main-border: #eee;
     --sidebar-background: #f6f7f8;
     --icon-color: rgb(78, 78, 78);
+    --main-padding: 20px;
 }
 
 html {

@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../../auth/LogoutButton";
 import "./Profile.css";
 
 const Profile = () => {
-    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user) 
+
     const [showDropdown, setShowDropdown] = useState(false)
     const openDropdown = () => {
         if (showDropdown) return
         setShowDropdown(true)
     }
+
     useEffect(() => {
         if (!showDropdown) return
         const closeDropdown = () => {
@@ -21,6 +23,7 @@ const Profile = () => {
         return () => document.removeEventListener("click", closeDropdown)
 
     }, [showDropdown])
+
     return (
         <>
             <div 
@@ -32,15 +35,12 @@ const Profile = () => {
                 </div>
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
-                <NavLink to="/" exact={true} activeClassName="active">
-                    Home
-                </NavLink>
-                <NavLink to="/login" exact={true} activeClassName="active">
-                    Login 
-                </NavLink>
-                <NavLink to="/sign-up" exact={true} activeClassName="active">
-                    Sign Up
-                </NavLink>
+                <div>
+                    {user.username}
+                </div>
+                <div>
+                    {user.email}
+                </div>
                 <div>
                     <LogoutButton />{" "}
                 </div>
