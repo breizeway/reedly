@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import SideBar from "./components/SideBar";
+import AddFeedForm from "./components/AddFeedForm"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -47,6 +48,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true}>
           <HomePage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/add-feed" exact={true}>
+            <AddFeedForm />
         </ProtectedRoute>
       </Switch>
     </>

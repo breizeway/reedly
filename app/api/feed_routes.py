@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import Feed, Source
 
@@ -15,3 +15,15 @@ def feeds():
             Feed.user_id == dict_current_user["id"]).all()
 
     return {"feeds": [feed.to_dict() for feed in feeds]}
+
+
+@feed_routes.route('/', methods=["POST"])
+def add_feed():
+    data = request.json
+    new_feed = Feed(**data)
+    db.session.add(new_feed)
+    db.session.commit()
+    return {
+        "id": new_feed.id,
+        "feed_name": new_feed.feed_name,
+    }
