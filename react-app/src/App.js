@@ -4,10 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./components/HomePage"
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
+import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
-import User from "./components/User";
 import SideBar from "./components/SideBar";
 import AddFeedForm from "./components/AddFeedForm"
 import * as sessionActions from "./store/session"
@@ -31,8 +30,6 @@ function App() {
 
   return (
     <>
-      <NavBar />
-      <SideBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm />
@@ -40,17 +37,17 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
-          <HomePage />
-        </ProtectedRoute>
-        <ProtectedRoute path="/add-feed" exact={true}>
-            <AddFeedForm />
+        <ProtectedRoute path="/" >
+          <NavBar />
+          <SideBar />
+          <MainContent>
+            <Route path="/" exact={true}>
+              <HomePage />
+            </Route>
+            <Route path="/add-feed" exact={true}>
+                <AddFeedForm />
+            </Route>
+          </MainContent>
         </ProtectedRoute>
       </Switch>
     </>

@@ -2,7 +2,8 @@
     grid-area: navbar;
     position: relative;
     display: flex;
-    align-items: flex-end;
-    padding: 8px 0 16px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--main-padding) 0;
     border-right: 1px solid var(--main-border);
 }
