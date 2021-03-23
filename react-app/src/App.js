@@ -44,10 +44,10 @@ function App() {
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
+            <Route path="/add-feed" exact={true}>
+                <AddFeedForm />
+            </Route>
           </MainContent>
-        </ProtectedRoute>
-        <ProtectedRoute path="/add-feed" exact={true}>
-            <AddFeedForm />
         </ProtectedRoute>
       </Switch>
     </>
