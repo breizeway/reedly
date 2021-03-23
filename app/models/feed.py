@@ -20,5 +20,4 @@ class Feed(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "feed_name": self.feed_name,
-            "sources": self.sources
         }
