@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import HomePage from "./components/HomePage"
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -14,44 +14,46 @@ import "./index.css"
 
 
 function App() {
-  const dispatch = useDispatch()
-  const [loaded, setLoaded] = useState(false);
+    const path = useLocation().pathname
+    const isForm = path === "/login" || path === "/sign-up"
+    const dispatch = useDispatch()
+    const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    (async() => {
-      await dispatch(sessionActions.restore())
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+    useEffect(() => {
+        (async () => {
+            await dispatch(sessionActions.restore())
+            setLoaded(true);
+        })();
+    }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+    if (!loaded) {
+        return null;
+    }
 
-  return (
-    <>
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <ProtectedRoute path="/" >
-          <NavBar />
-          <SideBar />
-          <MainContent>
-            <Route path="/" exact={true}>
-              <HomePage />
-            </Route>
-            <Route path="/add-feed" exact={true}>
-                <AddFeedForm />
-            </Route>
-          </MainContent>
-        </ProtectedRoute>
-      </Switch>
-    </>
-  );
+    return (
+        <div className="app-container" style={{ display: isForm && "flex"}}>
+            <Switch>
+                <Route path="/login" exact={true}>
+                    <LoginForm />
+                </Route>
+                <Route path="/sign-up" exact={true}>
+                    <SignUpForm />
+                </Route>
+                <ProtectedRoute path="/" >
+                    <NavBar />
+                    <SideBar />
+                    <MainContent>
+                        <Route path="/" exact={true}>
+                            <HomePage />
+                        </Route>
+                        <Route path="/add-feed" exact={true}>
+                            <AddFeedForm />
+                        </Route>
+                    </MainContent>
+                </ProtectedRoute>
+            </Switch>
+        </div>
+    );
 }
 
 export default App;

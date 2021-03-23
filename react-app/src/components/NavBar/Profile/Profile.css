@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.navbar__profileIcons {
+    justify-content: center;
+}
+
 .navbar__profile-button {
     width: 36px;
     height: 36px;
