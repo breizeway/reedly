@@ -2,7 +2,6 @@ from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db, Feed, Source
 
-
 feed_routes = Blueprint('feeds', __name__)
 
 

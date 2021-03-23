@@ -7,6 +7,7 @@ def seed_sources_w_feeds():
                     alt_name='TechCrunch')
     source2 = Source(source_url='http://fortune.com/finance/feed/',
                     alt_name='Finance')
+
     source3 = Source(source_url='http://rss.cnn.com/rss/cnn_tech.rss',
                     alt_name='CNN-Tech')
     source4 = Source(source_url='https://www.dailypress.com/arcio/rss/category/food-drink/?query=display_date:[now-7d+TO+now]+AND+revision.published:true&sort=display_date:desc',
@@ -16,6 +17,7 @@ def seed_sources_w_feeds():
     feed4.sources.append(source2)
     feed5.sources.append(source3)
     feed5.sources.append(source4)
+
 
     db.session.add(feed4)
     db.session.add(feed5)
