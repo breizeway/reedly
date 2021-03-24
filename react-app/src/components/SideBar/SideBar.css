@@ -2,5 +2,88 @@
     grid-area: sidebar;
     height: 100%;
     background-color: var(--sidebar-background);
-    padding: var(--main-padding);
+    padding: 0px;
+}
+
+.sidebar__first-section {
+    margin-top: 3rem;
+}
+
+.sidebar__first-section > div {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 20px 5px 20px;
+}
+
+.sidebar__first-section > div:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__icon-book {
+    margin-right: 16px;
+}
+
+.sidebar__icon-bookmark {
+    margin-right: 16px;
+}
+
+.feed-list__heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.475rem 22px .5rem 20px;
+}
+
+.feed-list__heading > h3 {
+    margin: 0px;
+}
+
+.sidebar__add-feed {
+    background-color: #f6f7f8;
+    border-left: 2px solid transparent;
+    color: #333;
+    cursor: pointer;
+    font-size: .815rem;
+    font-weight: 500;
+    line-height: 2rem;
+    padding-right: 22px;
+    padding-left: 56px;
+}
+
+.sidebar__feed {
+    padding: 5px 20px 5px 20px;
+}
+
+.sidebar__feed:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__add-feed:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__source-container {
+    padding: 0px 20px 0px 20px;
+}
+
+.sidebar__third-section {
+    margin-top: 1.5rem
+}
+
+.sidebar__third-section > div {
+    padding: 5px 20px 5px 20px;
+}
+
+.sidebar__recently-read {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.sidebar__recently-read:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__icon-clock {
+    margin-right: 16px;
 }

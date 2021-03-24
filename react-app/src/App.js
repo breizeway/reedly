@@ -40,7 +40,7 @@ function App() {
                 <Route path="/sign-up" exact={true}>
                     <SignUpForm />
                 </Route>
-                <ProtectedRoute path="/" >
+                <ProtectedRoute path="/">
                     <NavBar />
                     <SideBar />
                     <MainContent>
