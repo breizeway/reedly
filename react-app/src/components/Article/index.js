@@ -12,7 +12,7 @@ const Article = () => {
   const [data, setData] = useState({})
 
   const getRss = async () => {
-    const id = 2
+    const id = 1
     const dispatched = dispatch(sourceActions.add(id))
     const response = await fetch(`/api/sources/${id}`)
     if (response.ok) {

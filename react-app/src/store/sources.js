@@ -25,7 +25,6 @@ const sourceReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_SOURCE:
           newState = {...state}
-          console.log('   :::ACTION.SOURCE:::   ', action.source);
           newState[action.source.id] = {feed: action.source.feed, entries: action.source.entries}
           return newState
         default:
