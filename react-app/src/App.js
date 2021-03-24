@@ -9,7 +9,6 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
 import AddFeedForm from "./components/AddFeedForm"
-import RssTest from "./components/RssTest"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -49,9 +48,6 @@ function App() {
                         </Route>
                         <Route path="/add-feed" exact={true}>
                             <AddFeedForm />
-                        </Route>
-                        <Route path="/rss" exact={true}>
-                            <RssTest />
                         </Route>
                     </MainContent>
                 </ProtectedRoute>
