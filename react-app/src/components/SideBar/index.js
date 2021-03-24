@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getFeeds } from '../../store/feeds';
 import "./SideBar.css"
+import CreateFeedModal from '../AddFeedForm/index'
 
 const SideBar = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const SideBar = () => {
                     </div>
                 ))}
             </div>
-            <button className="spot__edit-spot" onClick={() => setShowAddFeedForm(true)}>Create New Feed</button>
+            <CreateFeedModal />
         </div>
     )
 }
