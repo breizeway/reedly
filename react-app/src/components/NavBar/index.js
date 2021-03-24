@@ -8,12 +8,14 @@ const NavBar = () => {
     <nav className="navbar">
       <div>
         <NavLink exact to="/">
-          Home
-        </NavLink>
+          <div className="navbar__button">
+            <i class="fas fa-bars"></i>
         </div>
-        <div>
+        </NavLink>
+      </div>
+      <div>
         <div className="navbar__button">
-        <i className="fas fa-plus"></i>
+          <i className="fas fa-plus"></i>
         </div>
         <div className="navbar__button">
           <i className="fas fa-search"></i>
