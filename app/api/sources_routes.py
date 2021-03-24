@@ -9,10 +9,25 @@ sources_routes = Blueprint('sources', __name__)
 
 
 def decode_feed(raw):
-    meta = {}
-    return {"feed": feed,
-            "entries": [{}]}
+    feed = {"title": raw.feed.title,
+            "subtitle": raw.feed.subtitle,
+            "updated": raw.feed.updated,
+            "updated_parsed": raw.feed.updated_parsed,
+            "image": raw.feed.image,
+            "link": raw.feed.link,
+            "num_entries": len(raw.entries)}
 
+    entries = [{"id": entry.id,
+                "title": entry.title,
+                "author": entry.author,
+                "summary": entry.summary,
+                "link": entry.link,
+                "content": html.unescape(entry.content[0].value),
+                "published": entry.published,
+                "published_parsed": entry.published_parsed} for entry in raw.entries]
+
+    return {"feed": feed,
+            "entries": entries}
 
 
 @sources_routes.route('/<int:source_id>')
@@ -21,8 +36,7 @@ def get_source(source_id):
     source_url = db.session.query(Source.source_url) \
                            .filter(Source.id == source_id) \
                            .one_or_none()[0]
-    feed = feedparser.parse(source_url)
-    print(':::TEST:::', feed['feed']['title'])
-    decoded = decode_feed(feed)
-    print('   :::DECODED:::   ', decoded)
-    return feed
+    raw = feedparser.parse(source_url)
+    decoded = decode_feed(raw)
+    return decoded
+    return {"raw": raw, "decoded": decoded}

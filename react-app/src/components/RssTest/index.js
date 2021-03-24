@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import parseFromHTML from 'html-react-parser'
 
 
 const RssTest = () => {
@@ -28,17 +29,10 @@ const RssTest = () => {
 
   return (
     <div>
-      <div>title :: {data.feed.title}</div>
-      <div>
-        {data.entries.map((entry, i) => (
-          <>
-            <div>entry-{i}-title :: {entry.title}</div>
-            <div>entry-{i}-published :: {entry.published}</div>
-            <div>entry-{i}-content :: {entry.content[0].value}</div>
-            <div>entry-{i}-id :: {entry.id}</div>
-          </>
-        ))}
-      </div>
+      <h1 className='article__title'>{data.entries[0].title}</h1>
+      <h1 className='article__subtitle'>{data.entries[0].subtitle}</h1>
+      <h4 className='article__author'>{data.entries[0].author}</h4>
+      {parseFromHTML(data.entries[0].content)}
     </div>
   )
 }
