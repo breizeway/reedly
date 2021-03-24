@@ -30,18 +30,46 @@ const Profile = () => {
                 className="navbar__profile"
                 onClick={openDropdown}
             >
-                    <div className="navbar__profile-button">
-                        <i className="far fa-user"></i>
-                    </div>
+                <div>
+                    <i className="far fa-user"></i>
+                </div>
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
-                <div>
-                    {user.username}
+                <div className="top-container">
+                    <div className="r-icon">
+                        <i class="fas fa-registered"></i>
+                    </div>
+                    <div className="user_container">
+                        <div className="name">
+                            {user.username}
+                        </div>
+                        <div classname="email">
+                            {user.email}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    {user.email}
+                <div className="profile-dropdown-button">
+                    <p>settings</p>
                 </div>
-                <div>
+                <div className="profile-dropdown-button">
+                    <p>Organize Sources</p>
+                </div>
+                <div className="profile-dropdown-button">
+                    <p>Mobile Apps</p>
+                </div>
+                <div className="profile-dropdown-button">
+                    <p>Browser Add-ons</p>
+                </div>
+                <div className="profile-dropdown-button">
+                    <p>Support</p>
+                </div>
+                <div className="profile-dropdown-button">
+                    <p>Privacy</p>
+                </div>
+                <div className="profile-dropdown-button">
+                    <p>Terms & Policy</p>
+                </div>
+                <div className="profile-dropdown-button">
                     <LogoutButton />{" "}
                 </div>
             </div>)}
