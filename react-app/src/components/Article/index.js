@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import parseFromHTML from 'html-react-parser'
+
+import * as sourceActions from '../../store/sources'
 
 
 const Article = () => {
+  const dispatch = useDispatch()
+
   const [loaded, setLoaded] = useState(false)
   const [data, setData] = useState({})
 
   const getRss = async () => {
     const id = 2
+    const dispatched = dispatch(sourceActions.add(id))
     const response = await fetch(`/api/sources/${id}`)
     if (response.ok) {
       const data = await response.json();
