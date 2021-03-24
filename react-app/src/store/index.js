@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import feedReducer from './feeds';
+import sourceReducer from './sources';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
-    feeds: feedReducer
+    feeds: feedReducer,
+    sources: sourceReducer
 });
 
 let enhancer;
