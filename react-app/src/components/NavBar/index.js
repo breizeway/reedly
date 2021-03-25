@@ -7,11 +7,9 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <div>
-        <NavLink exact to="/">
-          <div className="navbar__button">
-            <i className="fas fa-bars"></i>
-          </div>
-        </NavLink>
+        <div className="site-logo">
+          <NavLink exact to="/" className='site-logo__link' />
+        </div>
       </div>
       <div>
         <div className="navbar__button">

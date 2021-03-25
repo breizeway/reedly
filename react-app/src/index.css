@@ -40,3 +40,21 @@ body {
     width: 100%;
     height: 100%;
 }
+
+
+.site-logo {
+    display: flex;
+    justify-content: center;
+    background-image: url('./assets/logo.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 30px;
+}
+
+.site-logo__link {
+    width: 34px;
+    height: 100%;
+    display: block;
+}
