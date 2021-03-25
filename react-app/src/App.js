@@ -47,6 +47,9 @@ function App() {
                         <Route path="/" exact={true}>
                             <HomePage />
                         </Route>
+                        <Route path="/feeds/:feedId">
+                            <h2>This is a feed route</h2>
+                        </Route>
                         <Route path="/add-feed" exact={true}>
                             <AddFeedForm />
                         </Route>
