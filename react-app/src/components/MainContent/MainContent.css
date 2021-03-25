@@ -1,3 +1,5 @@
 .main-content {
     grid-area: main-content;
+    padding: 0 var(--main-padding);
+    overflow-y: scroll;
 }

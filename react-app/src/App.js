@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
 import AddFeedForm from "./components/AddFeedForm"
+import Article from "./components/Article"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -39,7 +40,7 @@ function App() {
                 <Route path="/sign-up" exact={true}>
                     <SignUpForm />
                 </Route>
-                <ProtectedRoute path="/" >
+                <ProtectedRoute path="/">
                     <NavBar />
                     <SideBar />
                     <MainContent>
@@ -48,6 +49,9 @@ function App() {
                         </Route>
                         <Route path="/add-feed" exact={true}>
                             <AddFeedForm />
+                        </Route>
+                        <Route path="/rss" exact={true}>
+                            <Article />
                         </Route>
                     </MainContent>
                 </ProtectedRoute>
