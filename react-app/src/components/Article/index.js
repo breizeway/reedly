@@ -12,7 +12,6 @@ const Article = () => {
   const sources = useSelector(state => state.sources)
 
   const [loaded, setLoaded] = useState(false)
-  sources && Object.keys(sources).includes(id) && setLoaded(true)
 
   useEffect(() => {
     (async () => {
