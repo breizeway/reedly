@@ -6,6 +6,9 @@
   grid-template: 1fr / 140px 1fr;
   grid-template-areas:
     "left right";
+  text-decoration: none;
+  color: black;
+  margin-bottom: 24px;
 }
 
 .article-card__left {
@@ -32,4 +35,9 @@
   font-size: 14px;
   font-weight: bold;
   width: 80%;
+}
+
+.article-card__summary {
+  color: gray;
+  padding-top: 12px;
 }

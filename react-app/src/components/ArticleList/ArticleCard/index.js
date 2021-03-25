@@ -1,10 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import parseFromHTML from 'html-react-parser'
 
 import './ArticleCard.css';
 
-const ArticleCard = ({ entry }) => {
+
+const ArticleCard = ({ entry, sourceId }) => {
+  const markAsRead = () => {
+    console.log('marked as read :: ', entry.id)
+  }
+
   return (
-    <div className='article-card'>
+    <Link
+      to={`/sources/${sourceId}/articles/:article_id`}
+      onClick={markAsRead}
+      className='article-card'
+    >
       <div className='article-card__left'>
         <div
           className='article-card__image'
@@ -15,8 +26,11 @@ const ArticleCard = ({ entry }) => {
         <div className='article-card__title'>
           {entry.title}
         </div>
+        <div className='article-card__summary'>
+          {parseFromHTML(entry.summary)}
+        </div>
       </div>
-    </div>
+    </Link>
   )
 };
 

@@ -8,16 +8,16 @@ import ArticleCard from './ArticleCard'
 
 const ArticleList = () => {
   const dispatch = useDispatch()
-  const source_id = useParams().id
+  const sourceId = useParams().id
   const sources = useSelector(state => state.sources)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
     (async () => {
-      await dispatch(sourceActions.add(source_id))
+      await dispatch(sourceActions.add(sourceId))
       setLoaded(true)
     })()
-  }, [dispatch, source_id])
+  }, [dispatch, sourceId])
 
   if (!loaded) {
     return null;
@@ -32,18 +32,22 @@ const ArticleList = () => {
       <div className='article-list__header'>
         <div
           className='article-list__title'
-          onClick={() => window.open(sources[source_id]?.feed.link)}
+          onClick={() => window.open(sources[sourceId]?.feed.link)}
         >
-          {sources[source_id]?.feed.title}
+          {sources[sourceId]?.feed.title}
         </div>
         <div>
-          {sources[source_id]?.feed.subtitle}
+          {sources[sourceId]?.feed.subtitle}
         </div>
-        <div className='article-list__article-cards'>
-          {sources[source_id]?.entries.map(entry => (
-            <ArticleCard entry={entry} key={entry.id}/>
-          ))}
-        </div>
+      </div>
+      <div className='article-list__article-cards'>
+        {sources[sourceId]?.entries.map(entry => (
+          <ArticleCard
+            entry={entry}
+            key={entry.id}
+            sourceId={sourceId}
+          />
+        ))}
       </div>
     </div>
   )
