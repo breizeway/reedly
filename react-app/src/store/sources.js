@@ -11,7 +11,6 @@ export const add = sourceId => async dispatch => {
   const response = await fetch(`/api/sources/${sourceId}`)
   if (response.ok) {
     const data = await response.json();
-    console.log('   :::FETCH_DATA:::   ', data);
     data.id = sourceId
     dispatch(addSource(data))
     return data
@@ -25,7 +24,6 @@ const sourceReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_SOURCE:
           newState = {...state}
-          console.log('   :::ACTION.SOURCE:::   ', action.source);
           newState[action.source.id] = {feed: action.source.feed, entries: action.source.entries}
           return newState
         default:
