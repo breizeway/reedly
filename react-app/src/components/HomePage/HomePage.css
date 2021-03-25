@@ -1,0 +1,15 @@
+.featured-grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 186px);
+    grid-template-rows:1fr;
+    width: 840px;
+    height: 1986px;
+}
+
+.featured-item {
+    text-align: center;
+    height: 250px;
+    width: 162px;
+    border: 3px solid black;
+    margin: 0 0 24px;
+}
