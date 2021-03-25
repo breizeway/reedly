@@ -29,10 +29,7 @@ export function Modal({ onClose, children }) {
     <div id="modal">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
-        <div>
-          {/* x button in process */}
-        <i id="x-button" class="fas fa-times"> onClick={onClose} </i> 
-        </div>
+        <i id="x-button" class="fas fa-times"></i> 
         {children}
         </div>
     </div>,
