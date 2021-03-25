@@ -1,30 +1,95 @@
-.featured-grid-container {
+.grid-container {
     display: grid;
     grid-template-columns: repeat(4, 186px);
-    grid-template-rows:1fr;
+    grid-template-rows:1fr auto;
     width: 840px;
     height: 300px;
+    grid-column-gap: 24px;
 }
 
 .featured-item {
     text-align: center;
     height: 250px;
-    width: 162px;
+    width: 192px;
     border: 3px solid black;
-    margin: 0 0 24px;
+    margin: 12px 12px 24px;
+    padding: 16px;
 }
 
-.card-grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 186px);
-    grid-template-rows:1fr;
+.group-container-heading {
+    grid-column: 1/5;
+    height: 12px;
+    width: 840px;
+    font: 12px sans-serif;
+    margin: 48px 0px 24px 12px;
+
+    /* below is whats displayed in inspect/styles for this box */
+    /* clear: both;
+    color: #757575;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-transform: uppercase; */
+}
+
+.card-container {
+    /* this is the culmination of three classes on the website */
+    width: 216px;
+    height: 110px;
+    padding: 0 12px;
+    margin: 0 0 24px;
 }
 
 .card {
     text-align: center;
     height: 110px;
-    width: 162px;
+    width: 192px;
     border: 3px solid black;
-    margin: 0 0 24px;
-    padding: 0 12px;
+    padding: 16px;
+}
+
+.card-header {
+/* put this in a div with the card title (specific industry in industries for example)*/
+align-items: center;
+display: flex;
+font-size: .875rem;
+/* the above three attributes are the result of inhereting 2 other classes according to inspect on feedly */
+height: 16px;
+width: 160px;
+color: #333;
+font-size: 14px;
+font: sans-serif;
+}
+.card-footer-logo {
+    /* put the sources logo here */
+}
+
+.card-footer {
+/* put this in a div with a featured source */
+font-size: 11px;
+color: #9e9e9e;
+height: 28px;
+max-height: 28px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.list-card {
+    height: 840;
+    width: 536;
+    /* this is a big block, almost like a flexbox container */
+}
+
+.list-card {
+    /* im not sure about the functionality interactions between listcard and row */
+    height: 840px;
+    width: 536px;
+}
+
+.row {
+    height: 864px;
+    width: 536px;
 }
