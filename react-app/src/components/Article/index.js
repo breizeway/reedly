@@ -29,7 +29,11 @@ const Article = () => {
       <h1 className='article__subtitle'>{sources[id].entries[0].subtitle}</h1>
       <h4 className='article__author'>{sources[id].entries[0].author}</h4>
       <div className='article__content'>
-        {parseFromHTML(sources[id].entries[0].content ? sources[id].entries[0].content[0].value : sources[id].entries[0].summary)}
+        {parseFromHTML(
+          sources[id].entries[0].content ?
+          sources[id].entries[0].content[0].value :
+          sources[id].entries[0].summary
+        )}
       </div>
     </div>
   )
