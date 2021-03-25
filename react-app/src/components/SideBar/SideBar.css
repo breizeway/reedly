@@ -54,8 +54,42 @@
     padding: 5px 20px 5px 20px;
 }
 
-.sidebar__feed:hover {
+.feed-container {
+    display: flex;
+    flex-direction: row;
+    border-left: 2px solid transparent;
+    padding-left: 20px;
+    padding-right: 22px;
+}
+
+.feed-container--selected {
+    display: flex;
+    flex-direction: row;
+    border-left: 2px solid #2bb24c;
+    padding-left: 20px;
+    padding-right: 22px;
+}
+
+.feed-container:hover {
     background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__icon-chevron {
+    margin-top: 5px;
+}
+
+.sidebar__icon-chevron--selected {
+    margin-top: 5px;
+    color: #2bb24c;
+}
+
+.sidebar__feed a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar__feed-name--selected {
+    color: #2bb24c;
 }
 
 .sidebar__add-feed:hover {
