@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import LogoutButton from "../../auth/LogoutButton";
 import "./Profile.css";
 
@@ -37,7 +36,7 @@ const Profile = () => {
             {showDropdown && (<div className="navbar__profile-dropdown">
                 <div className="top-container">
                     <div className="r-icon">
-                        <i class="fas fa-registered"></i>
+                        <i className="fas fa-registered"></i>
                     </div>
                     <div className="user_container">
                         <div className="name">
