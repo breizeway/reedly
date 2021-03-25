@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { postFeed } from '../../store/feeds'
 import './AddFeedForm.css';
-import { Modal } from '../../context/Modal'
 
 function AddFeedForm() {
     const dispatch = useDispatch()
