@@ -23,6 +23,7 @@ def standardize_feed(raw):
                                             dictionary=raw.feed),
             "image": val_if_exists(key='image', dictionary=raw.feed),
             "link": val_if_exists(key='link', dictionary=raw.feed),
+            "icon": val_if_exists(key='icon', dictionary=raw.feed),
             "num_entries": len(raw.entries)}
 
     entries = [{"id": val_if_exists(key="id", dictionary=entry),
@@ -31,6 +32,8 @@ def standardize_feed(raw):
                 "summary": val_if_exists(key="summary", dictionary=entry),
                 "link": val_if_exists(key="link", dictionary=entry),
                 "content": val_if_exists(key="content", dictionary=entry),
+                "media_content": val_if_exists(key="media_content",
+                                               dictionary=entry),
                 "published": val_if_exists(key="published", dictionary=entry),
                 "published_parsed": val_if_exists(key="published_parsed",
                                                   dictionary=entry)}
@@ -48,6 +51,5 @@ def get_source(source_id):
                            .one_or_none()[0]
     raw = feedparser.parse(source_url)
     standardized_feed = standardize_feed(raw)
-    return standardized_feed
-    return raw
-    return {"raw": raw, "decoded": decoded}
+    # return standardized_feed
+    return {"raw": raw, "standardized": standardized_feed}

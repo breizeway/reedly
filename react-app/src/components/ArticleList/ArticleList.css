@@ -1,0 +1,11 @@
+.article-list__header {
+  margin: 50px 0;
+}
+
+.article-list__title {
+  font-size: var(--page-title);
+}
+
+.article-list__title:hover {
+  cursor: pointer;
+}

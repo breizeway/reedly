@@ -1,5 +1,5 @@
 .main-content {
     grid-area: main-content;
-    padding: 0 var(--main-padding);
+    padding: 64px;
     overflow-y: scroll;
 }
