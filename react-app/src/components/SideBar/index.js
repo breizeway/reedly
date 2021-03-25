@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFeeds } from '../../store/feeds';
 import SideBarFeed from './SideBarFeed'
 import "./SideBar.css"
+import CreateFeedModal from '../AddFeedForm/index'
 
 const SideBar = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const SideBar = () => {
                     <span>Recently Read</span>
                 </div>
             </div>
+            <CreateFeedModal />
         </div>
     )
 }
