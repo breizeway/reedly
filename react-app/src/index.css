@@ -1,9 +1,14 @@
 :root {
     --main-background: #fff;
     --main-border: #eee;
+    --main-padding: 20px;
+
+    --page-title: 30px;
+
     --sidebar-background: #f6f7f8;
     --icon-color: rgb(78, 78, 78);
-    --main-padding: 20px;
+
+    font-family: Helvetica, Arial, sans-serif
 }
 
 * {

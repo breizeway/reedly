@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
 import AddFeedForm from "./components/AddFeedForm"
 import Article from "./components/Article"
+import ArticleList from "./components/ArticleList"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -52,6 +53,9 @@ function App() {
                         </Route>
                         <Route path="/rss" exact={true}>
                             <Article />
+                        </Route>
+                        <Route path="/sources/:id" exact={true}>
+                            <ArticleList />
                         </Route>
                     </MainContent>
                 </ProtectedRoute>
