@@ -8,7 +8,7 @@ import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
-import AddFeedForm from "./components/AddFeedForm"
+import AddFeedForm from "./components/AddFeedFormModal"
 import Article from "./components/Article"
 import ArticleList from "./components/ArticleList"
 import * as sessionActions from "./store/session"
