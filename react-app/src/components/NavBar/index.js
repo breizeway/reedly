@@ -9,7 +9,7 @@ const NavBar = () => {
       <div>
         <NavLink exact to="/">
           <div className="navbar__button">
-            <i class="fas fa-bars"></i>
+            <i className="fas fa-bars"></i>
           </div>
         </NavLink>
       </div>
