@@ -2,12 +2,13 @@
 
 .page-holder {
     height: 2382;
-    width: 1508;
+    width: 100%;
     display: flex;
+    justify-content: center;
 }
 
 .grid-container {
-    justify-content: center;
+
     display: grid;
     grid-template-columns: repeat(4, 186px);
     grid-template-rows:1fr auto;
