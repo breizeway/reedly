@@ -2,14 +2,13 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { load } from '../../../store/sidebar';
 import { NavLink } from 'react-router-dom'
+import "./SideBarSource.css"
 import "../SideBar.css"
 
 const SideBarFeed = ({ feed }) => {
     const dispatch = useDispatch();
     const [showSources, setShowSources] = useState(false)
     const selectedFeed = useSelector(state => state.sidebar)
-
-    console.log(selectedFeed.selected);
 
     function selected(feed) {
         dispatch(load(feed));
@@ -42,9 +41,14 @@ const SideBarFeed = ({ feed }) => {
                     </NavLink>
                 </div>
             </div>
-            <div className="sidebar__source-container">
+            <div className="sidebar__sources-container">
                 {showSources && feed.sources.map(source => (
-                    <div>{source.alt_name}</div>
+                    <div className="sidebar__source-container" key={source.id}>
+                        <NavLink to={`/sources/${source.id}`}>
+                            <img src={source.source_img} alt=""/>
+                            <div>{source.alt_name}</div>
+                        </NavLink>
+                    </div>
                 ))}
             </div>
         </>
