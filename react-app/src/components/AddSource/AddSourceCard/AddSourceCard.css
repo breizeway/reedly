@@ -1,42 +1,39 @@
-.card-container {
+.add-source-card {
   /* this is the culmination of three classes on the website */
-  width: 216px;
+  width: 100%;
   height: 110px;
-  padding: 0 12px;
-  margin: 0 0 24px;
+  /* padding: 24px; */
 }
 
-.card:hover {
+.add-source-card__content:hover {
   box-shadow: 0 1px 15px 0 rgb(0 0 0 / 15%), inset 0 0 100px 0 #fff;
   border: none;
 }
 
-.card {
+.add-source-card__content {
   border-radius: .25rem;
   text-align: center;
-  height: 110px;
-  width: 192px;
-  border: 1px solid gray;
+  height: 100%;
+  width: 100%;
+  border: 1px solid lightgray;
   padding: 16px;
+  margin: 0;
 }
 
-.card-header {
+.add-source-card__card-header {
 /* put this in a div with the card title (specific industry in industries for example)*/
 align-items: center;
 display: flex;
 font-size: .875rem;
 /* the above three attributes are the result of inhereting 2 other classes according to inspect on feedly */
 height: 16px;
-width: 160px;
+width: 100%;
 color: #333;
 font-size: 14px;
 font: sans-serif;
 }
-.card-footer-logo {
-  /* put the sources logo here */
-}
 
-.card-footer {
+.add-source-card__card-footer {
 /* put this in a div with a featured source */
 font-size: 11px;
 color: #9e9e9e;

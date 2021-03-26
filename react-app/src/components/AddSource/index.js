@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import AddSourceCard from './AddSourceCard'
 import './AddSource.css';
@@ -24,13 +24,27 @@ function AddSource() {
 
     return (
             <div className="add-source">
-                <div>Add new sources</div>
-                <div className="grid-container">
-                    <div className="featured-item">item 1</div>
-                    <div className="featured-item">item 2</div>
-                    <div className="featured-item">item 3</div>
-                    <div className="featured-item">item 4</div>
-                    <div className="group-container-heading">Industries</div>
+                <div className='add-source__add'>
+                    <div className='add-source__text'>Add new source...</div>
+                    <form className='add-source__form'>
+                        <div className='add-source__input-container'>
+                            <div className='add-source__add-icon'>
+                                <i className='' />
+                            </div>
+                            <input
+                                type='text'
+
+                            ></input>
+                            <button>Add</button>
+                        </div>
+                    </form>
+                </div>
+                <div className="add-source__grid-container">
+                    <div className="add-source__featured-item">item 1</div>
+                    <div className="add-source__featured-item">item 2</div>
+                    <div className="add-source__featured-item">item 3</div>
+                    <div className="add-source__featured-item">item 4</div>
+                    <div className="add-source__group-container-heading">Industries</div>
                     {cardTitles.map((title, i) => (
                         <AddSourceCard
                             title={title}

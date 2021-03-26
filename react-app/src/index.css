@@ -2,6 +2,7 @@
     --main-background: #fff;
     --main-border: #eee;
     --main-padding: 20px;
+    --main-color: #2BB24C;
 
     --page-title: 30px;
 
@@ -25,6 +26,14 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: 1px solid var(--main-color);
 }
 
 #root {
