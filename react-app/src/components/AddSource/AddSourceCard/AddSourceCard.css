@@ -1,0 +1,47 @@
+.card-container {
+  /* this is the culmination of three classes on the website */
+  width: 216px;
+  height: 110px;
+  padding: 0 12px;
+  margin: 0 0 24px;
+}
+
+.card:hover {
+  box-shadow: 0 1px 15px 0 rgb(0 0 0 / 15%), inset 0 0 100px 0 #fff;
+  border: none;
+}
+
+.card {
+  border-radius: .25rem;
+  text-align: center;
+  height: 110px;
+  width: 192px;
+  border: 1px solid gray;
+  padding: 16px;
+}
+
+.card-header {
+/* put this in a div with the card title (specific industry in industries for example)*/
+align-items: center;
+display: flex;
+font-size: .875rem;
+/* the above three attributes are the result of inhereting 2 other classes according to inspect on feedly */
+height: 16px;
+width: 160px;
+color: #333;
+font-size: 14px;
+font: sans-serif;
+}
+.card-footer-logo {
+  /* put the sources logo here */
+}
+
+.card-footer {
+/* put this in a div with a featured source */
+font-size: 11px;
+color: #9e9e9e;
+height: 28px;
+max-height: 28px;
+overflow: hidden;
+text-overflow: ellipsis;
+}

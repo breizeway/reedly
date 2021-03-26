@@ -29,26 +29,26 @@ const Profile = () => {
                 className="navbar__profile"
                 onClick={openDropdown}
             >
-                <div>
-                    <i className="far fa-user"></i>
+                <div className='navbar__profile-button'>
+                    <i className="far fa-user" />
                 </div>
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
                 <div className="top-container">
                     <div className="r-icon">
-                        <i className="fas fa-registered"></i>
+                        <i className="fas fa-registered" />
                     </div>
                     <div className="user_container">
-                        <div className="name">
+                        <div className="user_container__name">
                             {user.username}
                         </div>
-                        <div classname="email">
+                        <div classname="user_container__email">
                             {user.email}
                         </div>
                     </div>
                 </div>
                 <div className="profile-dropdown-button">
-                    <p>settings</p>
+                    <p>Settings</p>
                 </div>
                 <div className="profile-dropdown-button">
                     <p>Organize Sources</p>

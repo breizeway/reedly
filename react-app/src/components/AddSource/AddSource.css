@@ -1,0 +1,44 @@
+.add-source {
+    height: 2382;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 186px);
+    grid-template-rows:1fr auto;
+    width: 840px;
+    height: 300px;
+    grid-column-gap: 24px;
+}
+
+.featured-item {
+    text-align: center;
+    height: 250px;
+    width: 192px;
+    border: 1px solid gray;
+    margin: 12px 12px 24px;
+    padding: 16px;
+    border-radius: .25rem;
+}
+
+.group-container-heading {
+    grid-column: 1/5;
+    height: 12px;
+    width: 840px;
+    font: 12px;
+    margin: 48px 0px 24px 12px;
+
+    /* below is whats displayed in inspect/styles for this box */
+    /* clear: both;
+    color: #757575;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-transform: uppercase; */
+}
