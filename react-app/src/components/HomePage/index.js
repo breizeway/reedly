@@ -4,10 +4,10 @@ import './HomePage.css';
 function HomePage() {
     return (
         <>
+            <div className="page-holder">
             <div>Add new sources.</div>
             <div className="homepage__feeds-container">
             </div>
-            <div className="page-holder">
                 <div className="grid-container">
                     <div className="featured-item">item 1</div>
                     <div className="featured-item">item 2</div>
