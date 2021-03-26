@@ -10,7 +10,7 @@ const ArticleList = () => {
   const dispatch = useDispatch()
   const sourceId = useParams().id
   const sources = useSelector(state => state.sources)
-  // how to we reconcile the sourceId's? getting mine from array in feeds 
+  // how to we reconcile the sourceId's? getting mine from array in feeds
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -26,10 +26,6 @@ const ArticleList = () => {
 
   return sources && (
     <div className='article-list'>
-        <Link to='/sources/1'>Source 1</Link> |&nbsp;
-        <Link to='/sources/2'>Source 2</Link> |&nbsp;
-        <Link to='/sources/3'>Source 3</Link> |&nbsp;
-        <Link to='/sources/4'>Source 4</Link>
       <div className='article-list__header'>
         <div
           className='article-list__title'

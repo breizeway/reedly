@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import * as sourceActions from '../../store/sources';
 
 import AddSourceCard from './AddSourceCard'
 import './AddSource.css';
 
 const AddSource = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const cardTitles = [
         'Advertising',
         'Automotive',
@@ -23,17 +27,17 @@ const AddSource = () => {
         'Travel & Hostpitality',
     ]
 
-    const feeds  = Object.values(useSelector(state => state.feeds) )
+    const feeds  = Object.values(useSelector(state => state.feeds))
 
     const [sourceUrl, setSourceUrl] = useState('')
     const [feed, setFeed] = useState('')
 
-    const submit = e => {
+    const submit = async e => {
         e.preventDefault()
-        // if (feed !== 'default') {
-
-        // }
-
+        if (feed !== 'default') {
+            const source = await dispatch(sourceActions.addNew(sourceUrl, feed))
+            history.push(`/sources/${source.id}`)
+        }
     }
 
     return (

@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 import feedparser
 import html  # html.unescape()
 
-from app.models import db, Source
+from app.models import db, Source, Feed
 
 sources_routes = Blueprint('sources', __name__)
 
@@ -51,5 +51,25 @@ def get_source(source_id):
                            .one_or_none()[0]
     raw = feedparser.parse(source_url)
     standardized_feed = standardize_feed(raw)
-    # return standardized_feed
     return {"raw": raw, "standardized": standardized_feed}
+
+
+@sources_routes.route('/new', methods=['POST'])
+@login_required
+def add_source():
+    body = request.json
+
+    raw = feedparser.parse(body['source_url'])
+    standardized_feed = standardize_feed(raw)
+
+    write_feed = Feed.query.get(int(body['feed_id']))
+    newSource = Source(source_url=body['source_url'],
+                       alt_name=standardized_feed['feed']['title'])
+    write_feed.sources.append(newSource)
+    db.session.add(newSource)
+    db.session.commit()
+
+    source_id = newSource.to_dict()["id"]
+    return {"raw": raw,
+            "standardized": standardized_feed,
+            "id": source_id}
