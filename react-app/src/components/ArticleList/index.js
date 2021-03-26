@@ -10,6 +10,7 @@ const ArticleList = () => {
   const dispatch = useDispatch()
   const sourceId = useParams().id
   const sources = useSelector(state => state.sources)
+  // how to we reconcile the sourceId's? getting mine from array in feeds 
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {

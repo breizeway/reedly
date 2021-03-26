@@ -34,6 +34,22 @@
     padding: 1.475rem 22px .5rem 20px;
 }
 
+.feed-list-all {
+    display: flex;
+    flex-direction: row;
+    border-left: 2px solid transparent;
+    padding-left: 20px;
+    padding-right: 22px;
+}
+
+.feed-list-all:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__icon-bars {
+    margin-top: 5px;
+}
+
 .feed-list__heading > h3 {
     margin: 0px;
 }
@@ -96,9 +112,6 @@
     background-color: rgba(0,0,0,.05);
 }
 
-.sidebar__source-container {
-    padding: 0px 20px 0px 20px;
-}
 
 .sidebar__third-section {
     margin-top: 1.5rem

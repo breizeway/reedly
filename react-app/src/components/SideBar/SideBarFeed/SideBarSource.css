@@ -1,0 +1,21 @@
+
+
+.sidebar__source-container a{
+    display: flex;
+    flex-direction: row;
+    color: inherit;
+    text-decoration: none;
+}
+
+.sidebar__source-container {
+    padding: 5px 20px 5px 56px;
+}
+
+.sidebar__source-container:hover {
+    background-color: rgba(0,0,0,.05);
+}
+
+.sidebar__source-container img {
+    height: 16px;
+    width: 18px;
+}

@@ -6,18 +6,18 @@ def seed_sources_w_feeds():
     feed5 = Feed(user_id=1, feed_name='food and Tech')
     feed6 = Feed(user_id=2, feed_name="Politics")
     source1 = Source(source_url='http://feeds.feedburner.com/Techcrunch',
-                     alt_name='TechCrunch')
+                     alt_name='TechCrunch', source_img="//storage.googleapis.com/site-assets/Xne8uW_IUiZhV1EuO2ZMzIrc2Ak6NlhGjboZ-Yk0rJ8_sicon-17645433888")
     source2 = Source(source_url='http://fortune.com/finance/feed/',
-                     alt_name="Fortune Magazine")
+                     alt_name="Fortune Magazine", source_img="//storage.googleapis.com/site-assets/KNL7ytj0Dhui2ZsV6L1O4FAA0aeYFYMbrw-N0k6d4os_icon-16bb6be95c9")
 
     source3 = Source(source_url='https://www.theverge.com/rss/index.xml')
     source4 = Source(source_url='https://www.dailypress.com/arcio/rss/category/food-drink/?query=display_date:[now-7d+TO+now]+AND+revision.published:true&sort=display_date:desc',
                      alt_name='Food and Drink')
     source5 = Source(source_url="http://feeds.politico.com/politico/rss/\
-                    politicopicks", alt_name="Politico")
-    source6 = Source(source_url="http: // www.npr.org/rss/rss.php?id=1014",
-                     alt_name="NPR")
-    # good pics until source 11
+                    politicopicks", alt_name="Politico", source_img="//storage.googleapis.com/site-assets/Phq6GMdD1uNEUQUw4vzpU7SrRv_2aniNTMc744uLeUs_icon-15f5ca91336")
+    source6 = Source(source_url="http://www.npr.org/rss/rss.php?id=1014",
+                     alt_name="NPR", source_img="//storage.googleapis.com/site-assets/bDmK_1mnVXBr3CZxO5V6Ioqlm5ygUhcX46y-yobv5Uk_icon-16f2a2d765c")
+    # good pics until source 10
     source7 = Source(source_url="https://bloody-disgusting.com/feed/",
                      alt_name="Bloody-Disgusting")
     source8 = Source(source_url="https://www.iphonehacks.com/feed/",
