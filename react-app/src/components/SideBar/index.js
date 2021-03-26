@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFeeds } from '../../store/feeds';
 import SideBarFeed from './SideBarFeed'
 import "./SideBar.css"
+import CreateFeedModal from '../AddFeedFormModal/'
 
 const SideBar = () => {
     const dispatch = useDispatch();
@@ -39,14 +40,19 @@ const SideBar = () => {
                     </div>
                 </div>
                 <div className="sidebar__feed-container">
-                    <div className="sidebar__feed">All</div>
+                    <div className="feed-list-all">
+                        <div className="sidebar__icon-bars">
+                            <i className="fas fa-bars"></i>
+                        </div>
+                        <div className="sidebar__feed">All</div>
+                    </div>
                     <div className="feed-list" style={{ height: "auto" }}>
                         {feeds && feedsArr.map(feed => (
                             <SideBarFeed key={feed.id} feed={feed} />
                         ))}
                     </div>
                 </div>
-                <div className="sidebar__add-feed">Create New Feed</div>
+                <CreateFeedModal />
             </div>
             <div className="sidebar__third-section">
                 <div className="sidebar__recently-read">
