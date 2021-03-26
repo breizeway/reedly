@@ -40,7 +40,12 @@ const SideBar = () => {
                     </div>
                 </div>
                 <div className="sidebar__feed-container">
-                    <div className="sidebar__feed">All</div>
+                    <div className="feed-list-all">
+                        <div className="sidebar__icon-bars">
+                            <i className="fas fa-bars"></i>
+                        </div>
+                        <div className="sidebar__feed">All</div>
+                    </div>
                     <div className="feed-list" style={{ height: "auto" }}>
                         {feeds && feedsArr.map(feed => (
                             <SideBarFeed key={feed.id} feed={feed} />
