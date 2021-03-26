@@ -1,0 +1,88 @@
+.add-source {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.add-source__add {
+    width: 100%;
+    margin-bottom: 64px;
+}
+
+.add-source__text {
+    font-weight: 300;
+    font-size: 24px;
+    color: gray;
+}
+
+.add-source__input-container {
+    display: flex;
+    border: 1px solid lightgray;
+    border-radius: .25rem;
+}
+
+.add-source__form input {
+    border: none;
+    z-index: 1;
+}
+
+.add-source__form select {
+    border: none;
+    margin: 0 12px;
+    z-index: 1;
+}
+
+.add-source__form button {
+    background-color: inherit;
+    border: none;
+    width: 128px;
+    border-left: 1px solid lightgray;
+    font-weight: 300;
+    font-size: 18px;
+    color: gray;
+}
+
+.add-source__form button:hover {
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: white;
+}
+
+.add-source__grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 23%);
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    height: 300px;
+    grid-column-gap: 2.66%;
+    grid-row-gap: 24px;
+}
+
+.add-source__featured-item {
+    text-align: center;
+    height: 250px;
+    width: 100%;
+    border: 1px solid lightgray;
+    padding: 16px;
+    border-radius: .25rem;
+}
+
+.add-source__group-container-heading {
+    grid-column: 1/5;
+    height: 12px;
+    width: 840px;
+    font: 12px;
+    margin: 48px 0px 24px 12px;
+
+    /* below is whats displayed in inspect/styles for this box */
+    /* clear: both;
+    color: #757575;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    text-transform: uppercase; */
+}

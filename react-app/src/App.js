@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
 import { Route, Switch, useLocation } from "react-router-dom";
-import HomePage from "./components/HomePage"
+import AddSource from "./components/AddSource"
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import MainContent from "./components/MainContent";
@@ -46,7 +46,7 @@ function App() {
                     <SideBar />
                     <MainContent>
                         <Route path="/" exact={true}>
-                            <HomePage />
+                            <AddSource />
                         </Route>
                         <Route path="/feeds/:feedId">
                             <h2>This is a feed route</h2>
