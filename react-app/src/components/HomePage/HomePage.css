@@ -1,4 +1,13 @@
+
+
+.page-holder {
+    height: 2382;
+    width: 1508;
+    display: flex;
+}
+
 .grid-container {
+    justify-content: center;
     display: grid;
     grid-template-columns: repeat(4, 186px);
     grid-template-rows:1fr auto;
@@ -11,9 +20,10 @@
     text-align: center;
     height: 250px;
     width: 192px;
-    border: 3px solid black;
+    border: 1px solid black;
     margin: 12px 12px 24px;
     padding: 16px;
+    border-radius: .25rem;
 }
 
 .group-container-heading {
@@ -43,11 +53,17 @@
     margin: 0 0 24px;
 }
 
+.card:hover {
+    box-shadow: 0 1px 15px 0 rgb(0 0 0 / 15%), inset 0 0 100px 0 #fff;
+    border: none;
+}
+
 .card {
+    border-radius: .25rem;
     text-align: center;
     height: 110px;
     width: 192px;
-    border: 3px solid black;
+    border: 1px solid black;
     padding: 16px;
 }
 
