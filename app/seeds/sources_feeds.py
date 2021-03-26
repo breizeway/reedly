@@ -15,8 +15,31 @@ def seed_sources_w_feeds():
                      alt_name='Food and Drink')
     source5 = Source(source_url="http://feeds.politico.com/politico/rss/\
                     politicopicks", alt_name="Politico", source_img="//storage.googleapis.com/site-assets/Phq6GMdD1uNEUQUw4vzpU7SrRv_2aniNTMc744uLeUs_icon-15f5ca91336")
-    source6 = Source(source_url="http: // www.npr.org/rss/rss.php?id=1014",
+    source6 = Source(source_url="http://www.npr.org/rss/rss.php?id=1014",
                      alt_name="NPR", source_img="//storage.googleapis.com/site-assets/bDmK_1mnVXBr3CZxO5V6Ioqlm5ygUhcX46y-yobv5Uk_icon-16f2a2d765c")
+    # good pics until source 10
+    source7 = Source(source_url="https://bloody-disgusting.com/feed/",
+                     alt_name="Bloody-Disgusting")
+    source8 = Source(source_url="https://www.iphonehacks.com/feed/",
+                     alt_name="iPhone Hacks")
+    source9 = Source(source_url="https://www.nintendolife.com/feeds/latest",
+                     alt_name="Nintendo Life")
+    # big pics until source 
+    source10 = Source(source_url="https://9to5mac.com/feed/",
+                     alt_name="9 to 5 Mac")
+    source11 = Source(source_url="https://chromeunboxed.com/feed/",
+                     alt_name="Chrome Unboxed")
+    source12 = Source(source_url="https://www.slashgear.com/feed/",
+                     alt_name="SlashGear")
+    source13 = Source(source_url="https://hackaday.com/feed/",
+                     alt_name="Hackaday")
+    source14 = Source(source_url="https://gizmodo.com/rss",
+                     alt_name="Gizmodo")
+    source15 = Source(source_url="https://mashable.com/feed/",
+                     alt_name="Mashable")
+    source16 = Source(source_url="https://www.thenextweb.com/feed/",
+                     alt_name="The Next Web")
+
 
     # user 1
     feed5.sources.append(source3)
