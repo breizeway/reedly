@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db, Feed, Source
+import feedparser
+from app.api.sources_routes import standardize_feed
 
 feed_routes = Blueprint('feeds', __name__)
 
@@ -29,3 +31,15 @@ def add_feed():
         "user_id": new_feed.user_id,
         "feed_name": new_feed.feed_name,
     }
+
+
+@feed_routes.route('/<int:id>')
+def sources_on_feed(id):
+    right_feed = Feed.query.filter(Feed.id == id).all()
+    right_feed_dict = right_feed[0].to_dict()
+    source_url_list = [source["source_url"] for source in right_feed_dict["sources"]]
+    print("::::SOURCEIDLIST::::::::", source_url_list)
+    raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
+    standardized_list = [standardize_feed(raw_item)["entries"] for raw_item in raw_list]
+
+    return {"sources": standardized_list}

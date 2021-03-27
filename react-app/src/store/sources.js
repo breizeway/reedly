@@ -1,9 +1,29 @@
 const ADD_SOURCE = "session/addSource"
+const LOAD_SOURCES = "sources/load"
+
+
+const load = sources => {
+    return {
+        type: LOAD_SOURCES,
+        sources
+    };
+};
 
 const addSource = source => {
     return {
         type: ADD_SOURCE,
         source
+    }
+}
+
+export const getSources = (feedId) => async (dispatch) => {
+    const response = await fetch(`/api/feeds/${Number(feedId)}`);
+
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data); 
+        dispatch(load(data.sources))
+        return data
     }
 }
 
@@ -28,6 +48,12 @@ const sourceReducer = (state = initialState, action) => {
           newState = {...state}
           newState[action.source.id] = {feed: action.source.feed, entries: action.source.entries}
           return newState
+        case LOAD_SOURCES:
+            newState = {};
+            action.sources.forEach((source, idx) => {
+                newState[idx] = source
+            })
+            return newState;
         default:
           return state;
     }

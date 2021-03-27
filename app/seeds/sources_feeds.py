@@ -15,7 +15,7 @@ def seed_sources_w_feeds():
                      alt_name='Food and Drink')
     source5 = Source(source_url="http://feeds.politico.com/politico/rss/\
                     politicopicks", alt_name="Politico", source_img="//storage.googleapis.com/site-assets/Phq6GMdD1uNEUQUw4vzpU7SrRv_2aniNTMc744uLeUs_icon-15f5ca91336")
-    source6 = Source(source_url="http: // www.npr.org/rss/rss.php?id=1014",
+    source6 = Source(source_url="https://feeds.npr.org/1014/rss.xml",
                      alt_name="NPR", source_img="//storage.googleapis.com/site-assets/bDmK_1mnVXBr3CZxO5V6Ioqlm5ygUhcX46y-yobv5Uk_icon-16f2a2d765c")
 
     # user 1

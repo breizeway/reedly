@@ -1,9 +1,9 @@
-const SELECTED_FEED = "sidebar/selected-feed"
+const SELECTED = "sidebar/selected"
 
-export const load = (selectedFeed) => {
+export const load = (selected) => {
     return {
-        type: SELECTED_FEED,
-        payload: selectedFeed
+        type: SELECTED,
+        payload: selected
     };
 };
 
@@ -12,7 +12,7 @@ const initialState = {};
 const sidebarReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case SELECTED_FEED:
+        case SELECTED:
             newState = {}
             newState['selected'] = action.payload;
             return newState
