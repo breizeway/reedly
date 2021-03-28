@@ -6,14 +6,14 @@ function CreateFeedModal() {
     const [showModal, setShowModal] = useState(false);
 
     return (
-        <>
-            <div className="sidebar__add-feed" onClick={() => setShowModal(true)}>Create New Feed</div>
+        <div className="sidebar__row">
+            <div className="sidebar__add-feed sidebar__title" onClick={() => setShowModal(true)}>Create New Feed</div>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <AddFeedForm />
                 </Modal>
             )}
-        </>
+        </div>
     );
 }
 

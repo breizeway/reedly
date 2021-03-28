@@ -3,6 +3,7 @@
     height: 100%;
     background-color: var(--sidebar-background);
     padding: 0px;
+    font-size: 13px;;
 }
 
 .sidebar__first-section {
@@ -19,12 +20,40 @@
     background-color: rgba(0,0,0,.05);
 }
 
-.sidebar__icon-book {
-    margin-right: 16px;
+.sidebar__title.sidebar__title {
+    margin: 0;
+    padding-left: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;;
+    width: 100%;
+    font-weight: bold;
 }
 
-.sidebar__icon-bookmark {
-    margin-right: 16px;
+.sidebar__title.sidebar__title:hover {
+    cursor: pointer;
+}
+
+.sidebar__row.sidebar__row {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.sidebar__icon {
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-gray);
+}
+
+.sidebar__header {
+    text-transform: uppercase;
+    font-size: 11px;
+    color: gray;
+}
+
+.sidebar__icon:hover {
+    cursor: pointer;
 }
 
 .feed-list__heading {
@@ -46,36 +75,27 @@
     background-color: rgba(0,0,0,.05);
 }
 
-.sidebar__icon-bars {
-    margin-top: 5px;
-}
-
-.feed-list__heading > h3 {
-    margin: 0px;
-}
-
-.sidebar__add-feed {
+.sidebar__add-feed.sidebar__add-feed {
     background-color: #f6f7f8;
     border-left: 2px solid transparent;
     color: #333;
     cursor: pointer;
     font-size: .815rem;
     font-weight: 500;
-    line-height: 2rem;
     padding-right: 22px;
-    padding-left: 56px;
+    padding-left: 54px;
 }
 
 .sidebar__feed {
-    padding: 5px 20px 5px 20px;
+    padding-right: 20px;
+    width: 100%;
 }
 
-.feed-container {
+.feed-container.feed-container {
     display: flex;
     flex-direction: row;
     border-left: 2px solid transparent;
     padding-left: 20px;
-    padding-right: 22px;
 }
 
 .feed-container--selected {
@@ -90,12 +110,7 @@
     background-color: rgba(0,0,0,.05);
 }
 
-.sidebar__icon-chevron {
-    margin-top: 5px;
-}
-
 .sidebar__icon-chevron--selected {
-    margin-top: 5px;
     color: #2bb24c;
 }
 
@@ -129,8 +144,4 @@
 
 .sidebar__recently-read:hover {
     background-color: rgba(0,0,0,.05);
-}
-
-.sidebar__icon-clock {
-    margin-right: 16px;
 }
