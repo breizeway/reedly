@@ -25,10 +25,6 @@ const ArticleList = () => {
 
   return sources && (
     <div className='article-list'>
-        <Link to='/sources/1'>Source 1</Link> |&nbsp;
-        <Link to='/sources/2'>Source 2</Link> |&nbsp;
-        <Link to='/sources/3'>Source 3</Link> |&nbsp;
-        <Link to='/sources/4'>Source 4</Link>
       <div className='article-list__header'>
         <div
           className='article-list__title'
