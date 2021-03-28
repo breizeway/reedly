@@ -13,8 +13,8 @@ def seed_sources_w_feeds():
     source3 = Source(source_url='https://www.theverge.com/rss/index.xml')
     source4 = Source(source_url='https://www.dailypress.com/arcio/rss/category/food-drink/?query=display_date:[now-7d+TO+now]+AND+revision.published:true&sort=display_date:desc',
                      alt_name='Food and Drink')
-    source5 = Source(source_url="http://feeds.politico.com/politico/rss/\
-                    politicopicks", alt_name="Politico", source_img="//storage.googleapis.com/site-assets/Phq6GMdD1uNEUQUw4vzpU7SrRv_2aniNTMc744uLeUs_icon-15f5ca91336")
+    source5 = Source(source_url="https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml", alt_name="NYT - Politics",
+                     source_img="//storage.googleapis.com/site-assets/ZUA_74hE33w8lKwi7Ab1NHoyqVhNelzPabVQ8cwjVlk_icon-17061c758e2")
 
     source6 = Source(source_url="https://feeds.npr.org/1014/rss.xml",
                      alt_name="NPR", source_img="//storage.googleapis.com/site-assets/bDmK_1mnVXBr3CZxO5V6Ioqlm5ygUhcX46y-yobv5Uk_icon-16f2a2d765c")
@@ -25,7 +25,7 @@ def seed_sources_w_feeds():
                      alt_name="iPhone Hacks")
     source9 = Source(source_url="https://www.nintendolife.com/feeds/latest",
                      alt_name="Nintendo Life")
-    # big pics until source 
+    # big pics until source
     source10 = Source(source_url="https://9to5mac.com/feed/",
                      alt_name="9 to 5 Mac")
     source11 = Source(source_url="https://chromeunboxed.com/feed/",
