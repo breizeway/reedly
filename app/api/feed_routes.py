@@ -1,8 +1,19 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db, Feed, Source
+import feedparser
+from app.api.sources_routes import standardize_feed
 
 feed_routes = Blueprint('feeds', __name__)
+
+
+def flatten(lst):
+    flat_list = []
+    for sublist in lst:
+        for item in sublist:
+            flat_list.append(item)
+    return flat_list
+
 
 
 @feed_routes.route('/')
@@ -21,7 +32,8 @@ def add_feed():
     data = request.json
     print("data in post route add-feed form", data)
     dict_current_user = current_user.to_dict()
-    new_feed = Feed(user_id=dict_current_user["id"], feed_name=data["feedName"])
+    new_feed = Feed(
+        user_id=dict_current_user["id"], feed_name=data["feedName"])
     db.session.add(new_feed)
     db.session.commit()
     return {
@@ -29,3 +41,19 @@ def add_feed():
         "user_id": new_feed.user_id,
         "feed_name": new_feed.feed_name,
     }
+
+
+@feed_routes.route('/<int:id>')
+def sources_on_feed(id):
+    right_feed = Feed.query.filter(Feed.id == id).all()
+    right_feed_dict = right_feed[0].to_dict()
+    source_url_list = [source["source_url"]
+                       for source in right_feed_dict["sources"]]
+    print("::::SOURCEIDLIST::::::::", source_url_list)
+    raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
+    standardized_list = [standardize_feed(
+        raw_item)["entries"] for raw_item in raw_list]
+    standardized_source_info = [standardize_feed(raw_item)["feed"] for raw_item in raw_list]
+
+    return {"sources": standardized_list,
+            "sources_info": standardized_source_info}

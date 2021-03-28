@@ -11,6 +11,7 @@ import SideBar from "./components/SideBar";
 import AddFeedForm from "./components/AddFeedFormModal"
 import Article from "./components/Article"
 import ArticleList from "./components/ArticleList"
+import FeedList from "./components/FeedList"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -49,7 +50,7 @@ function App() {
                             <AddSource />
                         </Route>
                         <Route path="/feeds/:feedId">
-                            <h2>This is a feed route</h2>
+                            <FeedList />
                         </Route>
                         <Route path="/add-feed" exact={true}>
                             <AddFeedForm />
