@@ -30,14 +30,11 @@
 
 .sidebar__source-container img {
     height: 16px;
-    margin-right: 16px;
-    vertical-align: middle;
     width: 16px;
 }
 
 .sidebar__source-container--selected img {
     height: 16px;
-    margin-right: 16px;
     vertical-align: middle;
     width: 16px;
 }
