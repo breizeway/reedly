@@ -41,11 +41,10 @@ const ArticleList = () => {
       <div className='article-list__article-cards'>
         {sources[sourceId]?.entries.map(entry => (
           <ModalWrapper
+            key={entry.id}
             modalLink={
               <ArticleModalLink
                 entry={entry}
-                key={entry.id}
-                sourceId={sourceId}
               />
             }
             modalContent={

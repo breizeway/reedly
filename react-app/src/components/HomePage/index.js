@@ -43,10 +43,10 @@ function HomePage() {
                     <div>{sourceInfo?.subtitle}</div>
                     {sources[idx].map(entry => (
                         <ModalWrapper
+                            key={entry.id}
                             modalLink={
                                 <ArticleModalLink
                                     entry={entry}
-                                    key={entry.id}
                                 />
                             }
                             modalContent={
