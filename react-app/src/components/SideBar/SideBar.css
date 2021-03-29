@@ -2,18 +2,16 @@
     grid-area: sidebar;
     height: 100%;
     background-color: var(--sidebar-background);
-    padding: 0px;
+    padding: 16px 0 0 0;
     font-size: 13px;;
 }
 
-.sidebar__first-section {
-    margin-top: 3rem;
-}
 
 .sidebar__today > a {
     text-decoration: none;
     color: inherit;
 }
+
 
 .sidebar__first-section > div {
     display: flex;

@@ -42,7 +42,7 @@ const Profile = () => {
                         <div className="user_container__name">
                             {user.username}
                         </div>
-                        <div classname="user_container__email">
+                        <div className="user_container__email">
                             {user.email}
                         </div>
                     </div>
