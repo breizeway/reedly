@@ -52,12 +52,6 @@ function App() {
                         <Route path="/feeds/:feedId">
                             <FeedList />
                         </Route>
-                        <Route path="/add-feed" exact={true}>
-                            <AddFeedForm />
-                        </Route>
-                        <Route path="/rss" exact={true}>
-                            <Article />
-                        </Route>
                         <Route path="/sources/:id" exact={true}>
                             <ArticleList />
                         </Route>

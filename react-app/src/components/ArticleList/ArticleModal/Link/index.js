@@ -1,18 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import parseFromHTML from 'html-react-parser'
 
-import './ArticleCard.css';
+import './ArticleModalLink.css';
 
 
-const ArticleCard = ({ entry, sourceId }) => {
+const ArticleModalLink = ({ entry }) => {
   const markAsRead = () => {
     console.log('marked as read :: ', entry.id)
   }
 
   return (
-    <Link
-      to={`/sources/${sourceId}/articles/:article_id`}
+    <div
       onClick={markAsRead}
       className='article-card'
     >
@@ -30,8 +28,8 @@ const ArticleCard = ({ entry, sourceId }) => {
           {parseFromHTML(entry.summary)}
         </div>
       </div>
-    </Link>
+    </div>
   )
 };
 
-export default ArticleCard;
+export default ArticleModalLink;

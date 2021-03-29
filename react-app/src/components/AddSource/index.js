@@ -30,10 +30,11 @@ const AddSource = () => {
     const feeds  = Object.values(useSelector(state => state.feeds))
 
     const [sourceUrl, setSourceUrl] = useState('')
-    const [feed, setFeed] = useState('')
+    const [feed, setFeed] = useState('default')
 
     const submit = async e => {
         e.preventDefault()
+        console.log('   :::FEED:::   ', feed);
         if (feed !== 'default') {
             const source = await dispatch(sourceActions.addNew(sourceUrl, feed))
             history.push(`/sources/${source.id}`)
@@ -59,7 +60,7 @@ const AddSource = () => {
                                 onChange={e => setFeed(e.target.value)}
                                 placeholder='feed'
                             >
-                                <option value='default' className='add-source__default-option'>-- choose --</option>
+                                <option value='default' className='add-source__default-option'>-- choose feed --&nbsp;</option>
                                 {feeds.map(feed => (
                                     <option value={feed.id}>{feed.feed_name}</option>
                                 ))}

@@ -25,6 +25,7 @@
 .add-source__form input {
     border: none;
     z-index: 1;
+    background-color: inherit;
 }
 
 .add-source__form select {
