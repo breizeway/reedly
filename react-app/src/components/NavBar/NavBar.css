@@ -22,6 +22,11 @@
     color: var(--icon-color)
 }
 
+.navbar__button > a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .navbar__button:hover {
     opacity: 1;
     background-color: #f2f2f2;

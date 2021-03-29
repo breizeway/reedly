@@ -10,6 +10,11 @@
     margin-top: 3rem;
 }
 
+.sidebar__today > a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .sidebar__first-section > div {
     display: flex;
     flex-direction: row;

@@ -46,10 +46,10 @@ function App() {
                     <SideBar />
                     <MainContent>
                         <Route path="/" exact={true}>
-                            <AddSource />
-                        </Route>
-                        <Route path="/today" exact={true}>
                             <HomePage />
+                        </Route>
+                        <Route path="/sources/add" exact={true}>
+                            <AddSource />
                         </Route>
                         <Route path="/feeds/:feedId">
                             <FeedList />
