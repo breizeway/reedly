@@ -4,6 +4,8 @@
 
 .article-list__title {
   font-size: var(--page-title);
+  margin-bottom: 3rem;
+  border-bottom: 1px solid gray;
 }
 
 .article-list__title:hover {

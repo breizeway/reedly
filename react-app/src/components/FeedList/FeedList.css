@@ -1,5 +1,5 @@
 .article-list__header {
-  margin: 50px 0;
+  margin: 0px 0;
 }
 
 .article-list__title {
@@ -8,4 +8,10 @@
 
 .article-list__title:hover {
   cursor: pointer;
+}
+
+.feed-title {
+    margin-bottom: 3rem;
+    font-size: 2.125rem;
+    border-bottom: 1px solid gray;
 }
