@@ -20,7 +20,7 @@ const SideBarFeed = ({ feed }) => {
 
     return feed && (
         <>
-            <div className={feed.id === selectedNews.selected?.id ? "feed-container--selected sidebar__row" : "feed-container sidebar__row"}>
+            <div className={feed.feed_name === selectedNews.selected?.feed_name ? "feed-container--selected sidebar__row" : "feed-container sidebar__row"}>
                 <div className="sidebar__icon-chevron sidebar__icon"
                     onClick={() => (
                         setShowSources(!showSources))}
@@ -29,7 +29,7 @@ const SideBarFeed = ({ feed }) => {
                 </div>
                 <div className="sidebar__feed">
                     <NavLink to={`/feeds/${String(feed.id)}`}>
-                        <div className={feed.id === selectedNews.selected?.id ? "sidebar__feed-name--selected" : "sidebar__feed-name"}
+                        <div className={feed.feed_name === selectedNews.selected?.feed_name ? "sidebar__feed-name--selected" : "sidebar__feed-name"}
                             onClick={() => (selected(feed))}
                         >
                             {feed.feed_name}
@@ -39,7 +39,7 @@ const SideBarFeed = ({ feed }) => {
             </div>
             <div className="sidebar__sources-container">
                 {showSources && feed.sources.map(source => (
-                    <div className={source.id === selectedNews.selected?.id ? "sidebar__source-container--selected sidebar__row" : "sidebar__source-container sidebar__row"}
+                    <div className={source.alt_name === selectedNews.selected?.alt_name ? "sidebar__source-container--selected sidebar__row" : "sidebar__source-container sidebar__row"}
                         key={source.id}
                         onClick={() => (selected(source))}
                     >
