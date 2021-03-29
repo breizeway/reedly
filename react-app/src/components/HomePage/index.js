@@ -29,7 +29,6 @@ function HomePage() {
 
     return sources && (
         <div className='article-list__header'>
-            {/* <div className="feed-title">{feed.feed_name}</div> */}
             {sourcesInfo && sourcesInfoArr.map((sourceInfo, idx) => (
                 <div className="source__header" key={idx}>
                     <div
