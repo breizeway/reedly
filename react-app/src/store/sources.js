@@ -2,6 +2,7 @@ const ADD_SOURCE = "session/addSource"
 const LOAD_SOURCES = "sources/load"
 
 
+
 const load = data => {
     return {
         type: LOAD_SOURCES,
@@ -15,6 +16,7 @@ const addSource = source => {
         source
     }
 }
+
 
 export const getSources = (feedId) => async (dispatch) => {
     const response = await fetch(`/api/feeds/${Number(feedId)}`);
@@ -56,7 +58,7 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
   }
 }
 
-const initialState = null
+const initialState = {}
 
 const sourceReducer = (state = initialState, action) => {
     let newState

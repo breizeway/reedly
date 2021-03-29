@@ -57,3 +57,23 @@ def sources_on_feed(id):
 
     return {"sources": standardized_list,
             "sources_info": standardized_source_info}
+
+
+@feed_routes.route("/all")
+def all_feeds():
+    if current_user.is_authenticated:
+        dict_current_user = current_user.to_dict()
+        feeds = Feed.query.filter(
+            Feed.user_id == dict_current_user["id"]).all()
+        feeds_dict = [feed.to_dict() for feed in feeds]
+        source_list = [feed["sources"] for feed in feeds_dict]
+        flattened_source_list = flatten(source_list)
+        source_url_list = [source["source_url"] for source in flattened_source_list]
+        raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
+        standardized_list = [standardize_feed(
+            raw_item)["entries"] for raw_item in raw_list]
+        standardized_source_info = [standardize_feed(
+            raw_item)["feed"] for raw_item in raw_list]
+
+        return {"sources": standardized_list,
+                "sources_info": standardized_source_info}
