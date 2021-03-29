@@ -22,7 +22,8 @@ const FeedList = () => {
         })()
     }, [dispatch, feedId])
 
-    if (sources.sourcesInfo) {
+
+    if (sources?.sourcesInfo) {
         sourcesInfo = sources.sourcesInfo
         sourcesInfoArr = Object.values(sourcesInfo)
         sources = sources.sources

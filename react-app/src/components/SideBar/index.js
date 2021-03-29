@@ -63,7 +63,7 @@ const SideBar = () => {
             <div className="sidebar__third-section">
                 <div className="sidebar__recently-read">
                     <div className="sidebar__icon-clock sidebar__icon">
-                        <i className="far fa-clock" sidebar__icon></i>
+                        <i className="far fa-clock sidebar__icon"></i>
                     </div>
                     <div className='sidebar__title'>Recently Read</div>
                 </div>
