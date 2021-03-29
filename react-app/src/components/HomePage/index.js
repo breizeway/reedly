@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllFeeds } from '../../store/all';
-import FeedArticleList from "../FeedList/FeedArticleList"
+
+import ModalWrapper from '../ModalWrapper'
+import ArticleModalLink from '../ArticleModal/Link'
+import ArticleModalContent from '../ArticleModal/Content'
 import './HomePage.css';
 
 function HomePage() {
     let sourcesInfo;
     let sourcesInfoArr;
     const dispatch = useDispatch();
-    const feeds = useSelector(state => state.feeds);
+    // const feeds = useSelector(state => state.feeds);
     let sources = useSelector(state => state.all)
 
 
@@ -19,7 +22,7 @@ function HomePage() {
         fetchData();
     }, [dispatch]);
 
-    const feedsArr = Object.values(feeds);
+    // const feedsArr = Object.values(feeds);
 
     if (sources?.sourcesInfo) {
         sourcesInfo = sources.sourcesInfo
@@ -38,7 +41,21 @@ function HomePage() {
                         {sourceInfo?.title}
                     </div>
                     <div>{sourceInfo?.subtitle}</div>
-                    <FeedArticleList sources={sources[idx]} />
+                    {sources[idx].map(entry => (
+                        <ModalWrapper
+                            modalLink={
+                                <ArticleModalLink
+                                    entry={entry}
+                                    key={entry.id}
+                                />
+                            }
+                            modalContent={
+                                <ArticleModalContent
+                                    entry={entry}
+                                />
+                            }
+                        />
+                    ))}
                 </div>
             ))}
         </div >

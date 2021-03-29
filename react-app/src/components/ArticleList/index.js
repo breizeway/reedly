@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import './ArticleList.css';
 import * as sourceActions from '../../store/sources'
 import ModalWrapper from '../ModalWrapper'
-import ArticleModalLink from './ArticleModal/Link'
-import ArticleModalContent from './ArticleModal/Content'
+import ArticleModalLink from '../ArticleModal/Link'
+import ArticleModalContent from '../ArticleModal/Content'
 
 const ArticleList = () => {
   const dispatch = useDispatch()
