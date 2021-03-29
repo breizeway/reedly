@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import FeedArticleList from "./FeedArticleList"
+
+import ModalWrapper from '../ModalWrapper'
+import ArticleModalLink from '../ArticleModal/Link'
+import ArticleModalContent from '../ArticleModal/Content'
 import * as sourceActions from '../../store/sources'
 import './FeedList.css';
 
@@ -46,7 +49,21 @@ const FeedList = () => {
                         {sourceInfo?.title}
                     </div>
                     <div>{sourceInfo?.subtitle}</div>
-                    <FeedArticleList sources={sources[idx]} />
+                    {sources[idx].map(entry => (
+                        <ModalWrapper
+                            modalLink={
+                                <ArticleModalLink
+                                    entry={entry}
+                                    key={entry.id}
+                                />
+                            }
+                            modalContent={
+                                <ArticleModalContent
+                                    entry={entry}
+                                />
+                            }
+                        />
+                    ))}
                 </div>
             ))}
         </div >

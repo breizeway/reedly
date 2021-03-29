@@ -8,8 +8,6 @@ import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
-import AddFeedForm from "./components/AddFeedModal"
-import Article from "./components/Article"
 import ArticleList from "./components/ArticleList"
 import FeedList from "./components/FeedList"
 import HomePage from "./components/HomePage"

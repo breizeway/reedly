@@ -29,7 +29,7 @@ const SideBarFeed = ({ feed }) => {
                 </div>
                 <div className="sidebar__feed">
                     <NavLink to={`/feeds/${String(feed.id)}`}>
-                        <div className={feed.feed_name === selectedNews.selected?.feed_name ? "sidebar__feed-name--selected" : "sidebar__feed-name"}
+                        <div className={feed.feed_name === selectedNews.selected?.feed_name ? "sidebar__feed-name--selected sidebar__title" : "sidebar__feed-name sidebar__title"}
                             onClick={() => (selected(feed))}
                         >
                             {feed.feed_name}
