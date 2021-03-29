@@ -6,6 +6,13 @@
     font-size: 13px;;
 }
 
+
+.sidebar__today > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
 .sidebar__first-section > div {
     display: flex;
     flex-direction: row;

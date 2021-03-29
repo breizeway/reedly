@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getFeeds } from '../../store/feeds';
 import SideBarFeed from './SideBarFeed'
 import "./SideBar.css"
@@ -26,7 +27,9 @@ const SideBar = () => {
                     <div className="sidebar__icon-book sidebar__icon">
                         <i className="fa fa-book" aria-hidden="true"></i>
                     </div>
-                    <div className='sidebar__title'>Today</div>
+                    <NavLink to="/">
+                        <div className='sidebar__title'>Today</div>
+                    </NavLink>
                 </div>
                 <div className="sidebar__read-later sidebar__row">
                     <div className="sidebar__icon-bookmark sidebar__icon">
