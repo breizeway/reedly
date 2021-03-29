@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
-import { postFeed } from '../../store/feeds'
-import './AddFeedForm.css';
+import { postFeed } from '../../../../store/feeds'
+// import './AddFeedModalContent.css';
 
-function AddFeedForm() {
+function AddFeedModalContent() {
     const dispatch = useDispatch()
     const history = useHistory();
     const [feedName, setFeedName] = useState('');
@@ -44,4 +44,4 @@ function AddFeedForm() {
 }
 
 
-export default AddFeedForm
+export default AddFeedModalContent

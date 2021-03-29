@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './ArticleList.css';
 import * as sourceActions from '../../store/sources'
-import ArticleCard from './ArticleCard'
+import ModalWrapper from '../ModalWrapper'
+import ArticleModalLink from './ArticleModal/Link'
+import ArticleModalContent from './ArticleModal/Content'
 
 const ArticleList = () => {
   const dispatch = useDispatch()
@@ -38,10 +40,19 @@ const ArticleList = () => {
       </div>
       <div className='article-list__article-cards'>
         {sources[sourceId]?.entries.map(entry => (
-          <ArticleCard
-            entry={entry}
-            key={entry.id}
-            sourceId={sourceId}
+          <ModalWrapper
+            modalLink={
+              <ArticleModalLink
+                entry={entry}
+                key={entry.id}
+                sourceId={sourceId}
+              />
+            }
+            modalContent={
+              <ArticleModalContent
+                entry={entry}
+              />
+            }
           />
         ))}
       </div>

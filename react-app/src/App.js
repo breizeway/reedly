@@ -8,8 +8,6 @@ import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
-import AddFeedForm from "./components/AddFeedFormModal"
-import Article from "./components/Article"
 import ArticleList from "./components/ArticleList"
 import FeedList from "./components/FeedList"
 import * as sessionActions from "./store/session"
@@ -51,12 +49,6 @@ function App() {
                         </Route>
                         <Route path="/feeds/:feedId">
                             <FeedList />
-                        </Route>
-                        <Route path="/add-feed" exact={true}>
-                            <AddFeedForm />
-                        </Route>
-                        <Route path="/rss" exact={true}>
-                            <Article />
                         </Route>
                         <Route path="/sources/:id" exact={true}>
                             <ArticleList />

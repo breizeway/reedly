@@ -26,11 +26,15 @@ export function Modal({ onClose, children }) {
   if (!modalNode) return null;
 
   return ReactDOM.createPortal(
-    <div id="modal">
+    <div id="modal-layer">
       <div id="modal-background" onClick={onClose} />
       <div id="modal-content">
-        <div onClick={onClose} ><i id="x-button" class="fas fa-times"></i></div>
-        {children}
+        <div id="modal-x-button" onClick={onClose} >
+          <i className="fas fa-times" />
+        </div>
+          <div id='modal'>
+            {children}
+          </div>
         </div>
     </div>,
     modalNode
