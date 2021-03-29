@@ -12,8 +12,11 @@ const SideBar = () => {
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
 
-    useEffect(async () => {
-        await dispatch(getFeeds());
+    useEffect(() => {
+        async function fetchData() {
+            await dispatch(getFeeds());
+        }
+        fetchData();
     }, [dispatch]);
 
     return (
