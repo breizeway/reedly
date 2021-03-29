@@ -1,4 +1,4 @@
-from app.models import db, Feed
+from app.models import db, Feed, Source
 
 
 # Adds a demo user, you can add other users here if you want
@@ -6,11 +6,9 @@ def seed_feeds():
 
     feed = Feed(user_id=1, feed_name='Technology')
     feed2 = Feed(user_id=1, feed_name='Cars')
-    feed3 = Feed(user_id=2, feed_name='Good news')
 
     db.session.add(feed)
     db.session.add(feed2)
-    db.session.add(feed3)
 
     db.session.commit()
 

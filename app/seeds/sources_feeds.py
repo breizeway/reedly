@@ -2,6 +2,7 @@ from app.models import db, Source, Feed
 
 
 def seed_sources_w_feeds():
+    feed3 = Feed(user_id=2, feed_name='Good news')
     feed4 = Feed(user_id=2, feed_name='Business')
     feed5 = Feed(user_id=1, feed_name='food and Tech')
     feed6 = Feed(user_id=2, feed_name="Politics")
@@ -13,11 +14,12 @@ def seed_sources_w_feeds():
     source3 = Source(source_url='https://www.theverge.com/rss/index.xml')
     source4 = Source(source_url='https://www.dailypress.com/arcio/rss/category/food-drink/?query=display_date:[now-7d+TO+now]+AND+revision.published:true&sort=display_date:desc',
                      alt_name='Food and Drink')
-    source5 = Source(source_url="http://feeds.politico.com/politico/rss/\
-                    politicopicks", alt_name="Politico", source_img="//storage.googleapis.com/site-assets/Phq6GMdD1uNEUQUw4vzpU7SrRv_2aniNTMc744uLeUs_icon-15f5ca91336")
+    source5 = Source(source_url="https://rss.nytimes.com/services/xml/rss/nyt/Politics.xml", alt_name="NYT - Politics",
+                     source_img="//storage.googleapis.com/site-assets/ZUA_74hE33w8lKwi7Ab1NHoyqVhNelzPabVQ8cwjVlk_icon-17061c758e2")
 
-    source6 = Source(source_url="https://feeds.npr.org/1014/rss.xml",
-                     alt_name="NPR", source_img="//storage.googleapis.com/site-assets/bDmK_1mnVXBr3CZxO5V6Ioqlm5ygUhcX46y-yobv5Uk_icon-16f2a2d765c")
+    source6 = Source(source_url="https://www.huffpost.com/section/politics/feed",
+                     alt_name="HuffPost - Politics", source_img="//storage.googleapis.com/site-assets/Ls1ojQ7TbuTnlUcsJEsQDuV7dH8GHnrB2GSbau1ZTF8_icon-16e365340fc")
+
     # good pics until source 10
     source7 = Source(source_url="https://bloody-disgusting.com/feed/",
                      alt_name="Bloody-Disgusting")
@@ -25,7 +27,7 @@ def seed_sources_w_feeds():
                      alt_name="iPhone Hacks")
     source9 = Source(source_url="https://www.nintendolife.com/feeds/latest",
                      alt_name="Nintendo Life")
-    # big pics until source 
+    # big pics until source
     source10 = Source(source_url="https://9to5mac.com/feed/",
                      alt_name="9 to 5 Mac")
     source11 = Source(source_url="https://chromeunboxed.com/feed/",
@@ -40,6 +42,8 @@ def seed_sources_w_feeds():
                      alt_name="Mashable")
     source16 = Source(source_url="https://www.thenextweb.com/feed/",
                      alt_name="The Next Web")
+    source17 = Source(source_url="https://www.goodnewsnetwork.org/feed/",
+                      alt_name="Good News Network", source_img="//storage.googleapis.com/site-assets/X_yV_Q02Vv_YnfEbNpfDuAkxtVPzFnnJpHcg4nytGpk_icon-16b563bc3d9")
 
 
     # user 1
@@ -47,11 +51,13 @@ def seed_sources_w_feeds():
     feed5.sources.append(source4)
 
     # user 2
+    feed3.sources.append(source17)
     feed4.sources.append(source1)
     feed4.sources.append(source2)
     feed6.sources.append(source5)
     feed6.sources.append(source6)
 
+    db.session.add(feed3)
     db.session.add(feed4)
     db.session.add(feed5)
     db.session.add(feed6)
