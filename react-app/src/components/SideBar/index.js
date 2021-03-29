@@ -3,15 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFeeds } from '../../store/feeds';
 import SideBarFeed from './SideBarFeed'
 import "./SideBar.css"
-import CreateFeedModal from '../AddFeedFormModal/'
+import CreateFeedModal from '../AddFeedModal/'
 
 const SideBar = () => {
     const dispatch = useDispatch();
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
 
-    useEffect(() => {
-        dispatch(getFeeds());
+    useEffect(async () => {
+        await dispatch(getFeeds());
     }, [dispatch]);
 
     return (

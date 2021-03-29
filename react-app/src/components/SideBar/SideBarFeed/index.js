@@ -10,20 +10,15 @@ const SideBarFeed = ({ feed }) => {
     const [showSources, setShowSources] = useState(false)
     const selectedNews = useSelector(state => state.sidebar)
 
-    function selected(feedOrSource) {
-        dispatch(load(feedOrSource));
+    async function selected(feedOrSource) {
+        await dispatch(load(feedOrSource));
     }
 
+    if (!feed) {
+        return null
+    }
 
-    // const dynamicClass = (() => {
-    //     if (feed.id === selectedNews.selected?.id) {
-    //         return "feed-container--selected"
-    //     } else {
-    //         return "feed-container"
-    //     }
-    // })();
-
-    return (
+    return feed && (
         <>
             <div className={feed.id === selectedNews.selected?.id ? "feed-container--selected" : "feed-container"}>
                 <div className={feed.id === selectedNews.selected?.id ? "sidebar__icon-chevron--selected" : "sidebar__icon-chevron"}
@@ -33,7 +28,7 @@ const SideBarFeed = ({ feed }) => {
                     <i className={showSources ? "fas fa-chevron-down" : "fas fa-chevron-right"}></i>
                 </div>
                 <div className="sidebar__feed">
-                    <NavLink to={`/feeds/${feed.id}`}>
+                    <NavLink to={`/feeds/${String(feed.id)}`}>
                         <div className={feed.id === selectedNews.selected?.id ? "sidebar__feed-name--selected" : "sidebar__feed-name"}
                             onClick={() => (selected(feed))}
                         >
@@ -43,7 +38,7 @@ const SideBarFeed = ({ feed }) => {
                 </div>
             </div>
             <div className="sidebar__sources-container">
-                {showSources && feed.sources.map(source => (
+                {showSources && feed?.sources.map(source => (
                     <div className={source.id === selectedNews.selected?.id ? "sidebar__source-container--selected" : "sidebar__source-container"}
                         key={source.id}
                         onClick={() => (selected(source))}

@@ -21,7 +21,6 @@ export const getSources = (feedId) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data);
         dispatch(load(data))
         return data
     }
