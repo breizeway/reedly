@@ -7,14 +7,13 @@ import ModalWrapper from '../ModalWrapper/'
 import AddFeedModalLink from './AddFeedModal/Link'
 import AddFeedModalContent from './AddFeedModal/Content'
 
-
 const SideBar = () => {
     const dispatch = useDispatch();
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
 
-    useEffect(() => {
-        dispatch(getFeeds());
+    useEffect(async () => {
+        await dispatch(getFeeds());
     }, [dispatch]);
 
     return (

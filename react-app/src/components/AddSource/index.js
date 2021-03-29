@@ -58,7 +58,7 @@ const AddSource = () => {
                             <select
                                 value={feed}
                                 onChange={e => setFeed(e.target.value)}
-                                placeHolder='feed'
+                                placeholder='feed'
                             >
                                 <option value='default' className='add-source__default-option'>-- choose feed --&nbsp;</option>
                                 {feeds.map(feed => (
