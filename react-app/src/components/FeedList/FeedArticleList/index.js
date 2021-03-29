@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom'
 import parseFromHTML from 'html-react-parser'
 
 import '../FeedList.css';
-import * as sourceActions from "../../../store/sources"
 
 function FeedArticleList({ sources }) {
-    const markAsRead = (source) => {
-        console.log('marked as read :: ', source.id)
-    }
 
     return (
         <>
@@ -16,7 +12,6 @@ function FeedArticleList({ sources }) {
                 return (
                     <Link
                         to={`google.com`}
-                        onClick={markAsRead(source)}
                         className='article-card'
                     >
                         <div className='article-card__left'>
