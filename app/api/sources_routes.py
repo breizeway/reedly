@@ -62,9 +62,11 @@ def add_source():
     raw = feedparser.parse(body['source_url'])
     standardized_feed = standardize_feed(raw)
 
+
     write_feed = Feed.query.get(int(body['feed_id']))
     newSource = Source(source_url=body['source_url'],
-                       alt_name=standardized_feed['feed']['title'])
+                       alt_name=standardized_feed['feed']['title'],
+                       source_img=standardized_feed['feed']['icon'] if standardized_feed['feed']['icon'] else None)
     write_feed.sources.append(newSource)
     db.session.add(newSource)
     db.session.commit()

@@ -45,7 +45,11 @@ const SideBarFeed = ({ feed }) => {
                     >
                         <NavLink to={`/sources/${source.id}`}>
                             <div className='sidebar__icon'>
-                                <img src={source.source_img} alt=""/>
+                                {source.source_img ? (
+                                    <img src={source.source_img} alt="rss source icon"/>
+                                ) : (
+                                    <div className='source-icon-default' />
+                                )}
                             </div>
                             <div className='sidebar__title'>{source.alt_name}</div>
                         </NavLink>
