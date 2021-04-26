@@ -1,7 +1,7 @@
 const LOAD_FEEDS = "feeds/LOAD";
 const LOAD_FEED = "feed/LOAD"
 const ADD_ONE_FEED = "feed/ADD_ONE";
-const ADD_SOURCE_TO_FEED = "feed/ADD_SOURCE_TO_FEED";
+const ADD_SOURCE_TO_FEED = "feed/addSourceToFeed";
 
 // An action is an object with a key of type
 const load = feeds => {
@@ -10,13 +10,6 @@ const load = feeds => {
         feeds
     };
 };
-
-// const load = feeds => {
-//     return {
-//         type: LOAD_FEEDS,
-//         feeds
-//     };
-// };
 
 const loadOneFeed = (feed) => {
     return {
@@ -29,6 +22,13 @@ const addOneFeed = (feed) => ({
     type: ADD_ONE_FEED,
     payload: feed,
 });
+
+export const addSourceToFeed = source => {
+    return {
+        type: ADD_SOURCE_TO_FEED,
+        source
+    };
+};
 
 export const getFeeds = () => async dispatch => {
     const response = await fetch('/api/feeds/');
@@ -69,15 +69,27 @@ export const postFeed = (feedInfo) => async (dispatch) => {
 const initialState = {};
 const feedReducer = (state = initialState, action) => {
     let newState
+    let feeds
+    let source
     switch (action.type) {
         case LOAD_FEEDS:
             const allFeeds = {};
-            const { feeds } = action;
+            feeds = action.feeds;
             feeds.forEach(feed => allFeeds[feed.id] = feed );
             return allFeeds;
         case ADD_ONE_FEED: {
                 console.log("action.payload inside of ADD_ONE_FEED reducer", action.payload)
                 newState = Object.assign({}, state, { [action.payload.id]: action.payload })
+                return newState;
+            }
+        case ADD_SOURCE_TO_FEED: {
+                newState = Object.assign({}, state)
+                source = action.source.db_data
+                feeds = source.feeds
+
+                feeds.forEach((feedId) => {
+                    newState[feedId].sources.push(source)
+                })
                 return newState;
             }
         default:

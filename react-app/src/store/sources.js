@@ -1,8 +1,8 @@
+import * as feedActions from './feeds'
+
 const ADD_SOURCE = "session/addSource"
 const LOAD_SOURCES = "sources/load"
 const POPULATE_SOURCES = "sources/populateSources"
-
-
 
 const populateSources = sources => {
     return {
@@ -79,9 +79,8 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
     console.log('   :::RAW:::   ', all.raw); // show for development
     const data = all.standardized
     data.id = all.id
-    data.parent_feeds = all.parent_feeds
-    console.log('   :::DATA.test:::   ', data);
     dispatch(addSource(data))
+    dispatch(feedActions.addSourceToFeed(all))
     return data
   }
 }

@@ -95,9 +95,8 @@ def add_source():
     db.session.commit()
 
     source_id = newSource.to_dict()["id"]
-    parent_feeds = newSource.to_dict()["feeds"]
 
     return {"raw": raw,
             "standardized": standardized_feed,
             "id": source_id,
-            "parent_feeds": parent_feeds}
+            "db_data": newSource.to_dict()}
