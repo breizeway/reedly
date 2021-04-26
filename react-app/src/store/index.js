@@ -5,13 +5,15 @@ import feedReducer from './feeds';
 import sidebarReducer from './sidebar';
 import sourceReducer from './sources';
 import allReducer from './all'
+import modalReducer from './modal'
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     feeds: feedReducer,
     sources: sourceReducer,
     sidebar: sidebarReducer,
-    all: allReducer
+    all: allReducer,
+    modal: modalReducer
 });
 
 let enhancer;
