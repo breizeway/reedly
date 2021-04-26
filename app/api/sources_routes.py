@@ -14,7 +14,6 @@ def val_if_exists(key, dictionary):
     else:
         return ''
 
-
 def standardize_feed(raw):
     feed = {"title": val_if_exists(key='title', dictionary=raw.feed),
             "subtitle": val_if_exists(key='subtitle', dictionary=raw.feed),
@@ -41,6 +40,30 @@ def standardize_feed(raw):
 
     return {"feed": feed,
             "entries": entries}
+
+def add_rss_data(source):
+    print('   :::SOURCE:::   ', source)
+    raw_rss = feedparser.parse(source['source_url'])
+    standardized_rss = standardize_feed(raw_rss)
+    source['rss_data'] = standardized_rss
+    source['rss_data_raw'] = raw_rss
+    return source
+
+
+@sources_routes.route('/', methods=['PUT'])
+@login_required
+def get_sources():
+    ids = request.json['ids']
+
+    sources = db.session.query(Source) \
+                           .filter(Source.id.in_(ids)) \
+                           .all()
+
+    source_dicts = [source.to_dict() for source in sources]
+
+    map(add_rss_data, source_dicts)
+
+    return {'sources': source_dicts}
 
 
 @sources_routes.route('/<int:source_id>')
@@ -72,6 +95,9 @@ def add_source():
     db.session.commit()
 
     source_id = newSource.to_dict()["id"]
+    parent_feeds = newSource.to_dict()["feeds"]
+
     return {"raw": raw,
             "standardized": standardized_feed,
-            "id": source_id}
+            "id": source_id,
+            "parent_feeds": parent_feeds}

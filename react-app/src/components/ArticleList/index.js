@@ -17,6 +17,7 @@ const ArticleList = () => {
   useEffect(() => {
     (async () => {
       await dispatch(sourceActions.add(sourceId))
+      await dispatch(sourceActions.runPopulateSources([sourceId]))
       setLoaded(true)
     })()
   }, [dispatch, sourceId])

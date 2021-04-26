@@ -1,6 +1,7 @@
 const LOAD_FEEDS = "feeds/LOAD";
 const LOAD_FEED = "feed/LOAD"
 const ADD_ONE_FEED = "feed/ADD_ONE";
+const ADD_SOURCE_TO_FEED = "feed/ADD_SOURCE_TO_FEED";
 
 // An action is an object with a key of type
 const load = feeds => {
@@ -9,6 +10,13 @@ const load = feeds => {
         feeds
     };
 };
+
+// const load = feeds => {
+//     return {
+//         type: LOAD_FEEDS,
+//         feeds
+//     };
+// };
 
 const loadOneFeed = (feed) => {
     return {

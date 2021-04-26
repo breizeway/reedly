@@ -1,7 +1,15 @@
 const ADD_SOURCE = "session/addSource"
 const LOAD_SOURCES = "sources/load"
+const POPULATE_SOURCES = "sources/populateSources"
 
 
+
+const populateSources = sources => {
+    return {
+        type: POPULATE_SOURCES,
+        sources
+    };
+};
 
 const load = data => {
     return {
@@ -14,6 +22,24 @@ const addSource = source => {
     return {
         type: ADD_SOURCE,
         source
+    }
+}
+
+
+export const runPopulateSources = sourceIds => async dispatch => {
+    const response = await fetch(`/api/sources/`, {
+        method: 'PUT',
+        body: JSON.stringify({
+            ids: sourceIds
+            }),
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+    if (response.ok) {
+      const { sources } = await response.json(); // get both standardized and raw rss feed
+      dispatch(populateSources(sources))
+      return sources
     }
 }
 
@@ -53,12 +79,16 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
     console.log('   :::RAW:::   ', all.raw); // show for development
     const data = all.standardized
     data.id = all.id
+    data.parent_feeds = all.parent_feeds
+    console.log('   :::DATA.test:::   ', data);
     dispatch(addSource(data))
     return data
   }
 }
 
-const initialState = {}
+const initialState = {
+    all: {},
+}
 
 const sourceReducer = (state = initialState, action) => {
     let newState
@@ -80,6 +110,12 @@ const sourceReducer = (state = initialState, action) => {
             });
             newState = {sources, sourcesInfo}
             return newState;
+        case POPULATE_SOURCES:
+            newState = {...state}
+            action.sources.forEach(source => {
+                newState.all[source.id] = source
+            })
+            return newState
         default:
             return state;
     }
