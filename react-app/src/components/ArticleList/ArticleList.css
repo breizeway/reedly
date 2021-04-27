@@ -3,9 +3,16 @@
 }
 
 .article-list__title {
-  font-size: var(--page-title);
-  margin-bottom: 3rem;
-  border-bottom: 1px solid gray;
+    margin-bottom: 3rem;
+    -webkit-font-smoothing: antialiased;
+    clear: both;
+    color: #757575;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
 }
 
 .article-list__title:hover {
