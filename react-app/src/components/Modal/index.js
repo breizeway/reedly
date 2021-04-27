@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import './Modal.css'
-import { removeActive } from '../../store/components/modal'
+import { removeActive } from '../../store/modal'
 
 const Modal = ({ content, width='auto', height='auto'}) => {
     const dispatch = useDispatch()
 
     const modalVisible = {
-        val: useSelector(state => state.components.Modal.active),
+        val: useSelector(state => state.modal.active),
         rmv: () => dispatch(removeActive(modalVisible.val)),
     }
 

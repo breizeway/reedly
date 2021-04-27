@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux"
 import "./DropDownBtn.css"
-import ModalWrapper from "../../ModalWrapper"
-import UpdateFeedModalLink from "../../UpdateFeedModal/Link/index";
-import UpdateFeedModalContent from "../../UpdateFeedModal/Content/index"
+import Modal from "../../Modal"
+import * as modalActions from "../../../store/modal"
+import UpdateFeedModal from "../../UpdateFeedModal"
+
 
 function DropDownBtn() {
+    const dispatch = useDispatch()
     const [showMenu, setShowMenu] = useState(false);
+
+    const modal = {
+        thisVal: `Update/feed/name`,
+        val: useSelector(state => state.modal.active),
+        set: () => dispatch(modalActions.setActive(modal.thisVal))
+    }
 
     const openMenu = () => {
         if (showMenu) return;
@@ -36,10 +45,11 @@ function DropDownBtn() {
                         <div className="icon dropdown__cursor">
                             <i className="fas fa-i-cursor"></i>
                         </div>
-                        <ModalWrapper
-                            modalLink={<UpdateFeedModalLink />}
-                            modalContent={"test"}
-                        />
+                        <div
+                            onClick={modal.set}
+                            className="dropdown__section">
+                            Rename Feed
+                        </div>
                     </div>
                     <div className="delete-container">
                         <div className="icon dropdown__trash">
@@ -48,6 +58,9 @@ function DropDownBtn() {
                         <div className="dropdown__section">Delete</div>
                     </div>
                 </div>
+            )}
+            {modal.val === modal.thisVal && (
+                <Modal content={<UpdateFeedModal />} />
             )}
         </>
     )

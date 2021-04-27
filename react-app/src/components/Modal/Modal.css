@@ -5,7 +5,6 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #00000000;
 }
 
 .modal__background {
@@ -14,4 +13,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #00000023;
+}
+
+.modal__card {
+    background-color: white;
+    position: relative;
+}
+
+.modal__close.modal__close.modal__close {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  margin: 0;
 }
