@@ -22,4 +22,7 @@ class Feed(db.Model):
                 "feed_name": self.feed_name,
                 "sources": [source.to_dict() for source in self.sources]}
 
-
+    def to_dict_simple(self):
+        return {"id": self.id,
+                "user_id": self.user_id,
+                "feed_name": self.feed_name}

@@ -19,4 +19,5 @@ class Source(db.Model):
         return {"id": self.id,
                 "source_url": self.source_url,
                 "alt_name": self.alt_name,
-                "source_img": self.source_img}
+                "source_img": self.source_img,
+                "feeds": [feed.to_dict_simple()["id"] for feed in self.feeds]}

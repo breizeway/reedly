@@ -6,6 +6,7 @@ import "./SideBarSource.css"
 import "../SideBar.css"
 
 const SideBarFeed = ({ feed }) => {
+    console.log('   :::FEED:::   ', feed);
     const dispatch = useDispatch();
     const [showSources, setShowSources] = useState(false)
     const selectedNews = useSelector(state => state.sidebar)
