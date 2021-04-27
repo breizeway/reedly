@@ -14,7 +14,6 @@ def val_if_exists(key, dictionary):
     else:
         return ''
 
-
 def standardize_feed(raw):
     feed = {"title": val_if_exists(key='title', dictionary=raw.feed),
             "subtitle": val_if_exists(key='subtitle', dictionary=raw.feed),
@@ -42,6 +41,30 @@ def standardize_feed(raw):
     return {"feed": feed,
             "entries": entries}
 
+def add_rss_data(source):
+    print('   :::SOURCE:::   ', source)
+    raw_rss = feedparser.parse(source['source_url'])
+    standardized_rss = standardize_feed(raw_rss)
+    source['rss_data'] = standardized_rss
+    source['rss_data_raw'] = raw_rss
+    return source
+
+
+@sources_routes.route('/', methods=['PUT'])
+@login_required
+def get_sources():
+    ids = request.json['ids']
+
+    sources = db.session.query(Source) \
+                           .filter(Source.id.in_(ids)) \
+                           .all()
+
+    source_dicts = [source.to_dict() for source in sources]
+
+    map(add_rss_data, source_dicts)
+
+    return {'sources': source_dicts}
+
 
 @sources_routes.route('/<int:source_id>')
 @login_required
@@ -62,14 +85,18 @@ def add_source():
     raw = feedparser.parse(body['source_url'])
     standardized_feed = standardize_feed(raw)
 
+
     write_feed = Feed.query.get(int(body['feed_id']))
     newSource = Source(source_url=body['source_url'],
-                       alt_name=standardized_feed['feed']['title'])
+                       alt_name=standardized_feed['feed']['title'],
+                       source_img=standardized_feed['feed']['icon'] if standardized_feed['feed']['icon'] else None)
     write_feed.sources.append(newSource)
     db.session.add(newSource)
     db.session.commit()
 
     source_id = newSource.to_dict()["id"]
+
     return {"raw": raw,
             "standardized": standardized_feed,
-            "id": source_id}
+            "id": source_id,
+            "db_data": newSource.to_dict()}

@@ -41,3 +41,7 @@
   color: gray;
   padding-top: 12px;
 }
+
+.article-card * {
+  max-width: 100%;
+}

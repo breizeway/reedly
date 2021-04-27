@@ -15,6 +15,7 @@ const FeedList = () => {
     const dispatch = useDispatch()
     let { feedId } = useParams();
     const feed = useSelector(state => state.feeds[Number(feedId)]);
+    console.log('   :::FEED:::   ', feed);
     sources = useSelector(state => state.sources)
     const [loaded, setLoaded] = useState(false)
 
