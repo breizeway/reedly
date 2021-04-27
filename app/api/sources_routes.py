@@ -5,8 +5,8 @@ import html  # html.unescape()
 
 from app.models import db, Source, Feed
 
-sources_routes = Blueprint('sources', __name__)
 
+sources_routes = Blueprint('sources', __name__)
 
 def val_if_exists(key, dictionary):
     if key in dictionary:

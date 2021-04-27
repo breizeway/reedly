@@ -1,0 +1,8 @@
+.article * {
+  max-width: 100%;
+}
+
+.article img {
+  height: auto;
+  max-width: 100%;
+}

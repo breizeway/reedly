@@ -4,7 +4,7 @@ import sessionReducer from './session';
 import feedReducer from './feeds';
 import sidebarReducer from './sidebar';
 import sourceReducer from './sources';
-import allReducer from './all'
+import viewsReducer from './views'
 import modalReducer from './modal'
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     feeds: feedReducer,
     sources: sourceReducer,
     sidebar: sidebarReducer,
-    all: allReducer,
+    views: viewsReducer,
     modal: modalReducer
 });
 

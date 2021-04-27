@@ -22,7 +22,7 @@ function UpdateFeedModal() {
             feed_id: feed.id,
         }
 
-        await dispatch(updateFeed(payload))
+        // await dispatch(updateFeed(payload))
 
         history.push(`/feeds/${feed.id}`)
     }

@@ -50,7 +50,6 @@ export const getOneFeed = (id) => async (dispatch) => {
 }
 
 export const postFeed = (feedInfo) => async (dispatch) => {
-    console.log("from POSTFEED in store", feedInfo)
     const response = await fetch(`/api/feeds/`, {
         method: 'POST',
         body: JSON.stringify(feedInfo),
@@ -61,7 +60,6 @@ export const postFeed = (feedInfo) => async (dispatch) => {
 
     if (!response.ok) throw response;
     const data = await response.json();
-    console.log("data from within post feed after response.ok", data)
     dispatch(addOneFeed(data));
     return data;
 }
@@ -78,7 +76,6 @@ const feedReducer = (state = initialState, action) => {
             feeds.forEach(feed => allFeeds[feed.id] = feed );
             return allFeeds;
         case ADD_ONE_FEED: {
-                console.log("action.payload inside of ADD_ONE_FEED reducer", action.payload)
                 newState = Object.assign({}, state, { [action.payload.id]: action.payload })
                 return newState;
             }
