@@ -14,18 +14,49 @@
   justify-content: center;
   align-items: center;
   background-color: #00000023;
-  overflow-y: scroll;
 }
 
 .modal__card {
-  background-color: white;
-  position: relative;
-  max-width: 70%;
+    background-color: white;
+    position: relative;
+    max-width: 70%;
 }
 
-.modal__close.modal__close.modal__close {
+.modal__content {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.modal__close {
   position: absolute;
-  left: -5px;
-  top: -5px;
-  margin: 0;
+  left: -30px;
+  top: 0;
+  width: 30px;
+  background-color: transparent;
+}
+
+.modal__close:hover {
+  cursor: pointer;
+}
+
+.modal__close-upper {
+  width: 100%;
+  border-left: 30px solid transparent;
+  border-bottom: 10px solid var(--main-background);;
+}
+
+.modal__close-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: lightgray;
+  height: 30px;
+  background-color: var(--main-background);
+}
+
+.modal__close-lower {
+  width: 100%;
+  border-left: 30px solid transparent;
+  border-top: 10px solid var(--main-background);
 }

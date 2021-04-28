@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import './Modal.css'
 import { removeActive } from '../../store/modal'
 
-const Modal = ({ content, width='auto', height='auto', position="absolute", right="0px"}) => {
+const Modal = ({ content, width='73%', height='100%', position="absolute", right="0px"}) => {
     const dispatch = useDispatch()
 
     const modalVisible = {
@@ -28,16 +28,22 @@ const Modal = ({ content, width='auto', height='auto', position="absolute", righ
                 onClick={closeModal}
             >
                 <div
-                    className='modal__card card'
+                    className='modal__card'
                     onClick={e => e.stopPropagation()}
                     style={{width, height, position, right}}
                 >
-                    {content}
+                    <div className='modal__content'>
+                        {content}
+                    </div>
                     <div
-                        className='modal__close icon-big'
+                        className='modal__close'
                         onClick={closeModal}
                     >
-                        <i className='fas fa-times' />
+                        <div className='modal__close-upper' />
+                        <div className='modal__close-icon'>
+                            <i className='fas fa-times' />
+                        </div>
+                        <div className='modal__close-lower' />
                     </div>
                 </div>
             </div>
