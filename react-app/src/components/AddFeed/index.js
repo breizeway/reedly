@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { postFeed } from '../../store/feeds'
+
 import './AddFeed.css';
 
 function AddFeed() {

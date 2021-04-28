@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import ModalWrapper from '../ModalWrapper'
-import ArticleModalLink from '../ArticleModal/Link'
-import ArticleModalContent from '../ArticleModal/Content'
 import DropDownBtn from "./DropDownBtn"
 import ArticleCard from "../ArticleCard"
 import Loading from "../Loading"
@@ -20,9 +17,11 @@ const FeedList = () => {
     sources = useSelector(state => state.sources)
     const [loaded, setLoaded] = useState(false)
 
+    let serverResponse
     useEffect(() => {
         (async () => {
-            await dispatch(sourceActions.getSources(feedId))
+            serverResponse = await dispatch(sourceActions.getSources(feedId))
+            console.log('   :::SERVERRESPONSE:::   ', serverResponse);
             setLoaded(true)
         })()
     }, [dispatch, feedId])

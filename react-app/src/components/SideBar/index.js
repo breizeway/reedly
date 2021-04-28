@@ -14,11 +14,11 @@ const SideBar = () => {
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
 
+
     useEffect(() => {
-        async function fetchData() {
+        (async () => {
             await dispatch(getFeeds());
-        }
-        fetchData();
+        })()
     }, [dispatch]);
 
     const modal = {

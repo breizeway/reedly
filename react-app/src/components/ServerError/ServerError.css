@@ -1,0 +1,13 @@
+.server-error {
+  display: inline-block;
+}
+
+.server-error__back {
+  display: flex;
+  width: 76px;
+}
+
+.server-error__back:hover {
+  cursor: pointer;
+  border-bottom: 2px solid black;
+}
