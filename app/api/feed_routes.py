@@ -77,3 +77,31 @@ def all_feeds():
 
         return {"sources": standardized_list,
                 "sources_info": standardized_source_info}
+
+
+@feed_routes.route("/<int:id>", methods=["PATCH"])
+def update_feed(id):
+
+    data = request.json
+
+    feed = Feed.query.get(data["feed_id"])
+    feed.feed_name = data["feed_name"]
+
+    db.session.add(feed)
+    db.session.commit()
+
+    return {"feed": feed.to_dict()}
+
+
+@feed_routes.route("/<int:id>", methods=["DELETE"])
+def delete_feed(id):
+
+    data = request.json
+
+    feed = Feed.query.get(id)
+    print("FEED", feed)
+
+    db.session.delete(feed)
+    db.session.commit()
+
+    return {"feed": feed.to_dict()}

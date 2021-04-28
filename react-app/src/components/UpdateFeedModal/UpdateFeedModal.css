@@ -1,5 +1,10 @@
 .form-container {
-  padding: 0 64px 64px 64px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 654px;
 }
 
 .form-container__header {
@@ -87,3 +92,9 @@
     border: 1px solid #c7c7c7;
     color: #636363;
 }
+
+
+    /* width: 90%;
+    height: 100%;
+    position: absolute;
+    left: 116px; */

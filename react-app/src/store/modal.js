@@ -30,6 +30,9 @@ const modalReducer = (state = defaultState, action) => {
             return newState
         case REMOVE_ACTIVE:
             newState = {...state}
+            console.log("inside remove active case in reducer")
+            console.log(action.modalName);
+            console.log(newState.active); 
             if (newState.active === action.modalName) {
                 newState.active = null
             }

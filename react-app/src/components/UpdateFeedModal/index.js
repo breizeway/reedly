@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
+import { updateFeed } from "../../store/feeds"
+import { removeActive } from '../../store/modal'
 import "./UpdateFeedModal.css"
 
 function UpdateFeedModal() {
@@ -9,6 +11,8 @@ function UpdateFeedModal() {
     const { feedId } = useParams();
     const feed = useSelector(state => state.feeds[Number(feedId)]);
     const [ feedName, setFeedName ] = useState(feed.feed_name)
+    const modal = useSelector(state => state.modal);
+    console.log(modal);
 
     function updateFeedName(e) {
         setFeedName(e.target.value)
@@ -23,6 +27,7 @@ function UpdateFeedModal() {
         }
 
         await dispatch(updateFeed(payload))
+        dispatch(removeActive(modal.active))
 
         history.push(`/feeds/${feed.id}`)
     }
@@ -49,7 +54,11 @@ function UpdateFeedModal() {
                 </div>
                 <div className="form__btn">
                     <button type="submit" id="signup-btn">Save</button>
-                    <button type="button" id="cancel-btn">Cancel</button>
+                    <button type="button" id="cancel-btn"
+                    onClick={() => (dispatch(removeActive(modal.active)))}
+                    >
+                        Cancel
+                    </button>
                 </div>
             </form>
         </div>
