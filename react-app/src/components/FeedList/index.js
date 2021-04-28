@@ -5,6 +5,7 @@ import ModalWrapper from '../ModalWrapper'
 import ArticleModalLink from '../ArticleModal/Link'
 import ArticleModalContent from '../ArticleModal/Content'
 import DropDownBtn from "./DropDownBtn"
+import Loading from "../Loading"
 import * as sourceActions from '../../store/sources'
 import './FeedList.css';
 
@@ -33,7 +34,7 @@ const FeedList = () => {
     }
 
     if (!loaded) {
-        return null;
+        return <Loading />;
     }
 
 

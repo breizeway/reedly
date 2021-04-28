@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { runAddToday } from '../../store/views';
 import './HomePage.css';
 import ArticleCard from '../ArticleCard'
+import Loading from '../Loading'
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function HomePage() {
                 <span id="homepage__today">Today</span>
                 <span id="homepage__sub-heading">The insights you need to keep ahead</span>
             </div>
+            {todayFeeds.length ? (
             <div className='homepage__feeds'>
                 {todayFeeds.map(feed => (
                     <>
@@ -30,6 +32,9 @@ function HomePage() {
                     </>
                 ))}
             </div>
+            ) : (
+                <Loading />
+            )}
         </div>
     )
 }
