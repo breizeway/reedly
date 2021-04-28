@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { postFeed } from '../../store/feeds'
-import './AddFeedForm.css';
 
-function AddFeedForm() {
+import './AddFeed.css';
+
+function AddFeed() {
     const dispatch = useDispatch()
     const history = useHistory();
     const [feedName, setFeedName] = useState('');
@@ -24,15 +25,17 @@ function AddFeedForm() {
 
     return (
         <div className="form-container">
+            <div className="form-container__header">Create New Feed</div>
+            <div className="form-container__subheader">A private collection of trusted sources you want to read</div>
             <form onSubmit={handleSubmit}>
-                <div className="form__input-fields">
-                    <label>Title</label>
+                <div className="form-container__input-fields">
+                    <div className='form-container__label'>Title</div>
                     <input
                         type="text"
                         value={feedName}
                         onChange={(e) => (setFeedName(e.target.value))}
                         required
-                        placeholder="Feed Name"
+                        placeholder="Title"
                     />
                 </div>
                 <div className="form__btn">
@@ -44,4 +47,4 @@ function AddFeedForm() {
 }
 
 
-export default AddFeedForm
+export default AddFeed

@@ -11,7 +11,7 @@ import SideBar from "./components/SideBar";
 import SourceList from "./components/SourceList"
 import FeedList from "./components/FeedList"
 import HomePage from "./components/HomePage"
-import NotFound from "./components/NotFound"
+import PageNotFound from "./components/PageNotFound"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -60,7 +60,7 @@ function App() {
                                 <SourceList />
                             </Route>
                             <Route path="/*" >
-                                <NotFound />
+                                <PageNotFound />
                             </Route>
                         </Switch>
                     </MainContent>

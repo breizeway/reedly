@@ -49,17 +49,19 @@ def add_feed():
 @feed_routes.route('/<int:id>')
 def sources_on_feed(id):
     right_feed = Feed.query.filter(Feed.id == id).all()
-    right_feed_dict = right_feed[0].to_dict()
-    source_url_list = [source["source_url"]
-                       for source in right_feed_dict["sources"]]
-    raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
-    standardized_list = [standardize_feed(
-        raw_item)["entries"] for raw_item in raw_list]
-    standardized_source_info = [standardize_feed(raw_item)["feed"] for raw_item in raw_list]
 
-    return {"sources": standardized_list,
-            "sources_info": standardized_source_info}
-
+    if right_feed:
+        right_feed_dict = right_feed[0].to_dict()
+        source_url_list = [source["source_url"]
+                        for source in right_feed_dict["sources"]]
+        raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
+        standardized_list = [standardize_feed(
+            raw_item)["entries"] for raw_item in raw_list]
+        standardized_source_info = [standardize_feed(raw_item)["feed"] for raw_item in raw_list]
+        return {"sources": standardized_list,
+                "sources_info": standardized_source_info}
+    else:
+        return {'error': 404}, 404
 
 @feed_routes.route("/all")
 def all_feeds():

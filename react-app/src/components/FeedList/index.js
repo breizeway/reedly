@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
-import ModalWrapper from '../ModalWrapper'
-import ArticleModalLink from '../ArticleModal/Link'
-import ArticleModalContent from '../ArticleModal/Content'
 import DropDownBtn from "./DropDownBtn"
+import ArticleCard from "../ArticleCard"
 import Loading from "../Loading"
 import * as sourceActions from '../../store/sources'
 import './FeedList.css';
+import ServerError from '../ServerError'
 
 const FeedList = () => {
     let sourcesInfoArr;
@@ -19,9 +18,11 @@ const FeedList = () => {
     sources = useSelector(state => state.sources)
     const [loaded, setLoaded] = useState(false)
 
+    let serverResponse
     useEffect(() => {
         (async () => {
-            await dispatch(sourceActions.getSources(feedId))
+            serverResponse = await dispatch(sourceActions.getSources(feedId))
+            console.log('   :::SERVERRESPONSE:::   ', serverResponse);
             setLoaded(true)
         })()
     }, [dispatch, feedId])
@@ -55,21 +56,8 @@ const FeedList = () => {
                         >
                             {sourceInfo?.title}
                         </div>
-                        {/* <div>{sourceInfo?.subtitle}</div> */}
-                        {sources[idx].map(entry => (
-                            <ModalWrapper
-                                key={entry.id}
-                                modalLink={
-                                    <ArticleModalLink
-                                        entry={entry}
-                                    />
-                                }
-                                modalContent={
-                                    <ArticleModalContent
-                                        entry={entry}
-                                    />
-                                }
-                            />
+                        {sources[idx].map((entry, i) => (
+                            <ArticleCard key={i} entry={entry} modalId={`${feed.id}/${i}/${entry.id}`} />
                         ))}
                     </div>
                 ))}

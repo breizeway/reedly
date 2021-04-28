@@ -1,5 +1,6 @@
 .form-container {
   padding: 0 64px 64px 64px;
+  width: 100%;
 }
 
 .form-container__header {

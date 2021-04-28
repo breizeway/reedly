@@ -1,13 +1,13 @@
-.not-found {
+.page-not-found {
   display: inline-block;
 }
 
-.not-found__back {
+.page-not-found__back {
   display: flex;
   width: 76px;
 }
 
-.not-found__back:hover {
+.page-not-found__back:hover {
   cursor: pointer;
   border-bottom: 2px solid black;
 }
