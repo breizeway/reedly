@@ -1,19 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { runAddToday } from '../../store/views';
 import './HomePage.css';
 import ArticleCard from '../ArticleCard'
 import Loading from '../Loading'
+import ServerError from '../ServerError'
 
 function HomePage() {
     const dispatch = useDispatch();
+    const [serverResponse, setServerResponse] = useState(null)
     const todayFeeds = useSelector(state => state.views.today)
 
     useEffect(() => {
-        (async () => {
-            await dispatch(runAddToday());
-        })()
+        const response = (async () => await dispatch(runAddToday()))()
+        setServerResponse(response)
     }, [dispatch]);
+
+    if (serverResponse && Object.keys(serverResponse).includes('error')) {
+        const { error } = serverResponse
+        return <ServerError error={ error } />
+    }
 
     return todayFeeds && (
         <div className="homepage-container">

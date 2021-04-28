@@ -7,6 +7,7 @@ import * as sourceActions from '../../store/sources'
 import Loading from "../Loading"
 import DropDownBtn from "./DropDownBtn"
 import ArticleCard from "../ArticleCard"
+import ServerError from '../ServerError'
 
 const SourceList = () => {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ const SourceList = () => {
     const sources = useSelector(state => state.sources)
     const feeds = useSelector(state => state.feeds);
     const [loaded, setLoaded] = useState(false)
+    const [serverResponse, setServerResponse] = useState(null)
     const feed = rightFeed(feeds);
 
 
@@ -38,14 +40,18 @@ const SourceList = () => {
         }
     }
 
-
-
     useEffect(() => {
         (async () => {
-            await dispatch(sourceActions.add(sourceId))
+            const response = await dispatch(sourceActions.add(sourceId))
             setLoaded(true)
+            setServerResponse(response)
         })()
     }, [dispatch, sourceId])
+
+    if (serverResponse && Object.keys(serverResponse).includes('error')) {
+        const { error } = serverResponse
+        return <ServerError error={ error } />
+    }
 
     if (!loaded) {
         return <Loading />;

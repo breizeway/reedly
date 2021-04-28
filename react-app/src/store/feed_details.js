@@ -10,9 +10,9 @@ export const deleteFeedSource = payload => async dispatch => {
     });
 
 
+    const data = await response.json();
     if (response.ok) {
-        const data = await response.json();
         dispatch(updateOneFeed(data.feed));
-        return data
     }
+    return data
 }

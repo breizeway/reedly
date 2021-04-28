@@ -9,8 +9,8 @@ const addToday = feed => {
 
 export const runAddToday = () => async dispatch => {
     const responseA = await fetch(`/api/feeds/all`);
+    const { feeds } = await responseA.json();
     if (responseA.ok) {
-        const { feeds } = await responseA.json();
         feeds.forEach(async feed => {
             if (feed.sources.length) {
                 const responseB = await fetch(`/api/feeds/today`, {
@@ -20,19 +20,17 @@ export const runAddToday = () => async dispatch => {
                         'Content-type': 'application/json; charset=UTF-8',
                     },
                 })
+                const feed_chunk = await responseB.json()
                 if (responseB.ok) {
-                    const feed_chunk = await responseB.json()
                     dispatch(addToday(feed_chunk))
                 }
+                return feed_chunk
             }
+            return feed
         })
     }
-
-    const response = await fetch(`/api/feeds/today`);
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(addToday(data))
-        return data
+    else {
+        return await responseA.json()
     }
 }
 

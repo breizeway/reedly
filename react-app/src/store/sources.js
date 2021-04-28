@@ -36,11 +36,11 @@ export const runPopulateSources = sourceIds => async dispatch => {
             'content-type': 'application/json'
         }
     })
+    const { sources } = await response.json(); // get both standardized and raw rss feed
     if (response.ok) {
-      const { sources } = await response.json(); // get both standardized and raw rss feed
       dispatch(populateSources(sources))
-      return sources
     }
+    return sources
 }
 
 
@@ -48,7 +48,6 @@ export const getSources = (feedId) => async (dispatch) => {
     const response = await fetch(`/api/feeds/${Number(feedId)}`);
 
     const data = await response.json();
-    console.log('   :::DATA:::   ', data);
     if (response.ok) {
         dispatch(load(data))
     }
@@ -57,13 +56,14 @@ export const getSources = (feedId) => async (dispatch) => {
 
 export const add = sourceId => async dispatch => {
     const response = await fetch(`/api/sources/${sourceId}`)
+    const all = await response.json(); // get both standardized and raw rss feed
     if (response.ok) {
-        const all = await response.json(); // get both standardized and raw rss feed
         const data = all.standardized
         data.id = sourceId
         dispatch(addSource(data))
         return data
     }
+    return all
 }
 
 export const addNew = (sourceUrl, feedId) => async dispatch => {
@@ -74,14 +74,15 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
       'content-type': 'application/json'
     }
   })
+  const all = await response.json(); // get both standardized and raw rss feed
   if (response.ok) {
-    const all = await response.json(); // get both standardized and raw rss feed
     const data = all.standardized
     data.id = all.id
     dispatch(addSource(data))
     dispatch(feedActions.addSourceToFeed(all))
     return data
   }
+  return all
 }
 
 const initialState = {
