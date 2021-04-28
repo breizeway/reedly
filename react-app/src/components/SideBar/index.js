@@ -72,10 +72,10 @@ const SideBar = () => {
                     <div className="sidebar__add-feed sidebar__title">
                         Create New Feed
                     </div>
-                    {modal.val === modal.thisVal && (
-                        <Modal content={<AddFeed />} />
-                    )}
                 </div>
+                {modal.val === modal.thisVal && (
+                    <Modal content={<AddFeed />} />
+                )}
             </div>
             <div className="sidebar__third-section">
                 <div className="sidebar__recently-read">
