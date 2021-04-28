@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import './SourceList.css';
 import * as sourceActions from '../../store/sources'
+import ModalWrapper from '../ModalWrapper'
+import ArticleModalLink from '../ArticleModal/Link'
+import ArticleModalContent from '../ArticleModal/Content'
 import Loading from "../Loading"
 import DropDownBtn from "./DropDownBtn"
-import ArticleCard from "../ArticleCard"
 
 const SourceList = () => {
     const dispatch = useDispatch()
@@ -68,8 +70,20 @@ const SourceList = () => {
                 Most Recent
             </div>
             <div className='article-list__article-cards'>
-                {sources[sourceId]?.entries.map((entry, i) => (
-                    <ArticleCard key={i} entry={entry} modalId={`${sourceId}/${i}/${entry.id}`} />
+                {sources[sourceId]?.entries.map(entry => (
+                    <ModalWrapper
+                        key={entry.id}
+                        modalLink={
+                            <ArticleModalLink
+                                entry={entry}
+                            />
+                        }
+                        modalContent={
+                            <ArticleModalContent
+                                entry={entry}
+                            />
+                        }
+                    />
                 ))}
             </div>
         </div>

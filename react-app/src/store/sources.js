@@ -47,12 +47,11 @@ export const runPopulateSources = sourceIds => async dispatch => {
 export const getSources = (feedId) => async (dispatch) => {
     const response = await fetch(`/api/feeds/${Number(feedId)}`);
 
-    const data = await response.json();
-    console.log('   :::DATA:::   ', data);
     if (response.ok) {
+        const data = await response.json();
         dispatch(load(data))
+        return data
     }
-    return data
 }
 
 export const add = sourceId => async dispatch => {
