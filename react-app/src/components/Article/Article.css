@@ -1,3 +1,7 @@
+.article{
+  padding: 40px;
+}
+
 .article * {
   max-width: 100%;
 }

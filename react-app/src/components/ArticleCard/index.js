@@ -8,11 +8,11 @@ import Article from "../Article"
 import * as modalActions from "../../store/modal"
 
 
-const ArticleCard = ({ entry }) => {
+const ArticleCard = ({ entry, modalId }) => {
   const dispatch = useDispatch()
 
   const modal = {
-    thisVal: `article/${entry.id}`, // may need to update this. Not sure if Id exists
+    thisVal: modalId,
     val: useSelector(state => state.modal.active),
     set: () => dispatch(modalActions.setActive(modal.thisVal))
   }
