@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+
 import { getFeeds } from '../../store/feeds';
 import SideBarFeed from './SideBarFeed'
 import "./SideBar.css"
-import ModalWrapper from '../ModalWrapper/'
-import AddFeedModalLink from './AddFeedModal/Link'
-import AddFeedModalContent from './AddFeedModal/Content'
+import AddFeed from "../AddFeed"
+import Modal from "../Modal"
+import * as modalActions from "../../store/modal"
 
 const SideBar = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,12 @@ const SideBar = () => {
         }
         fetchData();
     }, [dispatch]);
+
+    const modal = {
+      thisVal: 'sidebar/addFeed',
+      val: useSelector(state => state.modal.active),
+      set: () => dispatch(modalActions.setActive(modal.thisVal))
+    }
 
     return (
         <div className="sidebar">
@@ -58,10 +65,17 @@ const SideBar = () => {
                         ))}
                     </div>
                 </div>
-                <ModalWrapper
-                    modalLink={<AddFeedModalLink />}
-                    modalContent={<AddFeedModalContent />}
-                />
+                <div
+                    className="sidebar__row"
+                    onClick={modal.set}
+                >
+                    <div className="sidebar__add-feed sidebar__title">
+                        Create New Feed
+                    </div>
+                    {modal.val === modal.thisVal && (
+                        <Modal content={<AddFeed />} />
+                    )}
+                </div>
             </div>
             <div className="sidebar__third-section">
                 <div className="sidebar__recently-read">

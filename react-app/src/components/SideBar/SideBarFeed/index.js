@@ -38,7 +38,7 @@ const SideBarFeed = ({ feed }) => {
                 </div>
             </div>
             <div className="sidebar__sources-container">
-                {showSources && feed.sources.map(source => (
+                {showSources && feed?.sources.map(source => (
                     <div className={source.alt_name === selectedNews.selected?.alt_name ? "sidebar__source-container--selected sidebar__row" : "sidebar__source-container sidebar__row"}
                         key={source.id}
                         onClick={() => (selected(source))}

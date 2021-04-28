@@ -8,6 +8,7 @@ import ModalWrapper from '../ModalWrapper'
 import ArticleModalLink from '../ArticleModal/Link'
 import ArticleModalContent from '../ArticleModal/Content'
 import Loading from "../Loading"
+import ArticleCard from "../ArticleCard"
 
 const ArticleList = () => {
   const dispatch = useDispatch()
@@ -40,20 +41,8 @@ const ArticleList = () => {
         </div>
       </div>
       <div className='article-list__article-cards'>
-        {sources[sourceId]?.entries.map(entry => (
-          <ModalWrapper
-            key={entry.id}
-            modalLink={
-              <ArticleModalLink
-                entry={entry}
-              />
-            }
-            modalContent={
-              <ArticleModalContent
-                entry={entry}
-              />
-            }
-          />
+        {sources[sourceId]?.entries.map((entry, i) => (
+          <ArticleCard key={i} entry={entry} modalId={`${sourceId}/${i}/${entry.id}`} />
         ))}
       </div>
     </div>

@@ -5,18 +5,15 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from "./store"
-import { ModalProvider } from './context/Modal'
 
 const store = configureStore()
 
 function Root() {
     return (
         <Provider store={store}>
-            <ModalProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </ModalProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
         </Provider>
     )
 }

@@ -5,6 +5,7 @@ import ModalWrapper from '../ModalWrapper'
 import ArticleModalLink from '../ArticleModal/Link'
 import ArticleModalContent from '../ArticleModal/Content'
 import DropDownBtn from "./DropDownBtn"
+import ArticleCard from "../ArticleCard"
 import Loading from "../Loading"
 import * as sourceActions from '../../store/sources'
 import './FeedList.css';
@@ -55,21 +56,8 @@ const FeedList = () => {
                         >
                             {sourceInfo?.title}
                         </div>
-                        {/* <div>{sourceInfo?.subtitle}</div> */}
-                        {sources[idx].map(entry => (
-                            <ModalWrapper
-                                key={entry.id}
-                                modalLink={
-                                    <ArticleModalLink
-                                        entry={entry}
-                                    />
-                                }
-                                modalContent={
-                                    <ArticleModalContent
-                                        entry={entry}
-                                    />
-                                }
-                            />
+                        {sources[idx].map((entry, i) => (
+                            <ArticleCard key={i} entry={entry} modalId={`${feed.id}/${i}/${entry.id}`} />
                         ))}
                     </div>
                 ))}
