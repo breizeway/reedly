@@ -58,7 +58,6 @@ export const add = sourceId => async dispatch => {
     const response = await fetch(`/api/sources/${sourceId}`)
     if (response.ok) {
         const all = await response.json(); // get both standardized and raw rss feed
-        console.log('   :::RAW:::   ', all.raw); // show for development
         const data = all.standardized
         data.id = sourceId
         dispatch(addSource(data))
@@ -76,7 +75,6 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
   })
   if (response.ok) {
     const all = await response.json(); // get both standardized and raw rss feed
-    console.log('   :::RAW:::   ', all.raw); // show for development
     const data = all.standardized
     data.id = all.id
     dispatch(addSource(data))

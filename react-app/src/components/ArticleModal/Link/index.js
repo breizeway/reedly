@@ -5,13 +5,9 @@ import './ArticleModalLink.css';
 
 
 const ArticleModalLink = ({ entry }) => {
-  const markAsRead = () => {
-    console.log('marked as read :: ', entry.id)
-  }
 
   return (
     <div
-      onClick={markAsRead}
       className='article-card'
     >
       <div className='article-card__left'>
