@@ -11,6 +11,7 @@ import SideBar from "./components/SideBar";
 import ArticleList from "./components/ArticleList"
 import FeedList from "./components/FeedList"
 import HomePage from "./components/HomePage"
+import NotFound from "./components/NotFound"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -45,18 +46,23 @@ function App() {
                     <NavBar />
                     <SideBar />
                     <MainContent>
-                        <Route path="/" exact={true}>
-                            <HomePage />
-                        </Route>
-                        <Route path="/sources/add" exact={true}>
-                            <AddSource />
-                        </Route>
-                        <Route path="/feeds/:feedId">
-                            <FeedList />
-                        </Route>
-                        <Route path="/sources/:id" exact={true}>
-                            <ArticleList />
-                        </Route>
+                        <Switch>
+                            <Route path="/" exact={true}>
+                                <HomePage />
+                            </Route>
+                            <Route path="/sources/add" exact={true}>
+                                <AddSource />
+                            </Route>
+                            <Route path="/feeds/:feedId">
+                                <FeedList />
+                            </Route>
+                            <Route path="/sources/:id">
+                                <ArticleList />
+                            </Route>
+                            <Route path="/*" >
+                                <NotFound />
+                            </Route>
+                        </Switch>
                     </MainContent>
                 </ProtectedRoute>
             </Switch>

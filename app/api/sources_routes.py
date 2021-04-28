@@ -42,7 +42,6 @@ def standardize_feed(raw):
             "entries": entries}
 
 def add_rss_data(source):
-    print('   :::SOURCE:::   ', source)
     raw_rss = feedparser.parse(source['source_url'])
     standardized_rss = standardize_feed(raw_rss)
     source['rss_data'] = standardized_rss
