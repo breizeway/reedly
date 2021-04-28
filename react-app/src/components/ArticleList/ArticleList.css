@@ -15,6 +15,10 @@
     text-transform: uppercase;
 }
 
+/* .source-list__title {
+
+} */
+
 .article-list__title:hover {
   cursor: pointer;
 }

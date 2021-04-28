@@ -29,7 +29,7 @@ const ArticleList = () => {
     <div className='article-list'>
       <div className='article-list__header'>
         <div
-          className='article-list__title'
+          className='source-list__title'
           onClick={() => window.open(sources[sourceId]?.feed.link)}
         >
           {sources[sourceId]?.feed.title}
