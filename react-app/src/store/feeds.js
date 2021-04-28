@@ -25,7 +25,7 @@ const addOneFeed = (feed) => ({
     payload: feed,
 });
 
-const updateOneFeed = (feed) => ({
+export const updateOneFeed = (feed) => ({
     type: UPDATE_FEED,
     payload: feed
 })
@@ -123,6 +123,7 @@ const feedReducer = (state = initialState, action) => {
                 return newState;
             }
         case UPDATE_FEED: {
+            console.log("hitting this route"); 
             newState = { ...state }
             newState[action.payload.id] = action.payload
             return newState

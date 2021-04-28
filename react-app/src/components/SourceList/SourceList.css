@@ -1,0 +1,35 @@
+.source-list__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 100px;
+
+}
+
+.source-list__title {
+    color: #333;
+    font-family: sans-serif;
+    font-size: 2.125rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.25em;
+    text-align: left;
+    text-transform: none;
+}
+
+.source-list__subtitle {
+    -webkit-font-smoothing: antialiased;
+    clear: both;
+    color: #757575;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.article-list__title:hover {
+  cursor: pointer;
+}
