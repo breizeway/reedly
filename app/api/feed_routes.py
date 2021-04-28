@@ -1,8 +1,11 @@
+import feedparser
+
 from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db, Feed, Source
-import feedparser
 from app.api.sources_routes import standardize_feed
+from app.utilities import add_rss_to_source, date_today
+
 
 feed_routes = Blueprint('feeds', __name__)
 
@@ -49,7 +52,6 @@ def sources_on_feed(id):
     right_feed_dict = right_feed[0].to_dict()
     source_url_list = [source["source_url"]
                        for source in right_feed_dict["sources"]]
-    print("::::SOURCEIDLIST::::::::", source_url_list)
     raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
     standardized_list = [standardize_feed(
         raw_item)["entries"] for raw_item in raw_list]
@@ -62,21 +64,28 @@ def sources_on_feed(id):
 @feed_routes.route("/all")
 def all_feeds():
     if current_user.is_authenticated:
-        dict_current_user = current_user.to_dict()
-        feeds = Feed.query.filter(
-            Feed.user_id == dict_current_user["id"]).all()
-        feeds_dict = [feed.to_dict() for feed in feeds]
-        source_list = [feed["sources"] for feed in feeds_dict]
-        flattened_source_list = flatten(source_list)
-        source_url_list = [source["source_url"] for source in flattened_source_list]
-        raw_list = [feedparser.parse(source_url) for source_url in source_url_list]
-        standardized_list = [standardize_feed(
-            raw_item)["entries"] for raw_item in raw_list]
-        standardized_source_info = [standardize_feed(
-            raw_item)["feed"] for raw_item in raw_list]
+        session_id = current_user.to_dict()["id"]
 
-        return {"sources": standardized_list,
-                "sources_info": standardized_source_info}
+        feeds = Feed.query.filter(Feed.user_id == session_id) \
+                          .all()
+        feeds_dicts = [feed.to_dict() for feed in feeds]
+
+        return {'feeds': feeds_dicts}
+
+
+@feed_routes.route("/today", methods=["PUT"])
+def today_view():
+    feed = request.json['feed']
+    all_entries = []
+
+    for source in feed['sources']:
+        source_w_rss = add_rss_to_source(source)
+        entries = source_w_rss['rss_data']['entries']
+        filtered_entries = list(filter(date_today, entries))
+        all_entries = all_entries + filtered_entries
+    feed['entries'] = all_entries
+
+    return feed
 
 
 @feed_routes.route("/<int:id>", methods=["PATCH"])

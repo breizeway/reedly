@@ -14,11 +14,13 @@
   justify-content: center;
   align-items: center;
   background-color: #00000023;
+  overflow-y: scroll;
 }
 
 .modal__card {
-    background-color: white;
-    position: relative;
+  background-color: white;
+  position: relative;
+  max-width: 70%;
 }
 
 .modal__close.modal__close.modal__close {
