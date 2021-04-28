@@ -1,3 +1,7 @@
+.homepage-container {
+    height: 100%;
+}
+
 .homepage__heading {
     display: flex;
     flex-direction: column;

@@ -7,6 +7,7 @@ import * as sourceActions from '../../store/sources'
 import ModalWrapper from '../ModalWrapper'
 import ArticleModalLink from '../ArticleModal/Link'
 import ArticleModalContent from '../ArticleModal/Content'
+import Loading from "../Loading"
 
 const ArticleList = () => {
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const ArticleList = () => {
   }, [dispatch, sourceId])
 
   if (!loaded) {
-    return null;
+    return <Loading />;
   }
 
   return sources && (
