@@ -76,9 +76,7 @@ function DropDownBtn() {
                 </div>
             )}
             {modal.val === modal.thisVal && (
-                <Modal content={<UpdateFeedModal />}
-                    width="73%" height="100%"
-                />
+                <Modal content={<UpdateFeedModal />} />
             )}
         </>
     )

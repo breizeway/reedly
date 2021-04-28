@@ -23,13 +23,13 @@ function HomePage() {
             </div>
             {todayFeeds.length ? (
             <div className='homepage__feeds'>
-                {todayFeeds.map(feed => (
-                    <>
+                {todayFeeds.map((feed, i) => (
+                    <div key={i}>
                         <div className='article-list__title'>{feed.feed_name}</div>
-                        {feed.entries.map(entry => (
-                            <ArticleCard entry={entry} />
+                        {feed.entries.map((entry, j) => (
+                            <ArticleCard key={j} entry={entry} modalId={`${feed.id}/${j}/${entry.id}`} />
                         ))}
-                    </>
+                    </div>
                 ))}
             </div>
             ) : (
