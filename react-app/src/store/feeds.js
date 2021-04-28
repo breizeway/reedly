@@ -1,6 +1,8 @@
 const LOAD_FEEDS = "feeds/LOAD";
 const LOAD_FEED = "feed/LOAD"
 const ADD_ONE_FEED = "feed/ADD_ONE";
+const UPDATE_FEED = "feed/UPDATE";
+const REMOVE_FEED = "feed/DELETE"
 const ADD_SOURCE_TO_FEED = "feed/addSourceToFeed";
 
 // An action is an object with a key of type
@@ -22,6 +24,16 @@ const addOneFeed = (feed) => ({
     type: ADD_ONE_FEED,
     payload: feed,
 });
+
+const updateOneFeed = (feed) => ({
+    type: UPDATE_FEED,
+    payload: feed
+})
+
+const removeOneFeed = (feedId) => ({
+    type: REMOVE_FEED,
+    payload: feedId
+})
 
 export const addSourceToFeed = source => {
     return {
@@ -64,6 +76,37 @@ export const postFeed = (feedInfo) => async (dispatch) => {
     return data;
 }
 
+export const updateFeed = (payload) => async (dispatch) => {
+    const response = await fetch(`/api/feeds/${payload.feed_id}`, {
+        method: "PATCH",
+        body: JSON.stringify(payload),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    });
+
+    if (!response.ok) throw response;
+    const data = await response.json();
+    dispatch(updateOneFeed(data.feed));
+    return data
+}
+
+export const deleteFeed = (feedId) => async (dispatch) => {
+    const response = await fetch(`/api/feeds/${feedId}`, {
+        method: "DELETE",
+        body: JSON.stringify("hi"),
+        headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+        }
+    })
+    if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        dispatch(removeOneFeed(data.feed.id))
+        return data
+    }
+}
+
 const initialState = {};
 const feedReducer = (state = initialState, action) => {
     let newState
@@ -79,6 +122,16 @@ const feedReducer = (state = initialState, action) => {
                 newState = Object.assign({}, state, { [action.payload.id]: action.payload })
                 return newState;
             }
+        case UPDATE_FEED: {
+            newState = { ...state }
+            newState[action.payload.id] = action.payload
+            return newState
+        }
+        case REMOVE_FEED: {
+            newState = { ...state }
+            delete newState[action.payload]
+            return newState;
+        }
         case ADD_SOURCE_TO_FEED: {
                 newState = Object.assign({}, state)
                 source = action.source.db_data

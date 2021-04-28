@@ -1,19 +1,32 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux"
+import { useParams, useHistory } from "react-router-dom"
 import "./DropDownBtn.css"
 import Modal from "../../Modal"
 import * as modalActions from "../../../store/modal"
 import UpdateFeedModal from "../../UpdateFeedModal"
+import { deleteFeed } from "../../../store/feeds"
 
 
 function DropDownBtn() {
     const dispatch = useDispatch()
+    const history = useHistory();
+    const { feedId } = useParams();
     const [showMenu, setShowMenu] = useState(false);
 
     const modal = {
         thisVal: `Update/feed/name`,
         val: useSelector(state => state.modal.active),
         set: () => dispatch(modalActions.setActive(modal.thisVal))
+    }
+
+    async function deleteOneFeed() {
+        let result = window.confirm("Are you sure you want to delete this feed?")
+
+        if (result) {
+            await dispatch(deleteFeed(feedId));
+            history.push('/');
+        }
     }
 
     const openMenu = () => {
@@ -55,12 +68,17 @@ function DropDownBtn() {
                         <div className="icon dropdown__trash">
                             <i className="far fa-trash-alt"></i>
                         </div>
-                        <div className="dropdown__section">Delete</div>
+                        <div className="dropdown__section"
+                            onClick={deleteOneFeed}
+                        >
+                        Delete</div>
                     </div>
                 </div>
             )}
             {modal.val === modal.thisVal && (
-                <Modal content={<UpdateFeedModal />} />
+                <Modal content={<UpdateFeedModal />}
+                    width="73%" height="100%"
+                />
             )}
         </>
     )

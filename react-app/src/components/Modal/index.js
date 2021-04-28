@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import './Modal.css'
 import { removeActive } from '../../store/modal'
 
-const Modal = ({ content, width='auto', height='auto'}) => {
+const Modal = ({ content, width='auto', height='auto', position="absolute", right="0px"}) => {
     const dispatch = useDispatch()
 
     const modalVisible = {
@@ -30,7 +30,7 @@ const Modal = ({ content, width='auto', height='auto'}) => {
                 <div
                     className='modal__card card'
                     onClick={e => e.stopPropagation()}
-                    style={{width, height}}
+                    style={{width, height, position, right}}
                 >
                     {content}
                     <div

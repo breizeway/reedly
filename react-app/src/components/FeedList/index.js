@@ -40,7 +40,7 @@ const FeedList = () => {
     return sources && (
         <div className="feed-holder-container">
             <div className='feed-list__header'>
-                <span className="feed-title">{feed.feed_name}</span>
+                <span className="feed-title">{feed?.feed_name}</span>
                 <div className="actions-container">
                     < DropDownBtn />
                 </div>
