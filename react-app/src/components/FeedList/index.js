@@ -6,6 +6,7 @@ import ArticleCard from "../ArticleCard"
 import Loading from "../Loading"
 import * as sourceActions from '../../store/sources'
 import './FeedList.css';
+import ServerError from '../ServerError'
 
 const FeedList = () => {
     let sourcesInfoArr;

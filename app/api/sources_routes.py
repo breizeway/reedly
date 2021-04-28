@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 import feedparser
 import html  # html.unescape()
 
-from app.models import db, Source, Feed
+from app.models import db, Source, Feed, feeds_sources
 
 
 sources_routes = Blueprint('sources', __name__)
@@ -99,3 +99,19 @@ def add_source():
             "standardized": standardized_feed,
             "id": source_id,
             "db_data": newSource.to_dict()}
+
+
+@sources_routes.route("/<int:source_id>/unfollow/", methods=["DELETE"])
+def unfollow_source(source_id):
+
+    data = request.json
+
+    feed = Feed.query.get(data["feed"]["id"])
+
+    source = Source.query.get(source_id)
+
+    feed.sources.remove(source)
+    db.session.commit()
+
+
+    return {"feed": feed.to_dict()}

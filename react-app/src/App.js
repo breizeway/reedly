@@ -8,7 +8,7 @@ import MainContent from "./components/MainContent";
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
-import ArticleList from "./components/ArticleList"
+import SourceList from "./components/SourceList"
 import FeedList from "./components/FeedList"
 import HomePage from "./components/HomePage"
 import PageNotFound from "./components/PageNotFound"
@@ -57,7 +57,7 @@ function App() {
                                 <FeedList />
                             </Route>
                             <Route path="/sources/:id">
-                                <ArticleList />
+                                <SourceList />
                             </Route>
                             <Route path="/*" >
                                 <PageNotFound />
