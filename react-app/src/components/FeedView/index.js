@@ -40,7 +40,7 @@ function FeedView({ viewName }) {
                         Create a new feed to get started.
                     </div>
                     <div
-                        className='feed-list__add-source-link'
+                        className='feed-list__add-source-link standard-button'
                         onClick={() => dispatch(setActive('sidebar/addFeed'))}
                     >
                     <i className='fas fa-plus' />&nbsp;Create New Feed
@@ -73,9 +73,8 @@ function FeedView({ viewName }) {
         else if (serverResponse === 'no sources') {
             return (
                 <div className='feed-list__add-source'>
-                    <div>There's nothing here...&nbsp;</div>
                     <div
-                        className='feed-list__add-source-link'
+                        className='feed-list__add-source-link standard-button'
                         onClick={() => history.push(`/sources/add/`)}
                     >
                         <i className='fas fa-plus' />&nbsp;Add Source

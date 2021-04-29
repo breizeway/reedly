@@ -48,16 +48,5 @@
 .feed-list__add-source {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-.feed-list__add-source-link {
-    padding: 8px;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.feed-list__add-source-link:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,.05);
+    /* justify-content: space-between; */
 }

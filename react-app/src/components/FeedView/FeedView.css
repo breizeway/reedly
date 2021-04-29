@@ -41,7 +41,12 @@
 }
 
 .feed-view__welcome-content {
-    display: flex;
+    display: inline-block;
     justify-content: space-between;
     align-items: center;
+}
+
+.feed-list__add-source-link {
+    display: inline-block;
+    margin-top: 10px;
 }
