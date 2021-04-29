@@ -1,5 +1,4 @@
 const LOAD_FEEDS = "feeds/LOAD";
-const LOAD_FEED = "feed/LOAD"
 const ADD_ONE_FEED = "feed/ADD_ONE";
 const UPDATE_FEED = "feed/UPDATE";
 const REMOVE_FEED = "feed/DELETE"
@@ -10,13 +9,6 @@ const load = feeds => {
     return {
         type: LOAD_FEEDS,
         feeds
-    };
-};
-
-const loadOneFeed = (feed) => {
-    return {
-        type: LOAD_FEED,
-        feed
     };
 };
 
@@ -44,21 +36,11 @@ export const addSourceToFeed = source => {
 
 export const getFeeds = () => async dispatch => {
     const response = await fetch('/api/feeds/');
+    const data = await response.json();
     if (response.ok) {
-        const data = await response.json();
         dispatch(load(data.feeds))
-        return data
     }
-}
-
-export const getOneFeed = (id) => async (dispatch) => {
-    const response = await fetch(`/api/feeds/${id}`)
-
-    if (response.ok) {
-        const { data } = await response.json();
-        dispatch(loadOneFeed(data))
-        return data
-    }
+    return data
 }
 
 export const postFeed = (feedInfo) => async (dispatch) => {
@@ -70,9 +52,10 @@ export const postFeed = (feedInfo) => async (dispatch) => {
         },
     })
 
-    if (!response.ok) throw response;
     const data = await response.json();
-    dispatch(addOneFeed(data));
+    if (response.ok) {
+        dispatch(addOneFeed(data));
+    }
     return data;
 }
 
@@ -85,9 +68,10 @@ export const updateFeed = (payload) => async (dispatch) => {
         },
     });
 
-    if (!response.ok) throw response;
     const data = await response.json();
-    dispatch(updateOneFeed(data.feed));
+    if (response.ok) {
+        dispatch(updateOneFeed(data.feed));
+    }
     return data
 }
 
@@ -99,12 +83,11 @@ export const deleteFeed = (feedId) => async (dispatch) => {
             "Content-Type": "application/json; charset=UTF-8",
         }
     })
+    const data = await response.json();
     if (response.ok) {
-        const data = await response.json();
-        console.log(data)
         dispatch(removeOneFeed(data.feed.id))
-        return data
     }
+    return data
 }
 
 const initialState = {};
@@ -123,7 +106,6 @@ const feedReducer = (state = initialState, action) => {
                 return newState;
             }
         case UPDATE_FEED: {
-            console.log("hitting this route"); 
             newState = { ...state }
             newState[action.payload.id] = action.payload
             return newState

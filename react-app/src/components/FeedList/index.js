@@ -17,12 +17,12 @@ const FeedList = () => {
     const feed = useSelector(state => state.feeds[Number(feedId)]);
     sources = useSelector(state => state.sources)
     const [loaded, setLoaded] = useState(false)
+    const [serverResponse, setServerResponse] = useState(null)
 
-    let serverResponse
     useEffect(() => {
         (async () => {
-            serverResponse = await dispatch(sourceActions.getSources(feedId))
-            console.log('   :::SERVERRESPONSE:::   ', serverResponse);
+            const response = await dispatch(sourceActions.getSources(feedId))
+            setServerResponse(response)
             setLoaded(true)
         })()
     }, [dispatch, feedId])
@@ -32,6 +32,11 @@ const FeedList = () => {
         sourcesInfo = sources.sourcesInfo
         sourcesInfoArr = Object.values(sourcesInfo)
         sources = sources.sources
+    }
+
+    if (serverResponse && Object.keys(serverResponse).includes('error')) {
+        const { error } = serverResponse
+        return <ServerError error={ error } />
     }
 
     if (!loaded) {

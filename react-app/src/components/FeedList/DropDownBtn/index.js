@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom"
 import "./DropDownBtn.css"
 import Modal from "../../Modal"
 import * as modalActions from "../../../store/modal"
-import UpdateFeedModal from "../../UpdateFeedModal"
+import UpdateFeed from "../../UpdateFeed"
 import { deleteFeed } from "../../../store/feeds"
 
 
@@ -76,7 +76,7 @@ function DropDownBtn() {
                 </div>
             )}
             {modal.val === modal.thisVal && (
-                <Modal content={<UpdateFeedModal />} />
+                <Modal content={<UpdateFeed />} />
             )}
         </>
     )

@@ -18,7 +18,6 @@ def flatten(lst):
     return flat_list
 
 
-
 @feed_routes.route('/')
 @login_required
 def feeds():
@@ -26,27 +25,32 @@ def feeds():
         dict_current_user = current_user.to_dict()
         feeds = Feed.query.filter(
             Feed.user_id == dict_current_user["id"]).all()
-
-    return {"feeds": [feed.to_dict() for feed in feeds]}
+        return {"feeds": [feed.to_dict() for feed in feeds]}
+    return {'error': 500}
 
 
 @feed_routes.route('/', methods=["POST"])
+@login_required
 def add_feed():
     data = request.json
-    print("data in post route add-feed form", data)
     dict_current_user = current_user.to_dict()
     new_feed = Feed(
         user_id=dict_current_user["id"], feed_name=data["feedName"])
     db.session.add(new_feed)
     db.session.commit()
-    return {
-        "id": new_feed.id,
-        "user_id": new_feed.user_id,
-        "feed_name": new_feed.feed_name,
-    }
+
+    if new_feed.id:
+        return {
+            "id": new_feed.id,
+            "user_id": new_feed.user_id,
+            "feed_name": new_feed.feed_name,
+        }
+    else:
+        return {'error': 500}
 
 
 @feed_routes.route('/<int:id>')
+@login_required
 def sources_on_feed(id):
     right_feed = Feed.query.filter(Feed.id == id).all()
 
@@ -64,6 +68,7 @@ def sources_on_feed(id):
         return {'error': 404}, 404
 
 @feed_routes.route("/all")
+@login_required
 def all_feeds():
     if current_user.is_authenticated:
         session_id = current_user.to_dict()["id"]
@@ -72,10 +77,15 @@ def all_feeds():
                           .all()
         feeds_dicts = [feed.to_dict() for feed in feeds]
 
-        return {'feeds': feeds_dicts}
+        if feeds:
+            return {'feeds': feeds_dicts}
+        else:
+            return {'error': 404}, 404
+
 
 
 @feed_routes.route("/today", methods=["PUT"])
+@login_required
 def today_view():
     feed = request.json['feed']
     all_entries = []
@@ -87,10 +97,14 @@ def today_view():
         all_entries = all_entries + filtered_entries
     feed['entries'] = all_entries
 
-    return feed
+    if len(all_entries) > 0:
+        return feed
+    else:
+        return {'error': 404}, 404
 
 
 @feed_routes.route("/<int:id>", methods=["PATCH"])
+@login_required
 def update_feed(id):
 
     data = request.json
@@ -101,18 +115,23 @@ def update_feed(id):
     db.session.add(feed)
     db.session.commit()
 
-    return {"feed": feed.to_dict()}
+    if feed:
+        return {"feed": feed.to_dict()}
+    else:
+        return {'error': 404}, 404
 
 
 @feed_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
 def delete_feed(id):
-
     data = request.json
 
     feed = Feed.query.get(id)
-    print("FEED", feed)
 
     db.session.delete(feed)
     db.session.commit()
 
-    return {"feed": feed.to_dict()}
+    if feed:
+        return {"feed": feed.to_dict()}
+    else:
+        return {'error': 500}
