@@ -7,9 +7,10 @@
 }
 
 
-.sidebar__today > a {
+.sidebar a {
     text-decoration: none;
     color: inherit;
+    width: 100%;
 }
 
 

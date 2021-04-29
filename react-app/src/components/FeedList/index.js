@@ -70,12 +70,12 @@ const FeedList = () => {
 
             ) : (
                 <div className='feed-list__add-source'>
-                    <div>There's nothing here...</div>
+                    <div>There's nothing here...&nbsp;</div>
                     <div
                         className='feed-list__add-source-link'
                         onClick={() => history.push('/sources/add')}
                     >
-                        &nbsp;Add Source
+                        Add Source
                     </div>
                 </div>
             )}

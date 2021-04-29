@@ -34,7 +34,7 @@ const SideBar = () => {
                     <div className="sidebar__icon-book sidebar__icon">
                         <i className="fa fa-book" aria-hidden="true"></i>
                     </div>
-                    <NavLink to="/">
+                    <NavLink to="/today">
                         <div className='sidebar__title'>Today</div>
                     </NavLink>
                 </div>
@@ -57,7 +57,9 @@ const SideBar = () => {
                         <div className="sidebar__icon-bars sidebar__icon">
                             <i className="fas fa-bars"></i>
                         </div>
-                        <div className="sidebar__feed sidebar__title">All</div>
+                        <NavLink to="/all">
+                            <div className="sidebar__feed sidebar__title">All</div>
+                        </NavLink>
                     </div>
                     <div className="feed-list" style={{ height: "auto" }}>
                         {feeds && feedsArr.map(feed => (

@@ -45,3 +45,8 @@
 .article-card * {
   max-width: 100%;
 }
+
+.article-card__date {
+  font-size: smaller;
+  margin-top: 10px;
+}
