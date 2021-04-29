@@ -49,6 +49,15 @@ def add_rss_data(source):
     return source
 
 
+@sources_routes.route("/", methods=["GET"])
+def get_all_sources():
+
+    sources = Source.query.all()
+
+    return {"sources": [source.to_dict() for source in sources]}
+
+
+
 @sources_routes.route('/', methods=['PUT'])
 @login_required
 def get_sources():
@@ -113,5 +122,19 @@ def unfollow_source(source_id):
     feed.sources.remove(source)
     db.session.commit()
 
+
+    return {"feed": feed.to_dict()}
+
+@sources_routes.route("/<int:source_id>/follow/", methods=["POSt"])
+def follow_source(source_id):
+
+    data = request.json
+
+    feed = Feed.query.get(data["feedId"])
+
+    source = Source.query.get(source_id)
+
+    feed.sources.append(source)
+    db.session.commit()
 
     return {"feed": feed.to_dict()}
