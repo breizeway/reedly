@@ -40,8 +40,9 @@
     width: 128px;
     border-left: 1px solid lightgray;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 16px;
     color: gray;
+    transition: .2s;
 }
 
 .add-source__form button:hover {

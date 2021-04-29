@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as sourceActions from '../../store/sources';
 
 import AddSourceCard from './AddSourceCard'
@@ -9,6 +9,9 @@ import './AddSource.css';
 const AddSource = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const { feedId } = useParams()
+    console.log('   :::USEPARAMS():::   ', useParams());
+    console.log('   :::FEEDID:::   ', feedId);
     const cardTitles = [
         'Advertising',
         'Automotive',
@@ -30,7 +33,7 @@ const AddSource = () => {
     const feeds  = Object.values(useSelector(state => state.feeds))
 
     const [sourceUrl, setSourceUrl] = useState('')
-    const [feed, setFeed] = useState('default')
+    const [feed, setFeed] = useState(feedId ? feedId : 'default')
 
     const submit = async e => {
         e.preventDefault()
@@ -54,6 +57,7 @@ const AddSource = () => {
                                 type='text'
                                 value={sourceUrl}
                                 onChange={e => setSourceUrl(e.target.value)}
+                                placeholder='RSS Feed URL'
                             ></input>
                             <select
                                 value={feed}

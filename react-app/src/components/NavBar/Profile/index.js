@@ -35,9 +35,7 @@ const Profile = () => {
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
                 <div className="top-container">
-                    <div className="r-icon">
-                        <i className="fas fa-registered" />
-                    </div>
+                    <div className="site-logo" />
                     <div className="user_container">
                         <div className="user_container__name">
                             {user.username}
@@ -48,28 +46,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className="profile-dropdown-button">
-                    <p>Settings</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Organize Sources</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Mobile Apps</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Browser Add-ons</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Support</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Privacy</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <p>Terms & Policy</p>
-                </div>
-                <div className="profile-dropdown-button">
-                    <LogoutButton />{" "}
+                    <LogoutButton />
                 </div>
             </div>)}
         </>

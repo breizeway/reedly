@@ -29,7 +29,6 @@ const FeedList = () => {
         })()
     }, [dispatch, feedId])
 
-
     if (sources?.sourcesInfo) {
         sourcesInfo = sources.sourcesInfo
         sourcesInfoArr = Object.values(sourcesInfo)
@@ -73,7 +72,7 @@ const FeedList = () => {
                     <div>There's nothing here...&nbsp;</div>
                     <div
                         className='feed-list__add-source-link'
-                        onClick={() => history.push('/sources/add')}
+                        onClick={() => history.push(`/sources/add/${feedId}`)}
                     >
                         Add Source
                     </div>

@@ -56,7 +56,10 @@ function App() {
                             <Route path="/all" exact={true}>
                                 <FeedView viewName='all'/>
                             </Route>
-                            <Route path="/sources/add" exact={true}>
+                            <Route path="/sources/add/:feedId">
+                                <AddSource />
+                            </Route>
+                            <Route path="/sources/add">
                                 <AddSource />
                             </Route>
                             <Route path="/feeds/:feedId">

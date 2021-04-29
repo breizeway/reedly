@@ -48,7 +48,9 @@ const SideBarFeed = ({ feed }) => {
                                 {source.source_img ? (
                                     <img src={source.source_img} alt="rss source icon"/>
                                 ) : (
-                                    <div className='source-icon-default' />
+                                    <div className='sidebar__default-icon'>
+                                        <i className='fas fa-rss-square' />
+                                    </div>
                                 )}
                             </div>
                             <div className='sidebar__title'>{source.alt_name}</div>

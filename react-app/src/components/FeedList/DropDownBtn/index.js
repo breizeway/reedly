@@ -48,7 +48,7 @@ function DropDownBtn() {
     }, [showMenu]);
 
     return (
-        <>
+        <div className='dropdown'>
             <div className="settings__cog" onClick={openMenu}>
                 <i className="fas fa-ellipsis-h"></i>
             </div>
@@ -78,7 +78,7 @@ function DropDownBtn() {
             {modal.val === modal.thisVal && (
                 <Modal content={<UpdateFeed />} />
             )}
-        </>
+        </div>
     )
 }
 
