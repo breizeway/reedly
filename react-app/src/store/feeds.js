@@ -121,6 +121,7 @@ const feedReducer = (state = initialState, action) => {
                 feeds = source.feeds
 
                 feeds.forEach((feedId) => {
+                    if (!newState[feedId].sources) newState[feedId].sources = []
                     newState[feedId].sources.push(source)
                 })
                 return newState;

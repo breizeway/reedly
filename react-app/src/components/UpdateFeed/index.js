@@ -44,6 +44,7 @@ function UpdateFeed() {
                 <div className="form-container__input-fields">
                     <span className='form-container__label'>Title</span>
                     <input
+                        className='modal-focus'
                         type="text"
                         name="feed-name"
                         required

@@ -7,10 +7,10 @@
     text-decoration: none;
 }
 
-.sidebar__source-container--selected a {
+.sidebar__source-container--selected * {
     display: flex;
     flex-direction: row;
-    color: #2bb24c;
+    color: var(--main-color);
     text-decoration: none;
 }
 
@@ -21,7 +21,7 @@
 
 .sidebar__source-container--selected {
     padding: 5px 20px 5px 56px;
-    border-left: 2px solid #2bb24c;
+    border-left: 2px solid var(--main-color);
 }
 
 .sidebar__source-container:hover {

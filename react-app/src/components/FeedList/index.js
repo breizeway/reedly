@@ -61,7 +61,7 @@ const FeedList = () => {
                                 {sourceInfo?.title}
                             </div>
                             {sources[idx].map((entry, i) => (
-                                <ArticleCard key={i} entry={entry} modalId={`${feed.id}/${i}/${entry.id}`} />
+                                <ArticleCard key={i} entry={entry} modalId={`${feed?.id}/${i}/${entry?.id}`} />
                             ))}
                         </div>
                     ))}

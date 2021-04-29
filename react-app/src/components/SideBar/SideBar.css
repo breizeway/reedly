@@ -139,13 +139,3 @@
 .sidebar__third-section > div {
     padding: 5px 20px 5px 20px;
 }
-
-.sidebar__recently-read {
-    display: flex;
-    flex-direction: row;
-
-}
-
-.sidebar__recently-read:hover {
-    background-color: rgba(0,0,0,.05);
-}
