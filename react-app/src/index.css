@@ -53,6 +53,17 @@ input:focus {
 }
 
 
+.site-logo-gray {
+    display: flex;
+    justify-content: center;
+    background-image: url('./assets/logo-gray.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 36px;
+}
+
 .site-logo {
     display: flex;
     justify-content: center;

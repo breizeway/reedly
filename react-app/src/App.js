@@ -12,6 +12,7 @@ import SourceList from "./components/SourceList"
 import FeedList from "./components/FeedList"
 import FeedView from "./components/FeedView"
 import PageNotFound from "./components/PageNotFound"
+import About from "./components/About"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -67,6 +68,9 @@ function App() {
                             </Route>
                             <Route path="/sources/:id">
                                 <SourceList />
+                            </Route>
+                            <Route path="/about">
+                                <About />
                             </Route>
                             <Route path="/*" >
                                 <PageNotFound />

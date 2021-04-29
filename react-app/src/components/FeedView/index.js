@@ -12,9 +12,7 @@ function FeedView({ viewName }) {
     const history = useHistory();
 
     const [serverResponse, setServerResponse] = useState(null)
-    console.log('   :::SERVERRESPONSE:::   ', serverResponse);
     const viewFeeds = useSelector(state => state.views[viewName])
-    console.log('   :::VIEWFEEDS:::   ', viewFeeds);
 
     useEffect(() => {
         let response
@@ -22,7 +20,6 @@ function FeedView({ viewName }) {
             switch (viewName) {
                 case 'today':
                     response = await dispatch(runAddToday())
-                    console.log('   :::RESPONSE:::   ', response);
                     break;
                 case 'all':
                     response = await dispatch(runAddAll())
@@ -38,11 +35,16 @@ function FeedView({ viewName }) {
         return (
             <div className='feed-view__welcome'>
                 <h1 className='feed-view__welcome-header'>Welcome to Reedly</h1>
-                <div
-                    className='feed-list__add-source-link'
-                    onClick={() => dispatch(setActive('sidebar/addFeed'))}
-                >
-                    Create a new feed to get started
+                <div className='feed-view__welcome-content'>
+                    <div>
+                        Create a new feed to get started.
+                    </div>
+                    <div
+                        className='feed-list__add-source-link'
+                        onClick={() => dispatch(setActive('sidebar/addFeed'))}
+                    >
+                    <i className='fas fa-plus' />&nbsp;Create New Feed
+                    </div>
                 </div>
             </div>
         )
@@ -54,7 +56,12 @@ function FeedView({ viewName }) {
                 <div className='feed-view__feeds'>
                     {viewFeeds.map((feed, i) => (
                         <div key={i}>
-                            <div className='article-list__title'>{feed.feed_name}</div>
+                            <div
+                                className='article-list__title'
+                                onClick={() => history.push(`/feeds/${feed.id}`)}
+                            >
+                                {feed.feed_name}
+                            </div>
                             {feed.entries.map((entry, j) => (
                                 <ArticleCard key={j} entry={entry} modalId={`${viewName}/${feed.id}/${j}/${entry.id}`} />
                             ))}
@@ -71,7 +78,7 @@ function FeedView({ viewName }) {
                         className='feed-list__add-source-link'
                         onClick={() => history.push(`/sources/add/`)}
                     >
-                        Add Source
+                        <i className='fas fa-plus' />&nbsp;Add Source
                     </div>
                 </div>
             )

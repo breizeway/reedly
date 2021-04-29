@@ -13,13 +13,11 @@ const FeedList = () => {
 
     let sourcesInfoArr;
     let sourcesInfo = {};
-    console.log('   :::SOURCESINFO:::   ', sourcesInfo);
     let sources;
     const dispatch = useDispatch()
     let { feedId } = useParams();
     const feed = useSelector(state => state.feeds[Number(feedId)]);
     sources = useSelector(state => state.sources)
-    console.log('   :::SOURCES:::   ', sources);
     const [loaded, setLoaded] = useState(false)
     const [serverResponse, setServerResponse] = useState(null)
 
@@ -76,7 +74,7 @@ const FeedList = () => {
                         className='feed-list__add-source-link'
                         onClick={() => history.push(`/sources/add/${feedId}`)}
                     >
-                        Add Source
+                        <i className='fas fa-plus' />&nbsp;Add Source
                     </div>
                 </div>
             )}

@@ -10,8 +10,6 @@ const AddSource = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { feedId } = useParams()
-    console.log('   :::USEPARAMS():::   ', useParams());
-    console.log('   :::FEEDID:::   ', feedId);
     const cardTitles = [
         'Advertising',
         'Automotive',

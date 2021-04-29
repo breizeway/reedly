@@ -48,6 +48,7 @@
 .feed-list__add-source {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .feed-list__add-source-link {

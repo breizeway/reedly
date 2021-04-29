@@ -38,5 +38,10 @@
 
 .feed-view__welcome-header {
     width: 100%;
-    padding-left: 8px;
+}
+
+.feed-view__welcome-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

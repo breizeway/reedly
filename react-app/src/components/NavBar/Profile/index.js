@@ -35,7 +35,7 @@ const Profile = () => {
             </div>
             {showDropdown && (<div className="navbar__profile-dropdown">
                 <div className="top-container">
-                    <div className="site-logo" />
+                    <div className="site-logo-gray" />
                     <div className="user_container">
                         <div className="user_container__name">
                             {user.username}

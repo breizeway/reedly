@@ -33,3 +33,7 @@
 .article-list__title:hover {
   cursor: pointer;
 }
+
+.source-list__title:hover {
+  cursor: pointer;
+}
