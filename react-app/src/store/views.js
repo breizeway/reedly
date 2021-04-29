@@ -85,17 +85,24 @@ const viewsReducer = (state = initialState, action) => {
     let newState
     let today
     let all
+    let feedIds
     switch (action.type) {
         case ADD_TODAY:
             newState = {...state};
             today = [...newState.today]
-            today.push(action.feed)
+            feedIds = today.map(feed => {
+                return feed.id
+            })
+            if (!feedIds.includes(action.feed.id)) today.push(action.feed)
             newState.today = today
             return newState;
         case ADD_ALL:
             newState = {...state};
             all = [...newState.all]
-            all.push(action.feed)
+            feedIds = all.map(feed => {
+                return feed.id
+            })
+            if (!feedIds.includes(action.feed.id)) all.push(action.feed)
             newState.all = all
             return newState;
         default:
