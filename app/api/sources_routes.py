@@ -22,8 +22,7 @@ def standardize_feed(raw):
                                             dictionary=raw.feed),
             "image": val_if_exists(key='image', dictionary=raw.feed),
             "link": val_if_exists(key='link', dictionary=raw.feed),
-            "icon": val_if_exists(key='icon', dictionary=raw.feed),
-            "num_entries": len(raw.entries)}
+            "icon": val_if_exists(key='icon', dictionary=raw.feed),}
 
     entries = [{"id": val_if_exists(key="id", dictionary=entry),
                 "title": val_if_exists(key="title", dictionary=entry),
@@ -40,13 +39,6 @@ def standardize_feed(raw):
 
     return {"feed": feed,
             "entries": entries}
-
-def add_rss_data(source):
-    raw_rss = feedparser.parse(source['source_url'])
-    standardized_rss = standardize_feed(raw_rss)
-    source['rss_data'] = standardized_rss
-    source['rss_data_raw'] = raw_rss
-    return source
 
 
 @sources_routes.route("/", methods=["GET"])
@@ -69,20 +61,26 @@ def get_sources():
 
     source_dicts = [source.to_dict() for source in sources]
 
-    map(add_rss_data, source_dicts)
-
-    return {'sources': source_dicts}
+    if sources:
+        return {'sources': source_dicts}
+    else:
+        return {'error': 404}, 404
 
 
 @sources_routes.route('/<int:source_id>')
 @login_required
 def get_source(source_id):
-    source_url = db.session.query(Source.source_url) \
+    source = db.session.query(Source.source_url) \
                            .filter(Source.id == source_id) \
-                           .one_or_none()[0]
-    raw = feedparser.parse(source_url)
-    standardized_feed = standardize_feed(raw)
-    return {"raw": raw, "standardized": standardized_feed}
+                           .one_or_none()
+
+    if source:
+        source_url = source[0]
+        raw = feedparser.parse(source_url)
+        standardized_feed = standardize_feed(raw)
+        return {"raw": raw, "standardized": standardized_feed}
+    else:
+        return {'error': 404}, 404
 
 
 @sources_routes.route('/new', methods=['POST'])
@@ -104,10 +102,13 @@ def add_source():
 
     source_id = newSource.to_dict()["id"]
 
-    return {"raw": raw,
-            "standardized": standardized_feed,
-            "id": source_id,
-            "db_data": newSource.to_dict()}
+    if source_id:
+        return {"raw": raw,
+                "standardized": standardized_feed,
+                "id": source_id,
+                "db_data": newSource.to_dict()}
+    else:
+        return {'error': 500}
 
 
 @sources_routes.route("/<int:source_id>/unfollow/", methods=["DELETE"])
@@ -122,8 +123,11 @@ def unfollow_source(source_id):
     feed.sources.remove(source)
     db.session.commit()
 
+    if feed:
+        return {"feed": feed.to_dict()}
+    else:
+        return {'error': 500}
 
-    return {"feed": feed.to_dict()}
 
 @sources_routes.route("/<int:source_id>/follow/", methods=["POSt"])
 def follow_source(source_id):
@@ -137,4 +141,7 @@ def follow_source(source_id):
     feed.sources.append(source)
     db.session.commit()
 
-    return {"feed": feed.to_dict()}
+    if feed:
+        return {"feed": feed.to_dict()}
+    else:
+        return {'error': 500}

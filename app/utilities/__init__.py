@@ -17,8 +17,7 @@ def add_rss_to_source(source):
                                             dictionary=raw_rss.feed),
             "image": val_if_exists(key='image', dictionary=raw_rss.feed),
             "link": val_if_exists(key='link', dictionary=raw_rss.feed),
-            "icon": val_if_exists(key='icon', dictionary=raw_rss.feed),
-            "num_entries": len(raw_rss.entries)}
+            "icon": val_if_exists(key='icon', dictionary=raw_rss.feed),}
 
     entries = [{"id": val_if_exists(key="id", dictionary=entry),
                 "title": val_if_exists(key="title", dictionary=entry),

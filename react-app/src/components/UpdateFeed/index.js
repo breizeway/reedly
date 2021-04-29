@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
 import { updateFeed } from "../../store/feeds"
 import { removeActive } from '../../store/modal'
-import "./UpdateFeedModal.css"
+import "./UpdateFeed.css"
 
-function UpdateFeedModal() {
+function UpdateFeed() {
     const dispatch = useDispatch()
     const history = useHistory();
     const { feedId } = useParams();
@@ -65,4 +65,4 @@ function UpdateFeedModal() {
     )
 }
 
-export default UpdateFeedModal;
+export default UpdateFeed;
