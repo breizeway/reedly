@@ -44,3 +44,12 @@
     margin-bottom: 3.5rem;
     text-transform: uppercase;
 }
+
+.feed-list__add-source {
+    display: flex;
+}
+
+.feed-list__add-source-link:hover {
+    cursor: pointer;
+    border-bottom: 2px solid black;
+}

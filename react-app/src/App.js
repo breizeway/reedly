@@ -10,7 +10,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
 import SourceList from "./components/SourceList"
 import FeedList from "./components/FeedList"
-import HomePage from "./components/HomePage"
+import Today from "./components/Today"
 import PageNotFound from "./components/PageNotFound"
 import * as sessionActions from "./store/session"
 import "./index.css"
@@ -48,7 +48,7 @@ function App() {
                     <MainContent>
                         <Switch>
                             <Route path="/" exact={true}>
-                                <HomePage />
+                                <Today />
                             </Route>
                             <Route path="/sources/add" exact={true}>
                                 <AddSource />

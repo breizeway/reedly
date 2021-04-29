@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { runAddToday } from '../../store/views';
-import './HomePage.css';
+import './AllView.css';
 import ArticleCard from '../ArticleCard'
 import Loading from '../Loading'
 import ServerError from '../ServerError'
 
-function HomePage() {
+function AllView() {
     const dispatch = useDispatch();
     const [serverResponse, setServerResponse] = useState(null)
     const todayFeeds = useSelector(state => state.views.today)
@@ -45,4 +45,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default AllView
