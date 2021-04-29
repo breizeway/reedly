@@ -45,13 +45,24 @@ input:focus {
 
 .app-container {
     display: grid;
-    grid-template: 100% / 48px 270px auto;
+    grid-template: 100% / 64px 320px auto;
     grid-template-areas:
         "navbar sidebar main-content";
     width: 100%;
     height: 100%;
 }
 
+
+.site-logo-gray {
+    display: flex;
+    justify-content: center;
+    background-image: url('./assets/logo-gray.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 36px;
+}
 
 .site-logo {
     display: flex;
@@ -60,12 +71,10 @@ input:focus {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 30px;
+    width: 36px;
+    height: 36px;
 }
 
-.site-logo__link {
-    width: 34px;
-    height: 100%;
-    display: block;
+.site-logo:hover {
+    cursor: pointer;
 }

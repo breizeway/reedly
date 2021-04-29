@@ -1,4 +1,5 @@
-const ADD_TODAY = "feeds/addToday"
+const ADD_TODAY = "views/addToday"
+const ADD_ALL = "views/addAll"
 
 const addToday = feed => {
     return {
@@ -7,13 +8,23 @@ const addToday = feed => {
     };
 };
 
+const addAll = feed => {
+    return {
+        type: ADD_ALL,
+        feed
+    };
+};
+
 export const runAddToday = () => async dispatch => {
     const responseA = await fetch(`/api/feeds/all`);
-    const { feeds } = await responseA.json();
+    const responseAJSON = await responseA.json();
     if (responseA.ok) {
-        feeds.forEach(async feed => {
+        const { feeds } = responseAJSON
+        let userHasSources = false
+        for (let feed of feeds) {
             if (feed.sources.length) {
-                const responseB = await fetch(`/api/feeds/today`, {
+                userHasSources = true
+                const responseB = await fetch(`/api/feeds/views/today`, {
                     method: 'PUT',
                     body: JSON.stringify({feed}),
                     headers: {
@@ -24,29 +35,75 @@ export const runAddToday = () => async dispatch => {
                 if (responseB.ok) {
                     dispatch(addToday(feed_chunk))
                 }
-                return feed_chunk
             }
-            return feed
-        })
+        }
+        if (userHasSources) {
+            return []
+        } else {
+            return 'no sources'
+        }
     }
     else {
-        return await responseA.json()
+        return responseAJSON
+    }
+}
+
+export const runAddAll = () => async dispatch => {
+    const responseA = await fetch(`/api/feeds/all`);
+    const responseAJSON = await responseA.json();
+    if (responseA.ok) {
+        const { feeds } = responseAJSON
+            for (let feed of feeds) {
+            if (feed.sources.length) {
+                const responseB = await fetch(`/api/feeds/views/all`, {
+                    method: 'PUT',
+                    body: JSON.stringify({feed}),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    },
+                })
+                const feed_chunk = await responseB.json()
+                if (responseB.ok) {
+                    dispatch(addAll(feed_chunk))
+                }
+                return feed_chunk
+            }
+        }
+        return 'no sources'
+    }
+    else {
+        return responseAJSON
     }
 }
 
 const initialState = {
     today: [],
+    all: [],
 }
 
 const viewsReducer = (state = initialState, action) => {
     let newState
     let today
+    let all
+    let feedIds
     switch (action.type) {
         case ADD_TODAY:
             newState = {...state};
             today = [...newState.today]
-            today.push(action.feed)
+            feedIds = today.map(feed => {
+                return feed.id
+            })
+            if (!feedIds.includes(action.feed.id)) today.push(action.feed)
             newState.today = today
+            return newState;
+        case ADD_ALL:
+            newState = {...state};
+            all = [...newState.all]
+            feedIds = all.map(feed => {
+                return feed.id
+            })
+            if (!feedIds.includes(action.feed.id)) all.push(action.feed)
+            newState.all = all
             return newState;
         default:
             return state

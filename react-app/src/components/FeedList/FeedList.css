@@ -15,6 +15,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    position: relative;
 }
 
 .feed-container__settings:hover {
@@ -33,14 +34,30 @@
 }
 
 .article-list__title {
-    margin-bottom: 3rem;
-    -webkit-font-smoothing: antialiased;
+    margin-bottom: 20px;
     clear: both;
     color: #757575;
     font-size: .75rem;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1em;
-    margin-bottom: 3.5rem;
+    margin-bottom: 10px;
     text-transform: uppercase;
+}
+
+.feed-list__add-source {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.feed-list__add-source-link {
+    padding: 8px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.feed-list__add-source-link:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,.05);
 }

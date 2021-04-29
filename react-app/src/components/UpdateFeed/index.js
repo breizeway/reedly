@@ -12,7 +12,6 @@ function UpdateFeed() {
     const feed = useSelector(state => state.feeds[Number(feedId)]);
     const [ feedName, setFeedName ] = useState(feed.feed_name)
     const modal = useSelector(state => state.modal);
-    console.log(modal);
 
     function updateFeedName(e) {
         setFeedName(e.target.value)
@@ -45,6 +44,7 @@ function UpdateFeed() {
                 <div className="form-container__input-fields">
                     <span className='form-container__label'>Title</span>
                     <input
+                        className='modal-focus'
                         type="text"
                         name="feed-name"
                         required

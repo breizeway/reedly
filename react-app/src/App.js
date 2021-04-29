@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux"
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 import AddSource from "./components/AddSource"
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -10,8 +10,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import SideBar from "./components/SideBar";
 import SourceList from "./components/SourceList"
 import FeedList from "./components/FeedList"
-import HomePage from "./components/HomePage"
+import FeedView from "./components/FeedView"
 import PageNotFound from "./components/PageNotFound"
+import About from "./components/About"
 import * as sessionActions from "./store/session"
 import "./index.css"
 
@@ -48,9 +49,18 @@ function App() {
                     <MainContent>
                         <Switch>
                             <Route path="/" exact={true}>
-                                <HomePage />
+                                <Redirect to='today' />
                             </Route>
-                            <Route path="/sources/add" exact={true}>
+                            <Route path="/today" exact={true}>
+                                <FeedView viewName='today'/>
+                            </Route>
+                            <Route path="/all" exact={true}>
+                                <FeedView viewName='all'/>
+                            </Route>
+                            <Route path="/sources/add/:feedId">
+                                <AddSource />
+                            </Route>
+                            <Route path="/sources/add">
                                 <AddSource />
                             </Route>
                             <Route path="/feeds/:feedId">
@@ -58,6 +68,9 @@ function App() {
                             </Route>
                             <Route path="/sources/:id">
                                 <SourceList />
+                            </Route>
+                            <Route path="/about">
+                                <About />
                             </Route>
                             <Route path="/*" >
                                 <PageNotFound />

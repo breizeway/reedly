@@ -11,6 +11,10 @@
   margin-bottom: 24px;
 }
 
+.article-card:hover {
+  cursor: pointer;
+}
+
 .article-card__left {
   grid-area: left;
   height: 100%;
@@ -44,4 +48,9 @@
 
 .article-card * {
   max-width: 100%;
+}
+
+.article-card__date {
+  font-size: smaller;
+  margin-top: 10px;
 }

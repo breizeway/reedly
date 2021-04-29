@@ -7,13 +7,13 @@ def seed_users():
 
     demo = User(first_name='Demo',
                 last_name='User',
-                username='Demo',
+                username='demo',
                 email='demo@aa.io',
                 password='password')
 
     demo2 = User(first_name='Kevin',
                  last_name='Malone',
-                 username='Kevin',
+                 username='kevin',
                  email='kevin@dundermifflin.com',
                  password='password')
 

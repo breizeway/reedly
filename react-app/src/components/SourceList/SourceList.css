@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 60px;
 
 }
 
@@ -31,5 +31,9 @@
 }
 
 .article-list__title:hover {
+  cursor: pointer;
+}
+
+.source-list__title:hover {
   cursor: pointer;
 }

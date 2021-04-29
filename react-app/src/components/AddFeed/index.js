@@ -31,6 +31,7 @@ function AddFeed() {
                 <div className="form-container__input-fields">
                     <div className='form-container__label'>Title</div>
                     <input
+                        className='modal-focus'
                         type="text"
                         value={feedName}
                         onChange={(e) => (setFeedName(e.target.value))}
