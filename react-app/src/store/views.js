@@ -17,10 +17,13 @@ const addAll = feed => {
 
 export const runAddToday = () => async dispatch => {
     const responseA = await fetch(`/api/feeds/all`);
-    const { feeds } = await responseA.json();
+    const responseAJSON = await responseA.json();
     if (responseA.ok) {
-        feeds.forEach(async feed => {
+        const { feeds } = responseAJSON
+        let userHasSources = false
+        for (let feed of feeds) {
             if (feed.sources.length) {
+                userHasSources = true
                 const responseB = await fetch(`/api/feeds/views/today`, {
                     method: 'PUT',
                     body: JSON.stringify({feed}),
@@ -32,21 +35,25 @@ export const runAddToday = () => async dispatch => {
                 if (responseB.ok) {
                     dispatch(addToday(feed_chunk))
                 }
-                return feed_chunk
             }
-            return feed
-        })
+        }
+        if (userHasSources) {
+            return []
+        } else {
+            return 'no sources'
+        }
     }
     else {
-        return await responseA.json()
+        return responseAJSON
     }
 }
 
 export const runAddAll = () => async dispatch => {
     const responseA = await fetch(`/api/feeds/all`);
-    const { feeds } = await responseA.json();
+    const responseAJSON = await responseA.json();
     if (responseA.ok) {
-        feeds.forEach(async feed => {
+        const { feeds } = responseAJSON
+            for (let feed of feeds) {
             if (feed.sources.length) {
                 const responseB = await fetch(`/api/feeds/views/all`, {
                     method: 'PUT',
@@ -61,11 +68,11 @@ export const runAddAll = () => async dispatch => {
                 }
                 return feed_chunk
             }
-            return feed
-        })
+        }
+        return 'no sources'
     }
     else {
-        return await responseA.json()
+        return responseAJSON
     }
 }
 

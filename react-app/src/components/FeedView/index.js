@@ -1,38 +1,87 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { runAddToday, runAddAll } from '../../store/views';
+import { setActive } from '../../store/modal';
 import './FeedView.css';
 import ArticleCard from '../ArticleCard'
 import Loading from '../Loading'
-import ServerError from '../ServerError'
 
 function FeedView({ viewName }) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [serverResponse, setServerResponse] = useState(null)
+    console.log('   :::SERVERRESPONSE:::   ', serverResponse);
     const viewFeeds = useSelector(state => state.views[viewName])
+    console.log('   :::VIEWFEEDS:::   ', viewFeeds);
 
     useEffect(() => {
         let response
-        switch (viewName) {
-            case 'today':
-                response = (async () => await dispatch(runAddToday()))()
-                break;
-            case 'all':
-                response = (async () => await dispatch(runAddAll()))()
-                break;
-            default:
-                break;
-        }
-        setServerResponse(response)
+        (async () => {
+            switch (viewName) {
+                case 'today':
+                    response = await dispatch(runAddToday())
+                    console.log('   :::RESPONSE:::   ', response);
+                    break;
+                case 'all':
+                    response = await dispatch(runAddAll())
+                    break;
+                default:
+                    break;
+            }
+            setServerResponse(response)
+        })()
     }, [dispatch, viewName]);
 
     if (serverResponse && Object.keys(serverResponse).includes('error')) {
-        const { error } = serverResponse
-        return <ServerError error={ error } />
+        return (
+            <div className='feed-view__welcome'>
+                <h1 className='feed-view__welcome-header'>Welcome to Reedly</h1>
+                <div
+                    className='feed-list__add-source-link'
+                    onClick={() => dispatch(setActive('sidebar/addFeed'))}
+                >
+                    Create a new feed to get started
+                </div>
+            </div>
+        )
     }
 
-    return viewFeeds && (
+    const ViewFeedContent = () => {
+        if (viewFeeds.length) {
+            return (
+                <div className='feed-view__feeds'>
+                    {viewFeeds.map((feed, i) => (
+                        <div key={i}>
+                            <div className='article-list__title'>{feed.feed_name}</div>
+                            {feed.entries.map((entry, j) => (
+                                <ArticleCard key={j} entry={entry} modalId={`${viewName}/${feed.id}/${j}/${entry.id}`} />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            )
+        }
+        else if (serverResponse === 'no sources') {
+            return (
+                <div className='feed-list__add-source'>
+                    <div>There's nothing here...&nbsp;</div>
+                    <div
+                        className='feed-list__add-source-link'
+                        onClick={() => history.push(`/sources/add/`)}
+                    >
+                        Add Source
+                    </div>
+                </div>
+            )
+        }
+        else {
+            return <Loading />
+        }
+    }
+
+    return (
         <div className="feed-view">
             <div className="feed-view__heading">
                 <span id="feed-view__name">
@@ -44,20 +93,7 @@ function FeedView({ viewName }) {
                     <span id="feed-view__sub-heading"></span>
                 )}
             </div>
-            {viewFeeds.length ? (
-            <div className='feed-view__feeds'>
-                {viewFeeds.map((feed, i) => (
-                    <div key={i}>
-                        <div className='article-list__title'>{feed.feed_name}</div>
-                        {feed.entries.map((entry, j) => (
-                            <ArticleCard key={j} entry={entry} modalId={`${viewName}/${feed.id}/${j}/${entry.id}`} />
-                        ))}
-                    </div>
-                ))}
-            </div>
-            ) : (
-                <Loading />
-            )}
+            <ViewFeedContent />
         </div>
     )
 }

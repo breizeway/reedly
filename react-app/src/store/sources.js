@@ -3,14 +3,6 @@ import * as feedActions from './feeds'
 const ADD_SOURCE = "session/addSource"
 const LOAD_SOURCES = "sources/load"
 const POPULATE_SOURCES = "sources/populateSources"
-const SET_DEFAULT_FEED = "sources/setDefaultFeed"
-
-export const setDefaultFeed = feedId => {
-    return {
-        type: SET_DEFAULT_FEED,
-        feedId
-    };
-};
 
 const populateSources = sources => {
     return {
@@ -101,10 +93,6 @@ const initialState = {
 const sourceReducer = (state = initialState, action) => {
     let newState
     switch (action.type) {
-        case SET_DEFAULT_FEED:
-            newState = { ...state }
-            newState.defaultFeed = action.feedId
-            return newState
         case ADD_SOURCE:
             newState = { ...state }
             newState[action.source.id] = { feed: action.source.feed, entries: action.source.entries }

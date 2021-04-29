@@ -76,9 +76,9 @@ def all_feeds():
 
         feeds = Feed.query.filter(Feed.user_id == session_id) \
                           .all()
-        feeds_dicts = [feed.to_dict() for feed in feeds]
 
-        if feeds:
+        if len(feeds) > 0:
+            feeds_dicts = [feed.to_dict() for feed in feeds]
             return {'feeds': feeds_dicts}
         else:
             return {'error': 404}, 404

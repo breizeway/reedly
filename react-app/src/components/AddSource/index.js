@@ -37,7 +37,6 @@ const AddSource = () => {
 
     const submit = async e => {
         e.preventDefault()
-        console.log('   :::FEED:::   ', feed);
         if (feed !== 'default') {
             const source = await dispatch(sourceActions.addNew(sourceUrl, feed))
             history.push(`/sources/${source.id}`)

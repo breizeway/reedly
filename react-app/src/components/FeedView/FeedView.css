@@ -24,3 +24,19 @@
     max-width: 624px;
     margin-bottom: 60px;
 }
+
+.feed-view__welcome {
+    display: inline-block;
+}
+.feed-view__welcome > *{
+    width: auto;
+    display: inline-block;
+}
+.feed-view__welcome > div{
+    font-weight: normal;
+}
+
+.feed-view__welcome-header {
+    width: 100%;
+    padding-left: 8px;
+}

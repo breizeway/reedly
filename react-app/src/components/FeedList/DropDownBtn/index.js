@@ -54,24 +54,23 @@ function DropDownBtn() {
             </div>
             {showMenu && (
                 <div className="dropdown-container">
-                    <div>
+                    <div onClick={modal.set}>
                         <div className="icon dropdown__cursor">
                             <i className="fas fa-i-cursor"></i>
                         </div>
                         <div
-                            onClick={modal.set}
                             className="dropdown__section">
                             Rename Feed
                         </div>
                     </div>
-                    <div className="delete-container">
+                    <div
+                        className="delete-container"
+                        onClick={deleteOneFeed}
+                    >
                         <div className="icon dropdown__trash">
                             <i className="far fa-trash-alt"></i>
                         </div>
-                        <div className="dropdown__section"
-                            onClick={deleteOneFeed}
-                        >
-                        Delete</div>
+                        <div className="dropdown__section">Delete</div>
                     </div>
                 </div>
             )}

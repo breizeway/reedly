@@ -12,12 +12,14 @@ const FeedList = () => {
     const history = useHistory()
 
     let sourcesInfoArr;
-    let sourcesInfo;
+    let sourcesInfo = {};
+    console.log('   :::SOURCESINFO:::   ', sourcesInfo);
     let sources;
     const dispatch = useDispatch()
     let { feedId } = useParams();
     const feed = useSelector(state => state.feeds[Number(feedId)]);
     sources = useSelector(state => state.sources)
+    console.log('   :::SOURCES:::   ', sources);
     const [loaded, setLoaded] = useState(false)
     const [serverResponse, setServerResponse] = useState(null)
 
@@ -50,7 +52,7 @@ const FeedList = () => {
                     < DropDownBtn />
                 </div>
             </div>
-            {sources.length ? (
+            {Object.keys(sourcesInfo).length ? (
                 <div className="feed-content">
                     {sourcesInfo && sourcesInfoArr.map((sourceInfo, idx) => (
                         <div className="source__header" key={idx}>

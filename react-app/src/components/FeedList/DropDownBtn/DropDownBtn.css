@@ -16,10 +16,11 @@
 /* This is styling for dropdown container (BELOW) */
 
 .dropdown-container.dropdown-container {
-border-radius: 3px;
+    border-radius: 3px;
     position: absolute;
     min-width: 200px;
-    top: 106px;
+    top: 50px;
+    right: 0;
     opacity: 1;
     z-index: 1;
     background-color: #fff;
