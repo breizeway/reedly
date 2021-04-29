@@ -29,7 +29,7 @@ const About = () => {
                 <div className='about__links'>
                     <a
                         className='about__link'
-                        href='https://www.samhearst.com'
+                        href='https://samhearst.net/'
                     >
                         <i className='fas fa-address-card' />
                     </a>
