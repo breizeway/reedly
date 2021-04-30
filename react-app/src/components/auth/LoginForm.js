@@ -7,11 +7,16 @@ import './UpForms.css'
 const LoginForm = () => {
     const authenticated = useSelector(state => state.session.user)
 
-
     const dispatch = useDispatch()
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const handleDemoSubmit = async (e) => {
+        e.preventDefault();
+
+        await dispatch(sessionActions.login("kevin@dundermifflin.com", 'password'))
+    }
 
     const onLogin = async (e) => {
         e.preventDefault();
@@ -62,6 +67,7 @@ const LoginForm = () => {
                 </div>
                 <div>
                     <input type="submit" className="button" value="Login" />
+                    <input type="submit" className="button" value="Demo User" onClick={handleDemoSubmit}/>
                 </div>
             </form>
             <div className="footer">
