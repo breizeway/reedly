@@ -69,9 +69,8 @@ const FeedList = () => {
 
             ) : (
                 <div className='feed-list__add-source'>
-                    <div>There's nothing here...&nbsp;</div>
                     <div
-                        className='feed-list__add-source-link'
+                        className='feed-list__add-source-link standard-button'
                         onClick={() => history.push(`/sources/add/${feedId}`)}
                     >
                         <i className='fas fa-plus' />&nbsp;Add Source
