@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { getFeeds } from "../../../store/feeds"
-import { updateFeedSource } from "../../../store/feed_details"
+import { followSource } from "../../../store/follows"
 import "./AddSourceCard.css"
 
 function ChooseFeedDropDown({ source, setShowDropDown }) {
@@ -22,11 +22,11 @@ function ChooseFeedDropDown({ source, setShowDropDown }) {
 
         console.log(payload);
 
-        await dispatch(updateFeedSource(payload))
+        await dispatch(followSource(payload))
 
 
         history.push("/sources/add");
-        return setShowDropDown(false); 
+        return setShowDropDown(false);
     }
 
     useEffect(() => {

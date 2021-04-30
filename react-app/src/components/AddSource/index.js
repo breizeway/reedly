@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as sourceActions from '../../store/sources';
+import { getAllFollows } from "../../store/follows"
 
 import AddSourceCard from './AddSourceCard'
 import './AddSource.css';
@@ -10,8 +11,19 @@ const AddSource = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const sources = (useSelector(state => state.sources));
-
+    const follows = useSelector(state => state.follows);
     const sourcesArr = Object.values(sources);
+    const followsArr = Object.values(follows);
+
+
+
+    useEffect(() => {
+        async function getFollows() {
+            await dispatch(getAllFollows());
+        }
+        getFollows();
+    }, [dispatch])
+
 
     useEffect(() => {
         async function getSources() {
@@ -70,6 +82,7 @@ const AddSource = () => {
                         source={source}
                         name={source.alt_name}
                         img={source.source_img}
+                        followsArr={followsArr}
                     />
                 ))}
             </div>

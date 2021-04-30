@@ -60,7 +60,7 @@ margin-bottom: 5px;
     position: relative
 }
 
-.add-source__btn {
+.add-source__btn--follow {
     margin-right: 0;
     border: 1px solid #2bb24c;
     -webkit-font-smoothing: antialiased;
@@ -93,9 +93,48 @@ margin-bottom: 5px;
     transition: background-color .2s linear,color .2s linear;
 }
 
-.add-source__btn:hover {
+.add-source__btn--follow:hover {
     color: #249540;
 }
+
+.add-source__btn--unfollow {
+    margin-right: 0;
+    border: 1px solid #757575;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: transparent;
+    color: #757575;
+    font-weight: 700;
+    width: 84px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 11px;
+    line-height: 1rem;
+    margin-top: 0;
+    margin-right: .5rem;
+    margin-bottom: 0;
+    padding-top: 4px;
+    padding-bottom: 2px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    min-width: 50px;
+    box-sizing: border-box;
+    letter-spacing: 0;
+    box-shadow: none;
+    outline: 0;
+    transition: background-color .2s linear,color .2s linear;
+}
+
+.add-source__btn--unfollow:hover {
+    /* border: 1px solid #c7c7c7; */
+    color: #636363;
+}
+
 
 
 /* NOW STYLING THE DROPDOWN CONTAINER */

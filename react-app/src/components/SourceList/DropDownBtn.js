@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
 import "./SourceList.css"
-import { deleteFeedSource } from "../../store/feed_details"
+import { unfollowSource } from "../../store/follows"
 
 
 function DropDownBtn({ feed }) {
@@ -20,7 +20,7 @@ function DropDownBtn({ feed }) {
         }
 
         if (result) {
-            await dispatch(deleteFeedSource(payload));
+            await dispatch(unfollowSource(payload));
             history.push('/');
         }
     }
