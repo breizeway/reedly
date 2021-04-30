@@ -117,3 +117,11 @@ input:focus {
   color: white;
   cursor: pointer;
 }
+
+.val-errors {
+    --error-color: rgb(211, 35, 35);
+    border: 2px solid var(--error-color);
+    color: var(--error-color);
+    margin: 10px 0;
+    padding: 5px;
+}

@@ -38,11 +38,18 @@ const AddSource = () => {
     const [sourceUrl, setSourceUrl] = useState('')
     const [feed, setFeed] = useState(feedId ? feedId : 'default')
 
+    const [submitError, setSubmitError] = useState(null)
     const submit = async e => {
         e.preventDefault()
         if (feed !== 'default') {
-            const source = await dispatch(sourceActions.addNew(sourceUrl, feed))
-            history.push(`/sources/${source.id}`)
+            const response = await dispatch(sourceActions.addNew(sourceUrl, feed))
+            if (Object.keys(response).includes('error')) {
+                setSubmitError(response.error)
+                setSourceUrl('')
+            }
+            else {
+                history.push(`/sources/${response.id}`)
+            }
         }
     }
 
@@ -74,6 +81,11 @@ const AddSource = () => {
                             </select>
                             <button>Add</button>
                         </div>
+                        {submitError && (
+                            <div className='add-source__error val-errors'>
+                                <div>Error: {submitError}</div>
+                            </div>
+                        )}
                     </form>
                 </div>
                 <div className="add-source__grid-container">

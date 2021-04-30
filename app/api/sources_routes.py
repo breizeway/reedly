@@ -90,26 +90,25 @@ def add_source():
     body = request.json
 
     raw = feedparser.parse(body['source_url'])
-    standardized_feed = standardize_feed(raw)
+    if raw['bozo'] != False:
+        return {'error': 'Not a valid source.'}, 500
 
+    standardized_feed = standardize_feed(raw)
 
     write_feed = Feed.query.get(int(body['feed_id']))
     newSource = Source(source_url=body['source_url'],
-                       alt_name=standardized_feed['feed']['title'],
-                       source_img=standardized_feed['feed']['icon'] if standardized_feed['feed']['icon'] else None)
+                    alt_name=standardized_feed['feed']['title'],
+                    source_img=standardized_feed['feed']['icon'] if standardized_feed['feed']['icon'] else None)
     write_feed.sources.append(newSource)
     db.session.add(newSource)
     db.session.commit()
 
     source_id = newSource.to_dict()["id"]
 
-    if source_id:
-        return {"raw": raw,
-                "standardized": standardized_feed,
-                "id": source_id,
-                "db_data": newSource.to_dict()}
-    else:
-        return {'error': 500}
+    return {"raw": raw,
+            "standardized": standardized_feed,
+            "id": source_id,
+            "db_data": newSource.to_dict()}
 
 
 @sources_routes.route("/<int:source_id>/unfollow/", methods=["DELETE"])
