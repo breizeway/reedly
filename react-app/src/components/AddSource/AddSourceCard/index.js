@@ -63,9 +63,15 @@ const AddSourceCard = ({ source, name, img, followsArr }) => {
         <div className="add-source-card">
             <div className="add-source-card__content">
                 <div className="add-source-card__card-header">{name}</div>
-                <div className="add-source-card__card-img">
-                    <img src={img} alt="" />
-                </div>
+                {img ? (
+                    <div className="add-source-card__card-img">
+                        <img src={img} alt="" />
+                    </div>
+                ) : (
+                    <div className='sidebar__default-icon' style={{fontSize: '37px'}}>
+                        <i className='fas fa-rss-square' />
+                    </div>
+                )}
                 <div className="add-source-container">
                     {!isFollowed && <button className="add-source__btn--follow"
                         onClick={handleFollowClick}
