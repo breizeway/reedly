@@ -11,6 +11,10 @@ export const rightFeed = (feeds, sourceId) => {
         const feed = feedsArr[i]
         const sources = feed?.sources
 
+        if (!sources?.length) {
+            return false
+        }
+
         for (let i = 0; i < sources.length; i++) {
             let source = sources[i]
 
