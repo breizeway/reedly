@@ -47,46 +47,47 @@ const AddSource = () => {
     }
 
     return (
-
-        <div className="add-source">
-            <div className='add-source__add'>
-                <div className='add-source__text'>Add new source...</div>
-                <form className='add-source__form' onSubmit={submit}>
-                    <div className='add-source__input-container'>
-                        <div className='add-source__add-icon'>
-                            <i className='' />
+        <div className="add-source-container">
+            <div className="add-source">
+                <div className='add-source__add'>
+                    <div className='add-source__text'>Add new source...</div>
+                    <form className='add-source__form' onSubmit={submit}>
+                        <div className='add-source__input-container'>
+                            <div className='add-source__add-icon'>
+                                <i className='' />
+                            </div>
+                            <input
+                                type='text'
+                                value={sourceUrl}
+                                onChange={e => setSourceUrl(e.target.value)}
+                                placeholder='RSS Feed URL'
+                            ></input>
+                            <select
+                                value={feed}
+                                onChange={e => setFeed(e.target.value)}
+                                placeholder='feed'
+                            >
+                                <option value='default' className='add-source__default-option'>-- choose feed --&nbsp;</option>
+                                {feeds.map(feed => (
+                                    <option value={feed.id}>{feed.feed_name}</option>
+                                ))}
+                            </select>
+                            <button>Add</button>
                         </div>
-                        <input
-                            type='text'
-                            value={sourceUrl}
-                            onChange={e => setSourceUrl(e.target.value)}
-                            placeholder='RSS Feed URL'
-                        ></input>
-                        <select
-                            value={feed}
-                            onChange={e => setFeed(e.target.value)}
-                            placeholder='feed'
-                        >
-                            <option value='default' className='add-source__default-option'>-- choose feed --&nbsp;</option>
-                            {feeds.map(feed => (
-                                <option value={feed.id}>{feed.feed_name}</option>
-                            ))}
-                        </select>
-                        <button>Add</button>
-                    </div>
-                </form>
-            </div>
-            <div className="add-source__grid-container">
-                <div className="add-source__group-container-heading">Suggested Sources</div>
-                {sourcesArr.map((source, i) => (
-                    <AddSourceCard
-                        key={i}
-                        source={source}
-                        name={source.alt_name}
-                        img={source.source_img}
-                        followsArr={followsArr}
-                    />
-                ))}
+                    </form>
+                </div>
+                <div className="add-source__grid-container">
+                    <div className="add-source__group-container-heading">Suggested Sources</div>
+                    {sourcesArr.map((source, i) => (
+                        <AddSourceCard
+                            key={i}
+                            source={source}
+                            name={source.alt_name}
+                            img={source.source_img}
+                            followsArr={followsArr}
+                        />
+                    ))}
+                </div>
             </div>
         </div>
     )

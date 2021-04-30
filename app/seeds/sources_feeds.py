@@ -32,6 +32,22 @@ def seed_sources_w_feeds():
     source18 = Source(source_url="https://www.theguardian.com/us/media/rss",
                       alt_name="The Gaurdian", source_img="https://storage.googleapis.com/site-assets/fLHFtwryZugkTI3NC4UrLqmHQcckXfXbVh1XRHy9YeE_visual-16d5358690b")
 
+    source19 = Source(
+        source_url="https://www.economist.com/finance-and-economics/rss.xml",
+        alt_name="The Economist", source_img="https://storage.googleapis.com/site-assets/iAIUsVHadavS0Zh078N8sKe5eQvOQg5FWJOpvgUGarc_visual-165e17fdc1d")
+
+    wash_post = Source(source_url="http://www.washingtonpost.com/wp-dyn/rss/politics/index.xml",
+                       alt_name="Washington Post", source_img="//storage.googleapis.com/site-assets/m-EWnENIADoZffb1VeAYGw_z3iMV_DKz1mdjKhuhphY_visual-166f126347c")
+
+    mtv_movies = Source(
+        source_url="http://feeds.feedburner.com/mtvmoviesblog",
+        alt_name="MTV - Movies", source_img="https://storage.googleapis.com/site-assets/izKfAcEV9lTS0er8mG8oEvPa9cQ_znNBlbEfWju1Az0_visual-17598d69cc4")
+
+    engadget = Source(source_url="https://www.engadget.com/rss-full.xml",
+                      alt_name="Engadget", source_img="//storage.googleapis.com/site-assets/4i-1vhCwmRRLfmB7ypTnMh-ZKSvsz6Rgf0lfR0WWb0w_visual-1541543fe44")
+
+
+
     # good pics until source 10
     source7 = Source(source_url="https://bloody-disgusting.com/feed/",
                      alt_name="Bloody-Disgusting")
@@ -81,6 +97,10 @@ def seed_sources_w_feeds():
     db.session.add(source6)
     db.session.add(source17)
     db.session.add(source18)
+    db.session.add(source19)
+    db.session.add(wash_post)
+    db.session.add(mtv_movies)
+    db.session.add(engadget)
     db.session.commit()
 
 

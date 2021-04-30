@@ -45,7 +45,7 @@ const SourceList = () => {
                     className='source-list__title'
                     onClick={() => window.open(sources[sourceId]?.feed.link)}
                 >
-                    {sources[sourceId]?.feed.title}
+                    {sources[sourceId]?.feed?.title}
                 </div>
                 <div className="actions-container">
                     < DropDownBtn feed={feed}/>
@@ -55,7 +55,7 @@ const SourceList = () => {
                 Most Recent
             </div>
             <div className='article-list__article-cards'>
-                {sources[sourceId]?.entries.map((entry, i) => (
+                {sources[sourceId]?.entries?.map((entry, i) => (
                     <ArticleCard key={i} entry={entry} modalId={`${sourceId}/${i}/${entry.id}`} />
                 ))}
             </div>
