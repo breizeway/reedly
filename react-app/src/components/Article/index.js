@@ -7,7 +7,7 @@ import './Article.css'
 const Article = ({ entry }) => {
   return (
     <div className='article'>
-      <a href={entry.link} target='_blank'>
+      <a href={entry.link} target='_blank' rel='noopener noreferrer'>
         <h1
           className='article__title-link'
         >

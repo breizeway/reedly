@@ -28,11 +28,13 @@
 .feed-view__welcome {
     display: inline-block;
 }
+
 .feed-view__welcome > *{
     width: auto;
     display: inline-block;
 }
-.feed-view__welcome > div{
+
+.feed-view__welcome > div {
     font-weight: normal;
 }
 
