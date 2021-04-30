@@ -2,6 +2,7 @@ import * as feedActions from './feeds'
 
 const ADD_SOURCE = "session/addSource"
 const LOAD_SOURCES = "sources/load"
+const LOAD_ALL_SOURCES = "sources/load/all"
 const POPULATE_SOURCES = "sources/populateSources"
 
 const populateSources = sources => {
@@ -18,10 +19,27 @@ const load = data => {
     };
 };
 
+const loadAll = (sources) => {
+    return {
+        type: LOAD_ALL_SOURCES,
+        payload: sources
+    }
+}
+
 const addSource = source => {
     return {
         type: ADD_SOURCE,
         source
+    }
+}
+
+export const getAllSources = () => async dispatch => {
+    const response = await fetch(`/api/sources/`);
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(loadAll(data.sources))
+        return data
     }
 }
 
@@ -110,6 +128,12 @@ const sourceReducer = (state = initialState, action) => {
             });
             newState = {sources, sourcesInfo}
             return newState;
+        case LOAD_ALL_SOURCES:
+            newState = {}
+            action.payload.forEach((source) => {
+                newState[source.id] = source
+            })
+            return newState
         case POPULATE_SOURCES:
             newState = {...state}
             action.sources.forEach(source => {

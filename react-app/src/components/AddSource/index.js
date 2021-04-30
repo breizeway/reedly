@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import * as sourceActions from '../../store/sources';
+import { getAllFollows } from "../../store/follows"
 
 import AddSourceCard from './AddSourceCard'
 import './AddSource.css';
@@ -10,25 +11,29 @@ const AddSource = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { feedId } = useParams()
-    const cardTitles = [
-        'Advertising',
-        'Automotive',
-        'Biopharma',
-        'Cybersecurity',
-        'Energy',
-        'Financial Services',
-        'Food',
-        'Healthcare',
-        'Industrials',
-        'Media & Entertainment',
-        'Medical Devices',
-        'Real Estate',
-        'Retail',
-        'Telecom',
-        'Travel & Hostpitality',
-    ]
+    const sources = (useSelector(state => state.sources));
+    const follows = useSelector(state => state.follows);
+    const sourcesArr = Object.values(sources);
+    const followsArr = Object.values(follows);
 
-    const feeds  = Object.values(useSelector(state => state.feeds))
+
+
+    useEffect(() => {
+        async function getFollows() {
+            await dispatch(getAllFollows());
+        }
+        getFollows();
+    }, [dispatch])
+
+
+    useEffect(() => {
+        async function getSources() {
+            await dispatch(sourceActions.getAllSources());
+        }
+        getSources();
+    }, [dispatch])
+
+    const feeds = Object.values(useSelector(state => state.feeds))
 
     const [sourceUrl, setSourceUrl] = useState('')
     const [feed, setFeed] = useState(feedId ? feedId : 'default')
@@ -42,6 +47,7 @@ const AddSource = () => {
     }
 
     return (
+        <div className="add-source-container">
             <div className="add-source">
                 <div className='add-source__add'>
                     <div className='add-source__text'>Add new source...</div>
@@ -71,19 +77,19 @@ const AddSource = () => {
                     </form>
                 </div>
                 <div className="add-source__grid-container">
-                    <div className="add-source__featured-item">item 1</div>
-                    <div className="add-source__featured-item">item 2</div>
-                    <div className="add-source__featured-item">item 3</div>
-                    <div className="add-source__featured-item">item 4</div>
-                    <div className="add-source__group-container-heading">Industries</div>
-                    {cardTitles.map((title, i) => (
+                    <div className="add-source__group-container-heading">Suggested Sources</div>
+                    {sourcesArr.map((source, i) => (
                         <AddSourceCard
-                            title={title}
                             key={i}
+                            source={source}
+                            name={source.alt_name}
+                            img={source.source_img}
+                            followsArr={followsArr}
                         />
                     ))}
                 </div>
             </div>
+        </div>
     )
 }
 

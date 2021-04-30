@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
+import { rightFeed } from "../../services/utils"
 
 import './SourceList.css';
 import * as sourceActions from '../../store/sources'
@@ -16,29 +17,9 @@ const SourceList = () => {
     const feeds = useSelector(state => state.feeds);
     const [loaded, setLoaded] = useState(false)
     const [serverResponse, setServerResponse] = useState(null)
-    const feed = rightFeed(feeds);
+    const feed = rightFeed(feeds, sourceId);
 
 
-    function rightFeed(feeds) {
-        if (feeds === {}) {
-            return
-        }
-
-        const feedsArr = Object.values(feeds);
-
-        for (let i = 0; i < feedsArr.length; i++) {
-            const feed = feedsArr[i]
-            const sources = feed?.sources
-
-            for (let i = 0; i < sources.length; i++) {
-                let source = sources[i]
-
-                if (source.id === Number(sourceId)) {
-                    return feed;
-                }
-            }
-        }
-    }
 
     useEffect(() => {
         (async () => {
@@ -64,7 +45,7 @@ const SourceList = () => {
                     className='source-list__title'
                     onClick={() => window.open(sources[sourceId]?.feed.link)}
                 >
-                    {sources[sourceId]?.feed.title}
+                    {sources[sourceId]?.feed?.title}
                 </div>
                 <div className="actions-container">
                     < DropDownBtn feed={feed}/>
@@ -74,7 +55,7 @@ const SourceList = () => {
                 Most Recent
             </div>
             <div className='article-list__article-cards'>
-                {sources[sourceId]?.entries.map((entry, i) => (
+                {sources[sourceId]?.entries?.map((entry, i) => (
                     <ArticleCard key={i} entry={entry} modalId={`${sourceId}/${i}/${entry.id}`} />
                 ))}
             </div>

@@ -6,6 +6,7 @@ import sidebarReducer from './sidebar';
 import sourceReducer from './sources';
 import viewsReducer from './views'
 import modalReducer from './modal'
+import followsReducer from "./follows"
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
     sources: sourceReducer,
     sidebar: sidebarReducer,
     views: viewsReducer,
-    modal: modalReducer
+    modal: modalReducer,
+    follows: followsReducer
 });
 
 let enhancer;

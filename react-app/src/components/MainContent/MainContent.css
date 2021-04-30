@@ -1,6 +1,6 @@
 .main-content {
     grid-area: main-content;
-    padding: 64px 64px 0;
+    padding: 45px 45px 0;
     overflow-y: scroll;
     display: flex;
     justify-content: center;

@@ -3,7 +3,8 @@ from flask_login import current_user, login_required
 import feedparser
 import html  # html.unescape()
 
-from app.models import db, Source, Feed, feeds_sources
+from app.models import db, Source, Feed, User, feeds_sources
+from app.utilities import getSourceIds, flatten
 
 
 sources_routes = Blueprint('sources', __name__)
@@ -39,6 +40,15 @@ def standardize_feed(raw):
 
     return {"feed": feed,
             "entries": entries}
+
+
+@sources_routes.route("/", methods=["GET"])
+def get_all_sources():
+
+    sources = Source.query.all()
+
+    return {"sources": [source.to_dict() for source in sources]}
+
 
 
 @sources_routes.route('/', methods=['PUT'])
@@ -115,6 +125,43 @@ def unfollow_source(source_id):
     db.session.commit()
 
     if feed:
-        return {"feed": feed.to_dict()}
+        return {"feed": feed.to_dict(),
+                "sourceId": source_id }
     else:
         return {'error': 500}
+
+
+@sources_routes.route("/<int:source_id>/follow/", methods=["POST"])
+def follow_source(source_id):
+
+    data = request.json
+
+    feed = Feed.query.get(data["feedId"])
+
+    source = Source.query.get(source_id)
+
+    feed.sources.append(source)
+    db.session.commit()
+
+    if feed:
+        return {"feed": feed.to_dict(),
+                "sourceId": source_id }
+    else:
+        return {'error': 500}
+
+
+@sources_routes.route("/follows/all/", methods=["GET"])
+def get_all_follows():
+
+    if current_user.is_authenticated:
+        current_user_dict = current_user.to_dict()
+        user_id = current_user_dict["id"]
+
+        user_feeds = Feed.query.filter(Feed.user_id == current_user_dict["id"]).all()
+
+        follows = getSourceIds(user_feeds)
+
+        json_follows = [follow.to_dict_for_follows for follow in follows]
+
+
+        return {"follows": [follow.to_dict_for_follows() for follow in follows]}

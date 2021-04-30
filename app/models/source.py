@@ -21,3 +21,9 @@ class Source(db.Model):
                 "alt_name": self.alt_name,
                 "source_img": self.source_img,
                 "feeds": [feed.to_dict_simple()["id"] for feed in self.feeds]}
+
+
+    def to_dict_for_follows(self):
+        return {
+            "sourceId": self.id,
+        }

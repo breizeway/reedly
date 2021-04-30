@@ -1,6 +1,7 @@
 import feedparser
 import datetime
 
+
 def val_if_exists(key, dictionary):
     if key in dictionary:
         return dictionary[key]
@@ -48,3 +49,18 @@ def date_today(entry):
     today = datetime.date.today()
 
     return entry_date == today
+
+
+
+# This function and helper are to get the right sources for following routes!!
+
+def flatten(lst):
+        flat_list = []
+        for sublist in lst:
+            for item in sublist:
+                flat_list.append(item)
+        return flat_list
+
+
+def getSourceIds(feeds):
+        return flatten([feed.sources for feed in feeds])
