@@ -67,6 +67,7 @@ def sources_on_feed(id):
     else:
         return {'error': 404}, 404
 
+
 @feed_routes.route("/all")
 @login_required
 def all_feeds():
@@ -75,16 +76,15 @@ def all_feeds():
 
         feeds = Feed.query.filter(Feed.user_id == session_id) \
                           .all()
-        feeds_dicts = [feed.to_dict() for feed in feeds]
 
-        if feeds:
+        if len(feeds) > 0:
+            feeds_dicts = [feed.to_dict() for feed in feeds]
             return {'feeds': feeds_dicts}
         else:
             return {'error': 404}, 404
 
 
-
-@feed_routes.route("/today", methods=["PUT"])
+@feed_routes.route("/views/today", methods=["PUT"])
 @login_required
 def today_view():
     feed = request.json['feed']
@@ -95,6 +95,24 @@ def today_view():
         entries = source_w_rss['rss_data']['entries']
         filtered_entries = list(filter(date_today, entries))
         all_entries = all_entries + filtered_entries
+    feed['entries'] = all_entries
+
+    if len(all_entries) > 0:
+        return feed
+    else:
+        return {'error': 404}, 404
+
+
+@feed_routes.route("/views/all", methods=["PUT"])
+@login_required
+def all_view():
+    feed = request.json['feed']
+    all_entries = []
+
+    for source in feed['sources']:
+        source_w_rss = add_rss_to_source(source)
+        entries = source_w_rss['rss_data']['entries']
+        all_entries = all_entries + entries
     feed['entries'] = all_entries
 
     if len(all_entries) > 0:

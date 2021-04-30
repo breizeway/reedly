@@ -50,13 +50,14 @@ function DropDownBtn({ feed }) {
             </div>
             {showMenu && (
                 <div className="dropdown-container">
-                    <div className="delete-container">
+                    <div
+                        className="delete-container"
+                        onClick={deleteOneSource}
+                    >
                         <div className="icon dropdown__trash">
                             <i className="far fa-trash-alt"></i>
                         </div>
-                        <div className="dropdown__section"
-                            onClick={deleteOneSource}
-                        >
+                        <div className="dropdown__section">
                             Unfollow
                         </div>
                     </div>

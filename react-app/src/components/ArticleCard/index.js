@@ -33,6 +33,9 @@ const ArticleCard = ({ entry, modalId }) => {
           <div className='article-card__title'>
             {entry.title}
           </div>
+          <div className='article-card__date'>
+            {new Date(entry.published).toDateString()}
+          </div>
           <div className='article-card__summary'>
             {parseFromHTML(entry.summary)}
           </div>

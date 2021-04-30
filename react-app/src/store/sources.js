@@ -105,6 +105,7 @@ export const addNew = (sourceUrl, feedId) => async dispatch => {
 
 const initialState = {
     all: {},
+    defaultFeed: 'default',
 }
 
 const sourceReducer = (state = initialState, action) => {

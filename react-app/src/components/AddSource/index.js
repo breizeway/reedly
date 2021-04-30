@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import * as sourceActions from '../../store/sources';
 import { getAllFollows } from "../../store/follows"
 
@@ -10,6 +10,7 @@ import './AddSource.css';
 const AddSource = () => {
     const dispatch = useDispatch()
     const history = useHistory()
+    const { feedId } = useParams()
     const sources = (useSelector(state => state.sources));
     const follows = useSelector(state => state.follows);
     const sourcesArr = Object.values(sources);
@@ -35,11 +36,10 @@ const AddSource = () => {
     const feeds = Object.values(useSelector(state => state.feeds))
 
     const [sourceUrl, setSourceUrl] = useState('')
-    const [feed, setFeed] = useState('default')
+    const [feed, setFeed] = useState(feedId ? feedId : 'default')
 
     const submit = async e => {
         e.preventDefault()
-        console.log('   :::FEED:::   ', feed);
         if (feed !== 'default') {
             const source = await dispatch(sourceActions.addNew(sourceUrl, feed))
             history.push(`/sources/${source.id}`)
@@ -47,6 +47,7 @@ const AddSource = () => {
     }
 
     return (
+
         <div className="add-source">
             <div className='add-source__add'>
                 <div className='add-source__text'>Add new source...</div>
@@ -59,6 +60,7 @@ const AddSource = () => {
                             type='text'
                             value={sourceUrl}
                             onChange={e => setSourceUrl(e.target.value)}
+                            placeholder='RSS Feed URL'
                         ></input>
                         <select
                             value={feed}

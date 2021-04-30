@@ -48,37 +48,36 @@ function DropDownBtn() {
     }, [showMenu]);
 
     return (
-        <>
+        <div className='dropdown'>
             <div className="settings__cog" onClick={openMenu}>
                 <i className="fas fa-ellipsis-h"></i>
             </div>
             {showMenu && (
                 <div className="dropdown-container">
-                    <div>
+                    <div onClick={modal.set}>
                         <div className="icon dropdown__cursor">
                             <i className="fas fa-i-cursor"></i>
                         </div>
                         <div
-                            onClick={modal.set}
                             className="dropdown__section">
                             Rename Feed
                         </div>
                     </div>
-                    <div className="delete-container">
+                    <div
+                        className="delete-container"
+                        onClick={deleteOneFeed}
+                    >
                         <div className="icon dropdown__trash">
                             <i className="far fa-trash-alt"></i>
                         </div>
-                        <div className="dropdown__section"
-                            onClick={deleteOneFeed}
-                        >
-                        Delete</div>
+                        <div className="dropdown__section">Delete</div>
                     </div>
                 </div>
             )}
             {modal.val === modal.thisVal && (
                 <Modal content={<UpdateFeed />} />
             )}
-        </>
+        </div>
     )
 }
 

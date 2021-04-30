@@ -1,0 +1,22 @@
+.about__person {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.about__links {
+  display: flex;
+  font-size: 36px;
+}
+
+.about__link {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.about__link:not(.about__link:first-child) {
+  margin-left: 10px;
+}

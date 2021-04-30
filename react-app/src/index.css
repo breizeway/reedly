@@ -45,13 +45,24 @@ input:focus {
 
 .app-container {
     display: grid;
-    grid-template: 100% / 48px 270px auto;
+    grid-template: 100% / 64px 320px auto;
     grid-template-areas:
         "navbar sidebar main-content";
     width: 100%;
     height: 100%;
 }
 
+
+.site-logo-gray {
+    display: flex;
+    justify-content: center;
+    background-image: url('./assets/logo-gray.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 36px;
+    height: 36px;
+}
 
 .site-logo {
     display: flex;
@@ -60,12 +71,49 @@ input:focus {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 30px;
+    width: 36px;
+    height: 36px;
 }
 
-.site-logo__link {
-    width: 34px;
-    height: 100%;
-    display: block;
+.site-logo:hover {
+    cursor: pointer;
+}
+
+
+
+.standard-button {
+    background-color: #2BB24C;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 1rem;
+    margin-top: 0;
+    margin-right: .5rem;
+    margin-bottom: 0;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: top;
+    min-width: 50px;
+    box-sizing: border-box;
+    letter-spacing: 0;
+    box-shadow: none;
+    outline: 0;
+    transition: background-color .2s linear,color .2s linear;
+    color: white;
+}
+
+.standard-button:hover {
+  background-color: #249540;
+  color: white;
+  cursor: pointer;
 }
