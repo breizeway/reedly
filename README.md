@@ -39,9 +39,10 @@ Readly uses:
 
 ---
 
-- [Front End Routes](https://github.com/sam-hearst/Comic-collection/wiki/Frontend-Routes)
 - [Database Schema](https://github.com/breizeway/reedly/wiki/Database-Schema)
 - [MVP Features](https://github.com/breizeway/reedly/wiki/MVP-Features)
+- [User Stories](https://github.com/breizeway/reedly/wiki/User-Stories)
+
 <p>&nbsp;</p>
 
 
@@ -103,7 +104,7 @@ This is the backend for the Flask React project.
 1. Clone this repository (only this branch)
 
    ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
+   git clone https://github.com/breizeway/reedly.git
    ```
 
 2. Install dependencies
@@ -134,4 +135,16 @@ This is the backend for the Flask React project.
    flask run
    ```
 
-   6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+   6. To run the React App in development, go into the react-app folder and install dependencies and then run
+
+    ```bash
+    cd react-app
+    ```
+
+    ```bash
+    npm install
+    ```
+
+    ```bash
+    npm start
+    ```
