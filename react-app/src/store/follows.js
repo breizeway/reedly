@@ -38,7 +38,6 @@ export const getAllFollows = () => async dispatch => {
 
 
 export const unfollowSource = payload => async dispatch => {
-    console.log("hitting the unfollow route!!");
     const response = await fetch(`/api/sources/${payload.sourceId}/unfollow/`, {
         method: 'DELETE',
         body: JSON.stringify(payload),
@@ -52,7 +51,7 @@ export const unfollowSource = payload => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(updateOneFeed(data.feed));
-        dispatch(removeFollow(data.sourceId)); 
+        dispatch(removeFollow(data.sourceId));
         return data
     }
 }

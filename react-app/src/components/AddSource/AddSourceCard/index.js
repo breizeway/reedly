@@ -12,9 +12,10 @@ const AddSourceCard = ({ source, name, img, followsArr }) => {
     const dispatch = useDispatch();
     const [showDropDown, setShowDropDown] = useState(false);
     const feeds = useSelector(state => state.feeds);
-    const feed = rightFeed(feeds, source.id);
+    // const feed = rightFeed(feeds, source.id);
     const followsArrIds = followsArr.map((follow) => follow.sourceId);
     const isFollowed = followsArrIds.includes(Number(source.id));
+
 
 
     function handleFollowClick() {
@@ -22,6 +23,8 @@ const AddSourceCard = ({ source, name, img, followsArr }) => {
     }
 
     async function handleUnfollowClick() {
+        const feed = rightFeed(feeds, source.id);
+
         const payload = {
             sourceId: source.id,
             feed: feed

@@ -5,6 +5,7 @@ export const rightFeed = (feeds, sourceId) => {
         return
     }
 
+
     const feedsArr = Object.values(feeds);
 
     for (let i = 0; i < feedsArr.length; i++) {
@@ -12,7 +13,7 @@ export const rightFeed = (feeds, sourceId) => {
         const sources = feed?.sources
 
         if (!sources?.length) {
-            return false
+            continue
         }
 
         for (let i = 0; i < sources.length; i++) {
