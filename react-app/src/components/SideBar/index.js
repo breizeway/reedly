@@ -18,13 +18,23 @@ const SideBar = () => {
 
     console.log(selectedNews);
 
-    const isSelected = (selectedNews) => {
-        (function () {
-            if (selectedNews.selected === "all") {
-                return `--selected`; 
-            }
-        })();
-    }
+    const isSelected = (function () {
+        if (selectedNews?.selected === "all") {
+            return `--selected`;
+        } else {
+            return ''
+        }
+    })();
+
+    const isSelectedToday = (function () {
+        if (selectedNews?.selected === "today") {
+            return `--selected`;
+        } else {
+            return ''
+        }
+    })();
+
+
 
     async function selected(feedOrSource) {
         console.log("working", feedOrSource);
@@ -48,7 +58,7 @@ const SideBar = () => {
     return (
         <div className="sidebar">
             <div className="sidebar__first-section">
-                <div className="sidebar__today sidebar__row">
+                <div onClick={() => selected('today')} className={`sidebar__today sidebar__row ${isSelectedToday}`}>
                     <div className="sidebar__icon-book sidebar__icon">
                         <i className="fa fa-book" aria-hidden="true"></i>
                     </div>
