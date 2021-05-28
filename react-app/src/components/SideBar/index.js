@@ -14,40 +14,41 @@ const SideBar = () => {
     const dispatch = useDispatch();
     const feeds = useSelector(state => state.feeds)
     const feedsArr = Object.values(feeds);
-    const selectedNews = useSelector(state => state.sidebar);
 
-    console.log(selectedNews);
 
-    const isSelected = (function () {
-        if (selectedNews?.selected === "all") {
-            return `--selected`;
-        } else {
-            return ''
+    // useEffect for DOM manipulation to style active link in sidebar
+    useEffect(() => {
+        const activeLink = document.querySelector(".active");
+        let sidebarRowDiv
+
+        if (activeLink) {
+            function isSelected () {
+                sidebarRowDiv = activeLink.parentElement;
+                sidebarRowDiv.classList.add("--selected");
+            }
+            isSelected();
         }
-    })();
 
-    const isSelectedToday = (function () {
-        if (selectedNews?.selected === "today") {
-            return `--selected`;
-        } else {
-            return ''
+        return function cleanup() {
+            if (activeLink) {
+                sidebarRowDiv.classList.remove("--selected");
+            }
         }
-    })();
+    })
 
 
-
-    async function selected(feedOrSource) {
-        console.log("working", feedOrSource);
-
-        await dispatch(load(feedOrSource));
-    }
-
-
+    // useEffect to get feed information (API call)
     useEffect(() => {
         (async () => {
             await dispatch(getFeeds());
         })()
     }, [dispatch]);
+
+
+    async function selected(feedOrSource) {
+        await dispatch(load(feedOrSource));
+    }
+
 
     const modal = {
         thisVal: 'sidebar/addFeed',
@@ -55,10 +56,11 @@ const SideBar = () => {
         set: () => dispatch(modalActions.setActive(modal.thisVal))
     }
 
+
     return (
         <div className="sidebar">
             <div className="sidebar__first-section">
-                <div onClick={() => selected('today')} className={`sidebar__today sidebar__row ${isSelectedToday}`}>
+                <div onClick={() => selected('today')} className={`sidebar__today sidebar__row`}>
                     <div className="sidebar__icon-book sidebar__icon">
                         <i className="fa fa-book" aria-hidden="true"></i>
                     </div>
@@ -72,7 +74,7 @@ const SideBar = () => {
                     <div className='sidebar__header'>Feeds</div>
                 </div>
                 <div className="sidebar__feed-container">
-                    <div onClick={() => selected('all')} className={`feed-list-all sidebar__row ${isSelected}`}>
+                    <div onClick={() => selected('all')} className={`feed-list-all sidebar__row`}>
                         <div className="sidebar__icon-bars sidebar__icon">
                             <i className="fas fa-bars"></i>
                         </div>
