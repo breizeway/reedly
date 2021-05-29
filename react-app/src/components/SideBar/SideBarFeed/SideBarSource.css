@@ -7,37 +7,23 @@
     text-decoration: none;
 }
 
-.sidebar__source-container--selected * {
-    display: flex;
-    flex-direction: row;
-    color: var(--main-color);
-    text-decoration: none;
-}
 
 .sidebar__source-container {
     padding: 5px 20px 5px 56px;
     border-left: 2px solid transparent;
 }
 
-.sidebar__source-container--selected {
-    padding: 5px 20px 5px 56px;
-    border-left: 2px solid var(--main-color);
-}
 
 .sidebar__source-container:hover {
     background-color: rgba(0,0,0,.05);
 }
+
 
 .sidebar__source-container img {
     height: 16px;
     width: 16px;
 }
 
-.sidebar__source-container--selected img {
-    height: 16px;
-    vertical-align: middle;
-    width: 16px;
-}
 
 .sidebar__default-icon {
     font-size: 18px;
