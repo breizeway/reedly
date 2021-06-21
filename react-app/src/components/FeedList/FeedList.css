@@ -34,14 +34,13 @@
 }
 
 .article-list__title {
-    margin-bottom: 20px;
     clear: both;
     color: #757575;
     font-size: .75rem;
     font-weight: 700;
     letter-spacing: 0;
     line-height: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     text-transform: uppercase;
 }
 
