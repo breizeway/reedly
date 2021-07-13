@@ -79,7 +79,8 @@ def get_source(source_id):
         source_url = source[0]
         raw = feedparser.parse(source_url)
         standardized_feed = standardize_feed(raw)
-        return {"raw": raw, "standardized": standardized_feed}
+        print("print typeof raw", type(raw))
+        return {"standardized": standardized_feed}
     else:
         return {'error': 404}, 404
 
@@ -155,7 +156,6 @@ def get_all_follows():
 
     if current_user.is_authenticated:
         current_user_dict = current_user.to_dict()
-        user_id = current_user_dict["id"]
 
         user_feeds = Feed.query.filter(Feed.user_id == current_user_dict["id"]).all()
 

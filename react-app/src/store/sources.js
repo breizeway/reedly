@@ -77,6 +77,7 @@ export const add = sourceId => async dispatch => {
     const all = await response.json(); // get both standardized and raw rss feed
     if (response.ok) {
         const data = all.standardized
+        console.log(data);
         data.id = sourceId
         dispatch(addSource(data))
         return data
