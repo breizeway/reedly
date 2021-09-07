@@ -68,7 +68,7 @@ A key feature that shows our team's techincal ability was the ability to follow 
 
 ### Parsing RSS Feeds
 
-One of the major hurdles in our project was being able to parse the RSS data.  RSS feeds, as we quickly learned, come in a variety of different styles and structures so it was difficult to pull the nessecary information and then to display it with each different rss feed looking the same.  A valuable module that helped with this was feedparser.  To give an idea of this, here is a code snippet of just some of the data manipulation that needed to be done.  When a user clicks on a feed, the app queries the database for that feed and the rss feeds associated with it (labeled source_url).  The app then runs these urls through a feed parser with converts the rss feed into usable data.  That data is then standardized and return to the front end.
+One of the major hurdles in our project was being able to parse the RSS data.  RSS feeds, as we quickly learned, come in a variety of different styles and structures so it was difficult to pull the nessecary information and then to display it with each different rss feed looking the same.  A valuable module that helped with this was feedparser.  To give an idea of this, here is a code snippet of just some of the data manipulation that needed to be done.  When a user clicks on a feed, the app queries the database for that feed and the rss feeds associated with it (labeled source_url).  The app then runs these urls through a feed parser which converts the rss feed into usable data.  That data is then standardized and return to the front end.
 
 ```python
 @feed_routes.route('/<int:id>')
